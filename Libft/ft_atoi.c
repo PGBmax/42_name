@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 12:56:31 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 11:20:17 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 14:36:45 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/08 14:46:41 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-size_t	ft_strlen(const char *s)
+int	ft_atoi(const char *nptr)
 {
-	size_t	i;
+	int	number;
+	int	i;
+	int	negate;
 
+	number = 0;
+	negate = 1;
 	i = 0;
-	while (*s++)
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			negate = -1;
 		i++;
-	return (i);
+	}
+	while (nptr[i] != 0)
+	{
+		if (nptr[i] >= 48 && nptr[i] <= 57)
+			number = 10 * number + (nptr[i] - 48);
+		else
+			return (number * negate);
+		i++;
+	}
+	return (number * negate);
 }

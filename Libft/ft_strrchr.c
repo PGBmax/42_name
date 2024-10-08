@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 12:56:31 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 11:20:17 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 13:42:27 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/08 14:03:14 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-size_t	ft_strlen(const char *s)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (*s++)
+	while (*s)
+	{
 		i++;
-	return (i);
+		s++;
+	}
+	while (i > 0)
+	{
+		if (*s == c)
+			return ((char *)s);
+		i--;
+		s--;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (0);
 }

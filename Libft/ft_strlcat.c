@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 12:56:31 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 11:20:17 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 12:55:51 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/08 13:10:53 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	size_t	size2;
 
-	i = 0;
-	while (*s++)
-		i++;
-	return (i);
+	size2 = size;
+	while (size > 0 && *dst)
+	{
+		dst++;
+		size--;
+	}
+	if (size == 0)
+		return (size2);
+	while (size > 0 && *src)
+	{
+		*dst++ = *src++;
+		size--;
+	}
+	if (size == 0)
+		return (size2);
+	*dst = 0;
+	return (size2);
 }
