@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 12:43:34 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 17:29:50 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 14:53:35 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/08 14:58:09 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	int count;
+	int		i;
+	char	*str;
 
-	count = 0;
-	while (src[count] != 0)
-		count++;
-	if (size == 0)
-		return (count);
 	i = 0;
-	while (i < (size - 1) && src[i] != 0)
+	while (s[i] != 0)
+		i++;
+	str = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (s[i] != 0)
 	{
-		dst[i] = src[i];
+		str[i] = s[i];
 		i++;
 	}
-	dst[i] = 0;
-	return (count);
+	str[i] = 0;
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:03:13 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 12:42:56 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:37:23 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*strdest;
 	unsigned char	*strsrc;
 
-	if (!dest || !src || n == 0)
-		return (NULL);
 	strdest = (unsigned char *) dest;
 	strsrc = (unsigned char *) src;
 	i = 0;

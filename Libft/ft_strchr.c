@@ -6,12 +6,14 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:18:35 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 13:53:21 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:47:43 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
+	if (!(c <= 127 && c >= 0))
+		return ((char *)s);
 	while (*s)
 	{
 		if (*s == c)
