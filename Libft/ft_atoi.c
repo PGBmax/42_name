@@ -6,32 +6,36 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:36:45 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 14:46:41 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:24:35 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_atoi(const char *nptr)
 {
-	int	number;
 	int	i;
-	int	negate;
+	int	temp;
+	int	negatif;
 
-	number = 0;
-	negate = 1;
 	i = 0;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	temp = 0;
+	negatif = 0;
+	while (((nptr[i] >= 9 && nptr[i] <= 13)
+			|| nptr[i] == 32) && nptr[i] != '\0')
+		i++;
+	if ((nptr[i] == 43 || nptr[i] == 45) && nptr[i] != '\0')
 	{
-		if (nptr[i] == '-')
-			negate = -1;
+		if (nptr[i] == 45)
+			negatif++;
 		i++;
 	}
-	while (nptr[i] != 0)
+	while (nptr[i] != '\0' && (nptr[i] >= 48 && nptr[i] <= 57))
 	{
-		if (nptr[i] >= 48 && nptr[i] <= 57)
-			number = 10 * number + (nptr[i] - 48);
-		else
-			return (number * negate);
+		temp = 10 * temp + (nptr[i] - '0');
 		i++;
 	}
-	return (number * negate);
+	if (negatif % 2 == 1)
+		temp = -temp;
+	return (temp);
 }

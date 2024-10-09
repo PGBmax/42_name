@@ -20,6 +20,7 @@ char	*ft_strrchr(const char *s, int c)
 		i++;
 		s++;
 	}
+	i++;
 	while (i > 0)
 	{
 		if (*s == c)
@@ -27,7 +28,5 @@ char	*ft_strrchr(const char *s, int c)
 		i--;
 		s--;
 	}
-	if (c == '\0')
-		return ((char *)s);
 	return (0);
 }

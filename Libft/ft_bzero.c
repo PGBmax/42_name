@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pboucher <manugalaad@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:15:51 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 16:16:09 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/09 12:04:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> 
+#include "libft.h"
 
 void	*ft_bzero(void *s, size_t n)
 {
 	size_t	i;
-	unsigned char *str;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	str = (unsigned char *) s;
 	while (i < n)
 	{
-		str[i] = 0;
+		*(char *)(s + i) = 0;
 		i++;
 	}
 	return (s);
