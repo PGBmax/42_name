@@ -14,9 +14,9 @@
 
 int	count_words(const char *str, char c)
 {
-	int i;
-	int j;
-	char last;
+	int		i;
+	int		j;
+	char	last;
 
 	last = c;
 	i = 0;
@@ -27,11 +27,23 @@ int	count_words(const char *str, char c)
 			j++;
 		last = str[i];
 		i++;
-	}		
+	}
 	return (j);
 }
+void csc(size_t k,char **split, size_t j, S)
+{
+	size_t temp;
 
-char		**ft_split(char const *s, char c)
+	temp = 0;
+	while (temp < k)
+	{
+		split[j][temp] = s[i];
+		temp++;
+		i++;
+	}
+	split[j][temp] = 0;
+}
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	size_t	j;
@@ -46,14 +58,14 @@ char		**ft_split(char const *s, char c)
 	j = 0;
 	while (1)
 	{
-		while ( s[i] == c)
+		while (s[i] == c)
 			i++;
 		if (s[i] == 0)
-			break;
+			break ;
 		k = 0;
 		while (s[i + k] != 0 && s[i + k] != c)
 			k++;
-		split[j] = (char *)malloc((k + 1) * sizeof(char));
+		split[j] = malloc((k + 1) * sizeof(char ));
 		if (!split[j])
 			return (NULL);
 		temp = 0;
@@ -67,5 +79,5 @@ char		**ft_split(char const *s, char c)
 		j++;
 	}
 	split[j] = NULL;
-	return (split); 
+	return (split);
 }
