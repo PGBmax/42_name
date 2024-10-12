@@ -6,13 +6,13 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:30:17 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/11 17:30:54 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 17:31:11 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_sigma(char const *s, unsigned int start, size_t len)
+int	ft_count(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	size_t			j;
@@ -28,11 +28,11 @@ int	ft_sigma(char const *s, unsigned int start, size_t len)
 				i++;
 				j++;
 			}
+			break ;
 		}
 		i++;
 	}
-	j++;
-	return (j);
+	return (j + 1);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -42,18 +42,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	i;
 	size_t			j;
 
-	count = ft_sigma(s, start, len);
-	str = malloc(count * sizeof(char));
+	count = ft_count(s, start, len);
+	str = ft_calloc(count, 1);
 	if (!str)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s[i] != 0)
+	while (s[i])
 	{
 		if (i == start)
 		{
-			while (j < len && s[i] != 0)
+			while (j < len && s[i])
 				str[j++] = s[i++];
+			break ;
 		}
 		i++;
 	}

@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int	count_words(const char *str, char c)
+size_t	count_words(const char *str, char c)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 	char	last;
 
 	last = c;
@@ -30,54 +30,37 @@ int	count_words(const char *str, char c)
 	}
 	return (j);
 }
-void csc(size_t k,char **split, size_t j, S)
-{
-	size_t temp;
 
-	temp = 0;
-	while (temp < k)
-	{
-		split[j][temp] = s[i];
-		temp++;
-		i++;
-	}
-	split[j][temp] = 0;
-}
+// Tab[0] = i, pour parcourir s
+// Tab[1] = j, pour parcourir le tableau de tableau
+// Tab[2] = k, pour connaire la taille a allouer
+// Tab[3] = temp, pour ecrire dans le tableau j
+
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	size_t	j;
-	size_t	k;
-	size_t	temp;
+	size_t	tab[4];
 	char	**split;
 
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (1)
+	tab[0] = 0;
+	tab[1] = 0;
+	while (tab[1] < count_words(s, c) && s[tab[0]] != 0)
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] == 0)
-			break ;
-		k = 0;
-		while (s[i + k] != 0 && s[i + k] != c)
-			k++;
-		split[j] = malloc((k + 1) * sizeof(char ));
-		if (!split[j])
+		while (s[tab[0]] == c)
+			tab[0]++;
+		tab[2] = 0;
+		while (s[tab[0] + tab[2]] != 0 && s[tab[0] + tab[2]] != c)
+			tab[2]++;
+		split[tab[1]] = malloc((tab[2] + 1) * sizeof(char ));
+		if (!split[tab[1]])
 			return (NULL);
-		temp = 0;
-		while (temp < k)
-		{
-			split[j][temp] = s[i];
-			temp++;
-			i++;
-		}
-		split[j][temp] = 0;
-		j++;
+		tab[3] = 0;
+		while (tab[3] < tab[2])
+			split[tab[1]][tab[3]++] = s[tab[0]++];
+		split[tab[1]++][tab[3]] = 0;
 	}
-	split[j] = NULL;
+	split[tab[1]] = NULL;
 	return (split);
 }

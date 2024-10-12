@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 13:18:35 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 14:26:36 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/12 17:44:25 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/12 17:53:12 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	int		i;
-	char	car;
 
 	i = 0;
-	car = (char)c;
-	while (s[i])
+	if (s)
 	{
-		if (s[i] == car)
-			return ((char *)s + i);
-		i++;
+		while (s[i])
+		{
+			(*f)(i, &s[i]);
+			i++;
+		}
 	}
-	if (car == '\0')
-		return ((char *)s + i);
-	return (0);
 }

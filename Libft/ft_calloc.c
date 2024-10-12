@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <manugalaad@gmail.com>            +#+  +:+       +#+        */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:58:49 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/09 13:30:07 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:32:17 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*alloc;
 
-	if (size * nmemb <= 0)
+	if (size >= 65535 || nmemb >= 65535)
 		return (NULL);
-	alloc = malloc(size * nmemb);
+	if (size * nmemb <= 0)
+		alloc = malloc(1);
+	else
+		alloc = malloc(size * nmemb);
 	if (!alloc)
 		return (NULL);
 	ft_bzero(alloc, nmemb * size);

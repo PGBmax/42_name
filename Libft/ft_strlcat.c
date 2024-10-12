@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:55:51 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/09 19:35:34 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:03:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	dest_l;
 	size_t	src_l;
 
-	if (!dst || !src)
-		return (0);
 	src_l = ft_strlen(src);
 	dest_l = ft_strlen(dst);
 	i = 0;
