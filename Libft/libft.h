@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:20:07 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 17:52:53 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 18:18:29 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_list
+{
+	void *content;
+	struct s_list *next;
+}	t_list;
 
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
@@ -49,5 +55,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+t_list *ft_lstnew(void *content);
 
 #endif

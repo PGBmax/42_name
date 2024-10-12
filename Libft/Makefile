@@ -6,7 +6,7 @@
 #    By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:35:58 by pboucher          #+#    #+#              #
-#    Updated: 2024/10/12 17:49:26 by pboucher         ###   ########.fr        #
+#    Updated: 2024/10/12 18:22:56 by pboucher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft
 
 OBJ = $(SRC:.c=.o)
 
-OBJO = ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_memchr.o ft_memcmp.o ft_memcpy.o \
-	ft_memmove.o ft_memset.o ft_strchr.o ft_strdup.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_tolower.o ft_toupper.o ft_split.c \
-	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_itoa.o ft_substr.o	ft_strjoin.c ft_strtrim.c ft_strmapi.o ft_striteri.o
+BONUS = ft_lstnew_bonus.c
+
+BONUS_OBJ = $(BONUS:.c=.o)
 
 CFLAGS = -Werror -Wextra -Wall -g3
 
