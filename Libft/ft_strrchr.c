@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 14:03:14 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 11:07:41 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@ char	*ft_strrchr(const char *s, int c)
 	int	i;
 
 	i = 0;
-	while (*s)
-	{
+	while (s[i])
 		i++;
-		s++;
-	}
 	i++;
 	while (i > 0)
 	{
-		if (*s == c)
-			return ((char *)s);
+		if (s[i] == c)
+			return ((char *)s + i);
 		i--;
-		s--;
 	}
 	return (0);
 }
