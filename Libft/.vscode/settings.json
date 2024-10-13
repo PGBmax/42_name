@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"ft_split": "c"
+		"ft_split": "c",
+		"libft.h": "c"
 	}
 }

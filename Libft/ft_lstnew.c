@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 18:13:29 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 18:18:04 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/12 22:22:50 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list *ft_lstnew(void *content)
 {
-	t_list *test;
+	t_list *list;
 	
-	test = (t_list *)malloc(sizeof(*test));
-	if (!test)
+	list = (t_list *)malloc(sizeof(*list));
+	if (!list)
 		return (NULL);
-	test->content = (t_list *)content;
-	test->next = NULL;
-	return (test);
+	list->content = content;
+	list->next = NULL;
+	return (list);
 }
