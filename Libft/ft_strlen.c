@@ -6,11 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:56:31 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/08 11:20:17 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:09:59 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

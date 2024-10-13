@@ -6,11 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:41 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 22:24:19 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:10:05 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

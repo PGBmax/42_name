@@ -6,11 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 11:20:38 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 22:24:09 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:09:31 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> 
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

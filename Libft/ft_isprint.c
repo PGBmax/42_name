@@ -6,9 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:42:32 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/07 12:54:00 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:09:01 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:33:52 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 14:23:04 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 18:56:18 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // If verif == 0, check index of start, else, check index of end
 
-int	ft_have_len(const char *s1, const char *set, int verif)
+static int	ft_have_len(const char *s1, const char *set, int verif)
 {
 	size_t	len;
 	size_t	i;

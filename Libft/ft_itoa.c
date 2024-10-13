@@ -6,13 +6,13 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:02:18 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/11 16:13:09 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 18:42:38 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_intlen(int n)
+static int	ft_intlen(int n)
 {
 	int	count;
 

@@ -6,9 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:18:35 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 14:26:36 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:09:40 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

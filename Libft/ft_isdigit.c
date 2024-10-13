@@ -6,9 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:14:06 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/07 12:42:51 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/13 16:08:58 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
