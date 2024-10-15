@@ -1,4 +1,0 @@
-1. Mettre _bonus pour chaque fichier (Penser aussi au Makefile)
-2. modifier ft_putendl_fd ft_putnbr_fd ft_putstr_fd (tester les fonctions de teddy)
-3. enlever les commentaires dans le split 
-4. enlever le commentaire dans ft_strtrim 

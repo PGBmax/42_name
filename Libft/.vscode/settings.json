@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"ft_split": "c",
-		"libft.h": "c",
-		"sstream": "c"
-	}
-}

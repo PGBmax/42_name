@@ -6,7 +6,7 @@
 #    By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:35:58 by pboucher          #+#    #+#              #
-#    Updated: 2024/10/14 21:15:33 by pboucher         ###   ########.fr        #
+#    Updated: 2024/10/15 16:16:29 by pboucher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_
 
 BONUS_OBJ = $(BONUS:.c=.o)
 
-CFLAGS = -Werror -Wextra -Wall -g3
+CFLAGS = -Werror -Wextra -Wall
 
 $(NAME): $(OBJ)
 		ar rc $(NAME) $(OBJ)
@@ -31,6 +31,7 @@ all:	 $(NAME) clean
 
 clean:
 		rm -f $(OBJ)
+		rm -f $(BONUS_OBJ)
 
 fclean: clean
 		rm -f $(NAME)
@@ -39,3 +40,5 @@ re: fclean all
 
 bonus:	$(OBJ) $(BONUS_OBJ)
 		ar rc $(NAME) $(OBJ) $(BONUS_OBJ)
+
+.PHONY: all clean fclean re bonus

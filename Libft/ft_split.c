@@ -31,14 +31,22 @@ static size_t	count_words(const char *str, char c)
 	return (j);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**free_all(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split[i]);
+	free(split);
+	return (NULL);
+}
+
+static char	**ft_splited_split(char const *s, char c, char **split)
 {
 	size_t	tab[4];
-	char	**split;
 
-	split = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!split)
-		return (NULL);
 	tab[0] = 0;
 	tab[1] = 0;
 	while (tab[1] < count_words(s, c) && s[tab[0]] != 0)
@@ -50,7 +58,7 @@ char	**ft_split(char const *s, char c)
 			tab[2]++;
 		split[tab[1]] = malloc((tab[2] + 1) * sizeof(char ));
 		if (!split[tab[1]])
-			return (NULL);
+			return (free_all(split));
 		tab[3] = 0;
 		while (tab[3] < tab[2])
 			split[tab[1]][tab[3]++] = s[tab[0]++];
@@ -58,4 +66,15 @@ char	**ft_split(char const *s, char c)
 	}
 	split[tab[1]] = NULL;
 	return (split);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!split)
+		return (NULL);
+	else
+		return (ft_splited_split(s, c, split));
 }
