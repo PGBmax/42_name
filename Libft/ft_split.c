@@ -31,11 +31,6 @@ static size_t	count_words(const char *str, char c)
 	return (j);
 }
 
-// Tab[0] = i, pour parcourir s
-// Tab[1] = j, pour parcourir le tableau de tableau
-// Tab[2] = k, pour connaire la taille a allouer
-// Tab[3] = temp, pour ecrire dans le tableau j
-
 char	**ft_split(char const *s, char c)
 {
 	size_t	tab[4];

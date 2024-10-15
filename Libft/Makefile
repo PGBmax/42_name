@@ -6,7 +6,7 @@
 #    By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:35:58 by pboucher          #+#    #+#              #
-#    Updated: 2024/10/13 15:02:05 by pboucher         ###   ########.fr        #
+#    Updated: 2024/10/14 21:15:33 by pboucher         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft
 
 OBJ = $(SRC:.c=.o)
 
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 BONUS_OBJ = $(BONUS:.c=.o)
 

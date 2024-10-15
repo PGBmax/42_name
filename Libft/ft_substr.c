@@ -6,13 +6,13 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:30:17 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 17:31:11 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:20:21 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_count(char const *s, unsigned int start, size_t len)
+static int	ft_count(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	size_t			j;
