@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:34:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/16 18:26:56 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:50:00 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ int ft_format(va_list list, char str)
 		count += ft_putchar(va_arg(list, int));
 	if (str == 's')
 		count += ft_putstr(va_arg(list, char *));
+	if (str == 'p')
+		count += ft_puthexa(va_arg(list, unsigned long), 0);
 	if (str == 'd' || str == 'i')
-		count += ft_putnbr(va_arg(list, int));
+		count += ft_putnbr(va_arg(list, int), 0);
 	if (str == 'u')
-		count += ft_putnbr(va_arg(list, unsigned long));
-	if (str)
+		count += ft_putnbr(va_arg(list, unsigned int), 1);
+	if (str == 'x')
+		count += ft_puthexa(va_arg(list, unsigned int), 0);
+	if (str == 'x')
+		count += ft_puthexa(va_arg(list, unsigned int), 1);
 	if (str == '%')
 		count += ft_putchar(37);
 	return (count);

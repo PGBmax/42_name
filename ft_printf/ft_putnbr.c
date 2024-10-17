@@ -6,13 +6,13 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:44:55 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/16 18:32:34 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/16 22:15:20 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int int_len(long long n)
+static int int_len(int n)
 {
 	int i;
 
@@ -31,14 +31,16 @@ static int int_len(long long n)
 	return (i);
 }
 
-int	ft_putnbr(long long n)
+int	ft_putnbr(int n, int check)
 {
 	int	a;
 	int len;
 
-	if (n == 0 || n == -0 || n == 0)
-		return (ft_putchar('0'));
 	len = int_len(n);
+	if (n == -2147483648 && check == 0)
+		return (ft_putstr("-2147483648"));
+	else if (n == -2147483648 && check == 1)
+		return (ft_putstr("2147483648"));
 	if (n < 0)
 	{
 		write(1, "-", 1);
@@ -52,8 +54,8 @@ int	ft_putnbr(long long n)
 	}
 	else
 	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
+		ft_putnbr(n / 10, 0);
+		ft_putnbr(n % 10, 0);
 	}
 	return (len);
 }
