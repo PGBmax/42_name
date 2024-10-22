@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:34:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/17 18:41:19 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/19 14:36:00 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@ int	ft_format(va_list list, char str)
 	count = 0;
 	if (str == 'c')
 		count += ft_putchar(va_arg(list, int));
-	if (str == 's')
+	else if (str == 's')
 		count += ft_putstr(va_arg(list, char *));
-	if (str == 'p')
+	else if (str == 'p')
 		count += ft_puthexa(va_arg(list, unsigned long));
-	if (str == 'd' || str == 'i')
+	else if (str == 'd' || str == 'i')
 		count += ft_putnbr(va_arg(list, int), 0);
-	if (str == 'u')
+	else if (str == 'u')
 		count += ft_putnbr(va_arg(list, unsigned int), 1);
-	if (str == 'x')
+	else if (str == 'x')
 		count += ft_puthexa_uol(va_arg(list, unsigned int), 0);
-	if (str == 'X')
+	else if (str == 'X')
 		count += ft_puthexa_uol(va_arg(list, unsigned int), 1);
-	if (str == '%')
+	else if (str == '%')
 		count += ft_putchar('%');
+	else
+	{
+		count+= ft_putchar("%");
+		count+= ft_putchar(str);
+	}
 	return (count);
 }
 
@@ -58,4 +63,10 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(list);
 	return (count);
+}
+
+int main(void)
+{
+	ft_printf("%a\n", 47);
+	printf("%a\n", 47);
 }
