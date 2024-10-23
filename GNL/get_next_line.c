@@ -5,83 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 16:04:45 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/22 18:16:03 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/23 14:54:31 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/23 19:02:12 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <fcntl.h>
+
 #include "get_next_line.h"
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while(s[i])
+	while (*s++)
 		i++;
 	return (i);
 }
 
-char	*get_next_line(int fd)
+char	*fill_stash(char *old, char *add, int max)
 {
-	char		*str;
-	char		*temp;
-	char		*temp2;
-	static buffers buffer;
-	int			i;
-	int			j;
-	int			k;
+	char	*stash;
+	int		i;
+	int		j;
 
 	i = -1;
-	if (!buffer.len)
-		buffer.len = 0;
-	j = buffer.len;
-	k = buffer.len;
-	if (!*buffer.buffer)
-		read(fd, buffer.buffer, sizeof(buffer.buffer));
-	while (buffer.buffer[buffer.len] != '\n' && buffer.buffer[buffer.len])
-		buffer.len++;
-	if (buffer.buffer[buffer.len - 1] == 0 && BUFFER_SIZE != 1)
-		return(NULL);
-	str = malloc(buffer.len - j + 1);
-	if (!str)
+	j = -1;
+	stash = malloc(ft_strlen(old) + ft_strlen(add) + 1);
+	if (!stash)
 		return (NULL);
-	while (++i + j < buffer.len + 1)
-		str[i] = buffer.buffer[k++];
-	str[i] = 0;
-	if (buffer.buffer[buffer.len] == '\n' && BUFFER_SIZE == 1)
-		read(fd, buffer.buffer, sizeof(buffer.buffer));
-	else if (buffer.buffer[BUFFER_SIZE - 1] != 0 && buffer.len == BUFFER_SIZE)
-	{
-		i = -1;
-		j = 0;
-		buffer.len = 0;
-		read(fd, buffer.buffer, sizeof(buffer.buffer));
-		temp = get_next_line(fd);
-		temp2 = malloc(ft_strlen(temp) + ft_strlen(str) + 1);
-		if (!temp2)
-			return (NULL);
-		while(str[++i])
-			temp2[i] = str[i];
-		while (temp[j])
-			temp2[i++] = temp[j++];
-		free(str);
-		free(temp);
-		return (temp2);
-	}
-	buffer.len++;
-	return (str);
+	while (old[++i])
+		stash[i] = old[i];
+	while (add[++j] && j < max)
+		stash[i + j] = add[j];
+	stash[i + j] = 0;
+	return (stash);
 }
 
-int main(void)
+char	*fill_line(char *stash, int start, int size)
 {
-	int fd;
+	char	*line;
+	int		i;
 
-	fd = open("caca.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	line = malloc(size + 1);
+	if (!line || !stash[start])
+		return (NULL);
+	i = -1;
+	while (++i < size)
+		line[i] = stash[start + i];
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	char			buffer[BUFFER_SIZE];
+	static t_buff	buff;
+	char			*line;
+	int				byte_read;
+	int				limit;
+
+	byte_read = 1;
+	if (!buff.stash)
+		buff.stash = "";
+	if (!buff.i)
+		buff.i = 0;
+	limit = buff.i;
+	while (byte_read)
+	{
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (!byte_read)
+			break ;
+		buff.stash = fill_stash(buff.stash, buffer, byte_read);
+	}
+	while (buff.stash[buff.i] && buff.stash[buff.i] != '\n')
+		buff.i++;
+	buff.i++;
+	line = fill_line(buff.stash, limit, buff.i - limit);
+	return (line);
+}
+
+int	main(void)
+{
+	int	fd;
+	int i = -1;
+
+	fd = open("test.txt", O_RDONLY);
+	while (++i < 9)
+		printf("%s", get_next_line(fd));
 }
