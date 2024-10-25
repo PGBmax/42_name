@@ -45,26 +45,28 @@ static char	**free_all(char **split)
 
 static char	**ft_splited_split(char const *s, char c, char **split)
 {
-	size_t	tab[4];
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	l;
 
-	tab[0] = 0;
-	tab[1] = 0;
-	while (tab[1] < count_words(s, c) && s[tab[0]] != 0)
+	i = 0;
+	j = 0;
+	while (j < count_words(s, c) && s[i] != 0)
 	{
-		while (s[tab[0]] == c)
-			tab[0]++;
-		tab[2] = 0;
-		while (s[tab[0] + tab[2]] != 0 && s[tab[0] + tab[2]] != c)
-			tab[2]++;
-		split[tab[1]] = malloc((tab[2] + 1) * sizeof(char ));
-		if (!split[tab[1]])
+		while (s[i] == c)
+			i++;
+		k = 0;
+		while (s[i + k] != 0 && s[i + k] != c)
+			k++;
+		split[j] = ft_calloc((k + 1), sizeof(char));
+		if (!split[j])
 			return (free_all(split));
-		tab[3] = 0;
-		while (tab[3] < tab[2])
-			split[tab[1]][tab[3]++] = s[tab[0]++];
-		split[tab[1]++][tab[3]] = 0;
+		l = 0;
+		while (l < k)
+			split[j][l++] = s[i++];
 	}
-	split[tab[1]] = NULL;
+	split[j] = NULL;
 	return (split);
 }
 

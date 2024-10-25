@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:21:13 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 17:42:51 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:08:04 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*str;
-	unsigned int	i;
+	int		i;
+	char	*str;
 
-	if (!s)
-		return (NULL);
-	str = ft_calloc(1, ft_strlen(s) + 1);
+	i = ft_strlen(s);
+	str = ft_calloc(sizeof(char), (i + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (s[i])
-	{
+	while (i--)
 		str[i] = f(i, s[i]);
-		i++;
-	}
-	str[i] = 0;
 	return (str);
 }

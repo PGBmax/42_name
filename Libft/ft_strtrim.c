@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:33:52 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/14 21:18:04 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:11:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,13 @@ static int	ft_have_len(const char *s1, const char *set, int verif)
 		}
 		return (i);
 	}
-	else
+	while (i < len)
 	{
-		while (i < len)
-		{
-			if (ft_strchr(set, s1[len - i - 1]) == 0)
-				break ;
-			i++;
-		}
-		return (len - i);
+		if (ft_strchr(set, s1[len - i - 1]) == 0)
+			break ;
+		i++;
 	}
+	return (len - i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)

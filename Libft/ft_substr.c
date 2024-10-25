@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:30:17 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/14 21:20:21 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:12:27 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_count(char const *s, unsigned int start, size_t len)
 	{
 		if (i == start)
 		{
-			while (j < len && s[i] != 0)
+			while (j < len && s[i])
 			{
 				i++;
 				j++;

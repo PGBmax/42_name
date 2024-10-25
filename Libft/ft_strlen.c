@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 12:56:31 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/13 16:09:59 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:10:42 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	while (*s++)
+	while (s[i])
 		i++;
 	return (i);
 }

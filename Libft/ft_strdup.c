@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:53:35 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/13 16:09:43 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:07:30 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,11 @@ char	*ft_strdup(const char *s)
 	int		i;
 	char	*str;
 
-	i = 0;
-	while (s[i] != 0)
-		i++;
-	str = malloc(sizeof(char) * (i + 1));
+	i = ft_strlen(s);
+	str = ft_calloc(sizeof(char), (i + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (s[i] != 0)
-	{
+	while (i--)
 		str[i] = s[i];
-		i++;
-	}
-	str[i] = 0;
 	return (str);
 }

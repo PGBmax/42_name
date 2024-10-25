@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:58:49 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/15 13:37:26 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:55:49 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*alloc;
-
-	if (size >= 65535 || nmemb >= 65535)
-		return (NULL);
 	if (size * nmemb <= 0)
 	{
 		alloc = malloc(0);

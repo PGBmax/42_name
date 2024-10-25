@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:44:55 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 14:43:14 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:03:18 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		if (n < 0)
 		{
-			write(fd, "-", 1);
+			ft_putchar_fd('-', fd);
 			n *= -1;
 		}
 		a = n;
 		if (n >= 0 && n <= 9)
 		{
 			a = a + '0';
-			write(fd, &a, 1);
+			ft_putchar_fd(a, fd);
 		}
 		else
 		{

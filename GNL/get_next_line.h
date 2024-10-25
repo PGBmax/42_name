@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 12:58:58 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/23 18:46:10 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/25 08:27:10 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_buff
 {
 	char	*stash;
 	int		i;
+	int		limit;
+	int		read;
 }	t_buff;
 
 #endif
