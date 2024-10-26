@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 08:17:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/26 16:38:02 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/27 01:03:03 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,16 @@ char	*read_fd(int fd, char *stash)
 	if (!temp)
 		return (NULL);
 	check_read = 1;
-	while (check_read && !get_good_size(stash))
+	while (check_read != 0 && !get_good_size(stash))
 	{
 		check_read = read(fd, temp, BUFFER_SIZE);
-		if ((!check_read && !stash) || check_read == -1)
+		if ((check_read == 0 && !stash) || check_read == -1)
 		{
 			free(temp);
 			return (NULL);
 		}
 		temp[check_read] = 0;
-		if (stash && temp)
-			stash = ft_strjoin(stash, temp);
-		else
-			stash = ft_strjoin("", temp);
+		stash = ft_strjoin(stash, temp);
 	}
 	free(temp);
 	return (stash);
@@ -46,7 +43,7 @@ char	*fill_line(char	*stash)
 	char	*list;
 	int		i;
 
-	if (!stash)
+	if (!stash || !stash[0])
 		return (NULL);
 	list = malloc(get_good_size(stash) + 1);
 	if (!list)
@@ -66,8 +63,11 @@ char	*clear_stash(char *stash)
 	int		i;
 	int		j;
 
-	if (!stash)
+	if (!stash || !stash[0])
+	{
+		free(stash);
 		return (NULL);
+	}
 	i = get_good_size(stash);
 	temp = malloc(ft_strlen(stash) - i + 1);
 	if (!temp)
@@ -77,12 +77,6 @@ char	*clear_stash(char *stash)
 		temp[j] = stash[j + i];
 	temp[j] = 0;
 	free(stash);
-	if (temp[0] == 0)
-	{
-		free(temp);
-		temp = NULL;
-		return(temp);
-	}
 	return (temp);
 }
 
@@ -97,6 +91,11 @@ char	*get_next_line(int fd)
 	stash = read_fd(fd, stash);
 	line = fill_line(stash);
 	stash = clear_stash(stash);
+	if (!stash && !line)
+	{
+		free(stash);
+		return (NULL);
+	}
 	return (line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:35:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/26 16:37:11 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/27 00:58:09 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,13 @@ int get_good_size(char *stash)
 	int i;
 
 	i = 0;
-	while (stash[i++])
+	if (!stash)
+		return (0);
+	while (stash[i])
+	{
 		if (stash[i] == '\n')
 			return (i);
+		i++;
+	}
 	return (0);
 }
