@@ -20,7 +20,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 	@printf "\rCompiled mandatory ✅"
 
-BAR_LENGTH := 100
+BAR_LENGTH := 20
 ifeq ($(MAKECMDGOALS),bonus)
 	TOTAL_FILES := $(words $(SOURCESALL))
 else
@@ -65,3 +65,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all bonus clean fclean re scorpionem
+

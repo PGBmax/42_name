@@ -59,12 +59,14 @@ static char	**ft_splited_split(char const *s, char c, char **split)
 		k = 0;
 		while (s[i + k] != 0 && s[i + k] != c)
 			k++;
-		split[j] = ft_calloc((k + 1), sizeof(char));
+		split[j] = malloc((k + 1) * sizeof(char));
 		if (!split[j])
 			return (free_all(split));
 		l = 0;
 		while (l < k)
 			split[j][l++] = s[i++];
+		split[j][l] = 0;
+		j++;
 	}
 	split[j] = NULL;
 	return (split);
