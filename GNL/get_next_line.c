@@ -1,32 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_c.c                                  :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 08:17:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/28 16:22:28 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:32:07 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*read_fd(int fd, char *stash)
+static char	*create_stash(char *stash, char *temp, int fd)
+{
+	int check_read;
+	
+	check_read = 1;
+	if (!stash)
+	{
+		stash = malloc(1);
+		stash[0] = 0;
+	}
+	else
+	{
+		temp = ft_calloc(BUFFER_SIZE + 1, 1);
+		if (!temp)
+			return (NULL);
+		check_read = read(fd, temp, BUFFER_SIZE);
+		temp[check_read] = 0;
+		if (check_read)
+		stash = ft_strjoin(stash, temp);
+		free(temp);
+		temp = NULL;
+	}
+	return (stash);
+}
+
+static char	*read_fd(int fd, char *stash)
 {
 	char	*temp;
 	int		check_read;
 
 	check_read = 1;
-	temp = malloc(BUFFER_SIZE + 1);
-	check_read = read(fd, temp, BUFFER_SIZE);
-	temp[check_read] = 0;
-	if (check_read)
-		stash = ft_strjoin(stash, temp);
-	free (temp);
+	temp = NULL;
+	stash = create_stash(stash, temp, fd);
 	while (check_read && !ft_strchr(stash, '\n'))
 	{
-		temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
+		temp = ft_calloc(BUFFER_SIZE + 1, 1);
+		if (!temp)
+			return (NULL);
 		check_read = read(fd, temp, BUFFER_SIZE);
 		if (check_read == -1 || (check_read == 0 && stash[0] == '\0'))
 		{
@@ -36,12 +59,12 @@ char	*read_fd(int fd, char *stash)
 		}
 		temp[check_read] = 0;
 		stash = ft_strjoin(stash, temp);
+		free(temp);
 	}
-	free(temp);
 	return (stash);
 }
 
-char	*fill_line(char	*stash)
+static char	*fill_line(char	*stash)
 {
 	char	*list;
 	int		i;
@@ -57,7 +80,7 @@ char	*fill_line(char	*stash)
 	return (list);
 }
 
-char	*clear_stash(char *stash)
+static char	*clear_stash(char *stash)
 {
 	char	*temp;
 	int		i;
@@ -90,17 +113,4 @@ char	*get_next_line(int fd)
 	line = fill_line(stash);
 	stash = clear_stash(stash);
 	return (line);
-}
-
-#include <fcntl.h>
-#include <stdio.h>
-int main(void)
-{
-	int	fd;
-	
-	fd = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 }
