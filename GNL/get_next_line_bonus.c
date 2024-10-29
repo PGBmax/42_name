@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 08:17:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 18:34:03 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:40:16 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	*create_stash(char *stash, char *temp, int fd)
 {
-	int check_read;
-	
+	int	check_read;
+
 	check_read = 1;
 	if (!stash)
 	{
@@ -30,7 +30,7 @@ static char	*create_stash(char *stash, char *temp, int fd)
 		check_read = read(fd, temp, BUFFER_SIZE);
 		temp[check_read] = 0;
 		if (check_read)
-		stash = ft_strjoin(stash, temp);
+			stash = ft_strjoin(stash, temp);
 		free(temp);
 		temp = NULL;
 	}

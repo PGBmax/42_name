@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:35:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 15:54:28 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:40:48 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
 		i++;
-	return(i);
+	return (i);
 }
 
 char	*ft_strchr(char *s, int c)
