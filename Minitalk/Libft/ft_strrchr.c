@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 18:40:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/01 23:58:35 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 13:42:27 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/12 14:38:28 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+char	*ft_strrchr(const char *s, int c)
 {
-	if (s)
+	int		i;
+	char	car;
+
+	i = ft_strlen(s);
+	car = (char)c;
+	while (i >= 0)
 	{
-		write(fd, s, ft_strlen(s));
-		write(fd, "\n", 1);
+		if (s[i] == car)
+			return ((char *)s + i);
+		i--;
 	}
+	if (car == '\0')
+		return ((char *)s + i);
+	return (0);
 }

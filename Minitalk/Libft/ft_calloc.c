@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 18:40:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/01 23:58:35 by pboucher         ###   ########.fr       */
+/*   Created: 2024/10/08 14:58:49 by pboucher          #+#    #+#             */
+/*   Updated: 2024/10/25 11:55:49 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (s)
+	void	*alloc;
+
+	if (size * nmemb <= 0)
 	{
-		write(fd, s, ft_strlen(s));
-		write(fd, "\n", 1);
+		alloc = malloc(0);
 	}
+	else
+		alloc = malloc(size * nmemb);
+	if (!alloc)
+		return (NULL);
+	ft_bzero(alloc, nmemb * size);
+	return (alloc);
 }

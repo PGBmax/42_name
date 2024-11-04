@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:34:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/19 14:36:00 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/02 00:01:33 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int	ft_printf(const char *str, ...)
 
 int main(void)
 {
-	ft_printf("%a\n", 47);
-	printf("%a\n", 47);
+	ft_printf("vdjefvuev fe %c\n", 'c');
+	printf("%c\n", 'c');
 }
