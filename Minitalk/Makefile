@@ -11,33 +11,44 @@ CLIENTOBJ = $(CLIENT:.c=.o)
 OBJECTS = $(SOURCES:.c=.o)
 OBJECTSALL = $(SERVEROBJ) $(CLIENTOBJ) $(OBJECTS)
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+SERVERBONUS = bonus/server_bonus.c
+CLIENTBONUS = bonus/client_bonus.c
 
-%.o : %.c
-		@$(CC) $(CFLAGS) -o $@ -c $<
-		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(s)
+SERVEROBJBONUS = $(SERVERBONUS:.c=.o)
+CLIENTOBJBONUS = $(CLIENTBONUS:.c=.o)
+
+OBJECTSALLBONUS = $(SERVEROBJBONUS) $(CLIENTOBJBONUS) $(OBJECTS)
+
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAMECLIENT) $(NAMESERVER)
 
-$(NAMECLIENT): $(OBJECTS)
+$(NAMECLIENT): $(OBJECTSALL)
 		$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJ) -o $(NAMECLIENT)
 		@printf "\rCompiled Client ✅\n"
 
-$(NAMESERVER): $(OBJECTS)
+$(NAMESERVER): $(OBJECTSALL)
 		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(NAMESERVER)
 		@printf "\rCompiled Server ✅\n"
 clean:
 		@rm -f $(OBJECTSALL)
+		@rm -f $(OBJECTSALLBONUS)
 		@printf "Cleaned objects ✅\n"
 
-fclean: clean
+fclean:	clean
 		@rm -f $(NAMESERVER)
-		@rm -f %(NAMECLIENT)
+		@rm -f $(NAMECLIENT)
 		@printf "Cleaned everything ✅\n"
+
+bonus:	$(OBJECTSALLBONUS)
+		$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJBONUS) -o $(NAMECLIENT)
+		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJBONUS) -o $(NAMESERVER)
+		@printf "\rCompiled Bonus ✅\n"
 
 re: fclean all
 
+bonus: 
 scorpionem :
 	@printf "\033[0;34m\n"
 	@echo " ▗▄▄▖▗▞▀▘ ▄▄▄   ▄▄▄ ▄▄▄▄  ▄  ▄▄▄  ▄▄▄▄  ▗▞▀▚▖▄▄▄▄"
