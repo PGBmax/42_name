@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 12:58:58 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 15:41:15 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:38:27 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *s);
-char	*ft_strchr(char *s, int c);
+int		ft_strchr(char *s, int c, int check);
 char	*ft_substr(char *s, int start, int len);
 char	*get_next_line(int fd);
 void	*ft_calloc(int nmemb, int size);

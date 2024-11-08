@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:35:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 18:40:48 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:38:23 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i + j] = s2[j];
 	free(s1);
 	s1 = NULL;
+	free(s2);
+	s2 = NULL;
 	return (str);
 }
 
@@ -44,22 +46,30 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+int	ft_strchr(char *s, int c, int check)
 {
 	int	i;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	if (check == 1)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(&s[i]));
+		while (s[i] && s[i] != '\n')
+			i++;
+		if (s[i] == '\n')
+			i++;
+		return (i);
+	}
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (i);
 		i++;
 	}
-	if (s[i] == (char)c)
-		return ((char *)(&s[i]));
-	return (NULL);
+	if (s[i] == c)
+		return (i);
+	return (0);
 }
 
 char	*ft_substr(char *s, int start, int len)

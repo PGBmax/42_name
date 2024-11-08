@@ -6,18 +6,8 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:55:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/17 14:28:27 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:08:49 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#include "ft_printf.h

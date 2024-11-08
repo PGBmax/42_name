@@ -10,16 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf/ft_printf.h"
-#include "Libft/libft.h"
-#include <signal.h>
-#include <string.h>
-#include <stdio.h>
+#include "minitalk.h"
+
+int	g_check = 0;
+
+void	change_state(int sig)
+{
+	if (sig == SIGUSR2)
+		exit (0);
+	g_check = 1;
+}
 
 void	send_signal(int pid, char c)
 {
-	int i;
-	char temp_c;
+	int		i;
+	char	temp_c;
 
 	i = 8;
 	temp_c = c;
@@ -31,20 +36,26 @@ void	send_signal(int pid, char c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(10);
+		usleep(1);
+		signal(SIGUSR1, change_state);
+		while (g_check == 0)
+			pause();
+		g_check = 0;
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int pid;
-	int i;
+	int	pid;
+	int	i;
 
 	if (ac != 3)
-		return(ft_printf("Usage: %s <pid> <message>\n.", av[0]));
+		return (ft_printf("\n\e[31mError !\n\e[32mCorrect Usage: %s <pid> <str>\n\n", av[0]));
 	pid = ft_atoi(av[1]);
+	if (pid <= 0 || kill(pid, 0))
+		return (ft_printf("\n\e[31mError !\n\e[32mNot a valid pid.\n\n"));
 	i = -1;
-	while (av[2][++i])
+	while (av[2][++i] && av[2] && av[2] != NULL)
 		send_signal(pid, av[2][i]);
 	send_signal(pid, 0);
 	return (0);

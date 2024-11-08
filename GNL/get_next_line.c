@@ -6,36 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 08:17:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 18:40:03 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/03 10:38:46 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*create_stash(char *stash, char *temp, int fd)
-{
-	int	check_read;
-
-	check_read = 1;
-	if (!stash)
-	{
-		stash = malloc(1);
-		stash[0] = 0;
-	}
-	else
-	{
-		temp = ft_calloc(BUFFER_SIZE + 1, 1);
-		if (!temp)
-			return (NULL);
-		check_read = read(fd, temp, BUFFER_SIZE);
-		temp[check_read] = 0;
-		if (check_read)
-			stash = ft_strjoin(stash, temp);
-		free(temp);
-		temp = NULL;
-	}
-	return (stash);
-}
 
 static char	*read_fd(int fd, char *stash)
 {
@@ -44,8 +19,7 @@ static char	*read_fd(int fd, char *stash)
 
 	check_read = 1;
 	temp = NULL;
-	stash = create_stash(stash, temp, fd);
-	while (check_read && !ft_strchr(stash, '\n'))
+	while (check_read && !ft_strchr(stash, '\n', 0))
 	{
 		temp = ft_calloc(BUFFER_SIZE + 1, 1);
 		if (!temp)
@@ -59,25 +33,8 @@ static char	*read_fd(int fd, char *stash)
 		}
 		temp[check_read] = 0;
 		stash = ft_strjoin(stash, temp);
-		free(temp);
 	}
 	return (stash);
-}
-
-static char	*fill_line(char	*stash)
-{
-	char	*list;
-	int		i;
-
-	if (!stash || !stash[0])
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	list = ft_substr(stash, 0, i);
-	return (list);
 }
 
 static char	*clear_stash(char *stash)
@@ -87,11 +44,7 @@ static char	*clear_stash(char *stash)
 
 	if (!stash || !stash[0])
 		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
+	i = ft_strchr(stash, '\n', 1);
 	if (i == ft_strlen(stash))
 	{
 		free(stash);
@@ -109,8 +62,32 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (!stash)
+		stash = ft_calloc(1, 1);
+	if (!stash)
+		return (NULL);
 	stash = read_fd(fd, stash);
-	line = fill_line(stash);
+	line = ft_substr(stash, 0, ft_strchr(stash, '\n', 1));
 	stash = clear_stash(stash);
 	return (line);
 }
+
+// #include <stdio.h>
+// #include <fcntl.h>
+
+// int main(void)
+// {
+// 	char *c;
+// 	int fd;
+// 	int i = 0;
+// 	fd = open("text.txt", O_RDONLY);
+// 	c = "";
+// 	while (c)
+// 	{
+// 		c = get_next_line(fd);
+// 		printf("%s", c);
+// 		usleep(100000);
+// 		i++;
+// 	}
+// 	printf("\n%d\n", i);
+// }

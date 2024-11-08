@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:58:55 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/04 17:58:55 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/07 16:09:20 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/07 16:09:42 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,6 @@ int	ft_putstr(char *s)
 	while (s[i])
 		write(1, &s[i++], 1);
 	return (i);
-}
-
-int	ft_puthexa(unsigned long n)
-{
-	char	*numbers;
-	int		len;
-
-	len = 0;
-	numbers = "0123456789abcdef";
-	if (!n)
-		return (ft_putstr("(nil)"));
-	if (n >= 16)
-		len = ft_puthexa(n / 16);
-	if (len == 0)
-		len += ft_putstr("0x");
-	len++;
-	write(1, &numbers[n % 16], 1);
-	return (len);
-}
-
-int	ft_puthexa_uol(unsigned int n, int uporlow)
-{
-	char	*numbers;
-	int		len;
-
-	len = 0;
-	if (uporlow == 0)
-		numbers = "0123456789abcdef";
-	else
-		numbers = "0123456789ABCDEF";
-	if (n == 0)
-		return (ft_putchar('0'));
-	if (!n)
-		return (ft_putstr("(nil)"));
-	if (n < 0)
-	{
-		len += ft_putchar('-');
-		n *= -1;
-	}
-	if (n >= 16)
-		len = ft_puthexa_uol(n / 16, uporlow);
-	len++;
-	write(1, &numbers[n % 16], 1);
-	return (len);
 }
 
 static int	int_len(long n)
@@ -113,5 +69,49 @@ int	ft_putnbr(long n, int check)
 		ft_putnbr(n / 10, check);
 		ft_putnbr(n % 10, check);
 	}
+	return (len);
+}
+
+int	ft_puthexa(unsigned long n)
+{
+	char	*numbers;
+	int		len;
+
+	len = 0;
+	numbers = "0123456789abcdef";
+	if (!n)
+		return (ft_putstr("(nil)"));
+	if (n >= 16)
+		len = ft_puthexa(n / 16);
+	if (len == 0)
+		len += ft_putstr("0x");
+	len++;
+	write(1, &numbers[n % 16], 1);
+	return (len);
+}
+
+int	ft_puthexa_uol(unsigned int n, int uporlow)
+{
+	char	*numbers;
+	int		len;
+
+	len = 0;
+	if (uporlow == 0)
+		numbers = "0123456789abcdef";
+	else
+		numbers = "0123456789ABCDEF";
+	if (n == 0)
+		return (ft_putchar('0'));
+	if (!n)
+		return (ft_putstr("(nil)"));
+	if (n < 0)
+	{
+		len += ft_putchar('-');
+		n *= -1;
+	}
+	if (n >= 16)
+		len = ft_puthexa_uol(n / 16, uporlow);
+	len++;
+	write(1, &numbers[n % 16], 1);
 	return (len);
 }

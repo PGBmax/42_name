@@ -1,0 +1,59 @@
+NAMECLIENT = client
+NAMESERVER = server
+
+SOURCES = ft_printf/ft_printf.c ft_printf/ft_utils.c
+
+SERVER = normal/server.c
+CLIENT = normal/client.c
+
+SERVEROBJ = $(SERVER:.c=.o)
+CLIENTOBJ = $(CLIENT:.c=.o)
+OBJECTS = $(SOURCES:.c=.o)
+OBJECTSALL = $(SERVEROBJ) $(CLIENTOBJ) $(OBJECTS)
+
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -g
+
+%.o : %.c
+		@$(CC) $(CFLAGS) -o $@ -c $<
+		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(s)
+
+all: $(NAMECLIENT) $(NAMESERVER)
+
+$(NAMECLIENT): $(OBJECTS)
+		$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJ) -o $(NAMECLIENT)
+		@printf "\rCompiled Client ✅\n"
+
+$(NAMESERVER): $(OBJECTS)
+		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(NAMESERVER)
+		@printf "\rCompiled Server ✅\n"
+clean:
+		@rm -f $(OBJECTSALL)
+		@printf "Cleaned objects ✅\n"
+
+fclean: clean
+		@rm -f $(NAMESERVER)
+		@rm -f %(NAMECLIENT)
+		@printf "Cleaned everything ✅\n"
+
+re: fclean all
+
+scorpionem :
+	@printf "\033[0;34m\n"
+	@echo " ▗▄▄▖▗▞▀▘ ▄▄▄   ▄▄▄ ▄▄▄▄  ▄  ▄▄▄  ▄▄▄▄  ▗▞▀▚▖▄▄▄▄"
+	@echo "▐▌   ▝▚▄▖█   █ █    █   █ ▄ █   █ █   █ ▐▛▀▀▘█ █ █"
+	@echo " ▝▀▚▖    ▀▄▄▄▀ █    █▄▄▄▀ █ ▀▄▄▄▀ █   █ ▝▚▄▄▖█   █ "
+	@echo "▗▄▄▞▘               █     █                        "
+	@printf "\033[0m\n"
+
+pgbmax :
+	@printf "\033[0;34m\n"
+	@echo "▄▄▄▄  ▗▄▖ ▗▖   ▄▄▄▄  ▗▞▀▜▌▄   ▄" 
+	@echo "█   █▐▌ ▐▌▐▌   █ █ █ ▝▚▄▟▌ ▀▄▀ "
+	@echo "█▄▄▄▀ ▝▀▜▌▐▛▀▚▖█   █      ▄▀ ▀▄"
+	@echo "█    ▐▙▄▞▘▐▙▄▞▘                "
+	@echo "▀"
+	@printf "\033[0m\n"
+
+.PHONY: all bonus clean fclean re scorpionem pgbmax
+
