@@ -51,16 +51,17 @@ int	main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		ft_printf("\n\e[31mError !\n\e[32m");
-		ft_printf("\e[32mCorrect Usage: %s <PID> <STR>\n", av[0]);
-		ft_printf("\e[36mPID must be an unsigned int, and STR a char *.\n\n");
+		ft_printf("\n\e[91mError !\n");
+		ft_printf("\e[92mCorrect Usage: %s <PID> <STR>\n\e[96m", av[0]);
+		ft_printf("PID must be an unsigned int, and STR a char *.\n\n\e[97m");
 		return (0);
 	}
 	pid = ft_atoi(av[1]);
 	if (pid <= 0 || kill(pid, 0))
 	{
-		ft_printf("\n\e[31mError !\n\e[32mNot a valid PID.\n");
-		ft_printf("\e[36mPID must be an unsigned int.\n\n");
+		ft_printf("\n\e[91mError !\n\e[92mNot a valid PID.\n");
+		ft_printf("\e[96mPID must be an unsigned int. If the PID is ");
+		ft_printf("already an unsigned int, then it is not active.\n\n\e[97m");
 		return (0);
 	}
 	i = -1;

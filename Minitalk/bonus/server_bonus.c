@@ -61,7 +61,7 @@ void	handle_signal(int signal, siginfo_t *signals, void *context)
 	(void)context;
 	if (signal == SIGINT)
 	{
-		ft_printf("\n\n\e[31mServer Closing!\n\n\e[36m");
+		ft_printf("\n\n\e[91mServer Closing!\n\n\e[97m");
 		free(str);
 		exit(0);
 	}
@@ -84,7 +84,7 @@ int	main(void)
 	struct sigaction	usr;
 
 	sigemptyset(&usr.sa_mask);
-	ft_printf("\n\e[36mPID: %d\n\n\e[37m", getpid());
+	ft_printf("\n\e[96mPID: %d\n\n\e[97m", getpid());
 	usr.sa_sigaction = handle_signal;
 	usr.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &usr, NULL);
