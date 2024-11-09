@@ -25,12 +25,13 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAMECLIENT) $(NAMESERVER)
 
 $(NAMECLIENT): $(OBJECTSALL)
-		$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJ) -o $(NAMECLIENT)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJ) -o $(NAMECLIENT)
 		@printf "\rCompiled Client ✅\n"
 
 $(NAMESERVER): $(OBJECTSALL)
-		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(NAMESERVER)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJ) -o $(NAMESERVER)
 		@printf "\rCompiled Server ✅\n"
+
 clean:
 		@rm -f $(OBJECTSALL)
 		@rm -f $(OBJECTSALLBONUS)
@@ -39,16 +40,15 @@ clean:
 fclean:	clean
 		@rm -f $(NAMESERVER)
 		@rm -f $(NAMECLIENT)
-		@printf "Cleaned everything ✅\n"
+		@printf "Cleaned executables ✅\n"
 
 bonus:	$(OBJECTSALLBONUS)
-		$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJBONUS) -o $(NAMECLIENT)
-		$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJBONUS) -o $(NAMESERVER)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(CLIENTOBJBONUS) -o $(NAMECLIENT)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(SERVEROBJBONUS) -o $(NAMESERVER)
 		@printf "\rCompiled Bonus ✅\n"
 
 re: fclean all
 
-bonus: 
 scorpionem :
 	@printf "\033[0;34m\n"
 	@echo " ▗▄▄▖▗▞▀▘ ▄▄▄   ▄▄▄ ▄▄▄▄  ▄  ▄▄▄  ▄▄▄▄  ▗▞▀▚▖▄▄▄▄"

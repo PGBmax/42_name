@@ -14,11 +14,30 @@
 
 int	g_check = 0;
 
+void	respond_clock(void)
+{
+	int	clock;
+
+	clock = -1;
+	while (g_check == 0 && ++clock < 30000)
+		usleep(1);
+	if (clock >= 30000)
+	{
+		ft_printf("\n\e[91mServer didn't respond.\nClient Closed.\n\n\e[97m");
+		exit (0);
+	}
+}
+
 void	change_state(int sig)
 {
-	if (sig == SIGUSR2)
-		exit (0);
+	(void)sig;
 	g_check = 1;
+}
+
+void	confirm_msg(int sig)
+{
+	(void)sig;
+	ft_printf("\n\e[92mServer has received the message.\n\n\e[97m");
 }
 
 void	send_signal(int pid, char c)
@@ -37,9 +56,7 @@ void	send_signal(int pid, char c)
 		else
 			kill(pid, SIGUSR1);
 		usleep(1);
-		signal(SIGUSR1, change_state);
-		while (g_check == 0)
-			pause();
+		respond_clock();
 		g_check = 0;
 	}
 }
@@ -64,6 +81,8 @@ int	main(int ac, char **av)
 		ft_printf("already an unsigned int, then it is not active.\n\n\e[97m");
 		return (0);
 	}
+	signal(SIGUSR1, change_state);
+	signal(SIGUSR2, confirm_msg);
 	i = -1;
 	while (av[2][++i] && av[2])
 		send_signal(pid, av[2][i]);

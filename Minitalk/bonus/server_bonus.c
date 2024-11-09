@@ -39,11 +39,12 @@ char	*ft_strjoin(char *s1, char s2)
 	return (str);
 }
 
-char	*fill_str(char c, char *str)
+char	*fill_str(char c, char *str, int pid)
 {
 	if (c == 0)
 	{
 		ft_printf(str);
+		kill(pid, SIGUSR2);
 		free(str);
 		str = NULL;
 	}
@@ -69,7 +70,7 @@ void	handle_signal(int signal, siginfo_t *signals, void *context)
 	index++;
 	if (index == 8)
 	{
-		str = fill_str(c, str);
+		str = fill_str(c, str, signals->si_pid);
 		index = 0;
 		c = 0;
 	}
