@@ -13,13 +13,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int main(int ac, char **av)
-{
-	t_list	*a;
-	t_list	*b;
-}
-
-t_list	*swap(t_list *a, t_list *b, char c)
+void	swap(t_list *a, t_list *b, char c)
 {
 	t_list	*temp;
 
@@ -38,7 +32,7 @@ t_list	*swap(t_list *a, t_list *b, char c)
 	printf("s%s\n", c);
 }
 
-t_list	*push(t_list *a, t_list *b, char c)
+void	push(t_list *a, t_list *b, char c)
 {
 	t_list	*temp;
 	if (c == 'a' && b)
@@ -56,7 +50,7 @@ t_list	*push(t_list *a, t_list *b, char c)
 	printf("p%s\n", c);
 }
 
-t_list	*rotate(t_list *a, t_list *b, char c)
+void	rotate(t_list *a, t_list *b, char c)
 {
 	t_list *temp;
 
@@ -75,7 +69,7 @@ t_list	*rotate(t_list *a, t_list *b, char c)
 	printf("r%s\n", c);
 }
 
-t_list	*reverse_rotate(t_list *a, t_list *b, char c)
+void	reverse_rotate(t_list *a, t_list *b, char c)
 {
 	t_list	**temp;
 	t_list	*real_temp;
@@ -94,4 +88,42 @@ t_list	*reverse_rotate(t_list *a, t_list *b, char c)
 		temp = NULL;
 	}
 	printf("rr%s\n", c);
+}
+
+int main(void)
+{
+	t_list	*a0;
+	t_list	*a1;
+	t_list	*a2;
+	t_list	*a3;
+	t_list	*a4;
+	t_list	*a5;
+	t_list	**b;
+	
+	a0->content = 1;
+	a1->content = 2;
+	a2->content = 3;
+	a3->content = 4;
+	a4->content = 5;
+	a5->content = 6;
+	a0->next = a1;
+	a1->next = a2;
+	a2->next = a3;
+	a3->next = a4;
+	a4->next = a5;
+	a5->next = NULL;
+
+	b = &a0;
+	while ((*b))
+	{
+		printf("%s", (*b)->content);
+		(*b)++;
+	}
+	swap(a0, b, 'a');
+	b = &a0;
+	while ((*b))
+	{
+		printf("%s", (*b)->content);
+		(*b)++;
+	}
 }

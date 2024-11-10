@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 17:33:52 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/29 14:46:39 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:11:07 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	ft_strlcpy(str, s1 + i, j - i + 1);
 	return (str);
-}
-
-#include <stdio.h>
-int main()
-{
-	printf("%s\n", ft_strtrim("Melanie du cdiiiii", "iiiiii"));
 }

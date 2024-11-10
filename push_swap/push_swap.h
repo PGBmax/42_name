@@ -14,4 +14,7 @@
 # define PUSH_SWAP_H
 # include "t_list/t_list.h"
 
+char	**ft_split(char const *s, char c);
+int	count_words(const char *str, char c);
+
 #endif

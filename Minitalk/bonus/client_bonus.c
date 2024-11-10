@@ -19,9 +19,9 @@ void	respond_clock(void)
 	int	clock;
 
 	clock = -1;
-	while (g_check == 0 && ++clock < 30000)
+	while (g_check == 0 && ++clock < 10000)
 		usleep(1);
-	if (clock >= 30000)
+	if (clock >= 10000)
 	{
 		ft_printf("\n\e[91mServer didn't respond.\nClient Closed.\n\n\e[97m");
 		exit (0);

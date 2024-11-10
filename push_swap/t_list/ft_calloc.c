@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 15:15:58 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/10 15:16:10 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/10 15:31:42 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/10 15:34:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "t_list.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void	*ft_bzero(void *s, size_t n)
 {
-	t_list	*list;
-	t_list	*node;
+	size_t			i;
+	unsigned char	*str;
 
-	list = NULL;
-	if (!lst || !f || !del)
-		return (NULL);
-	while (lst)
+	i = 0;
+	str = (unsigned char *) s;
+	while (i < n)
 	{
-		node = ft_lstnew(f(lst->content));
-		if (!node)
-		{
-			ft_lstclear(&list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&list, node);
-		lst = lst->next;
+		str[i] = 0;
+		i++;
 	}
-	return (list);
+	return (s);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*alloc;
+
+	if (size * nmemb <= 0)
+	{
+		alloc = malloc(0);
+	}
+	else
+		alloc = malloc(size * nmemb);
+	if (!alloc)
+		return (NULL);
+	ft_bzero(alloc, nmemb * size);
+	return (alloc);
 }

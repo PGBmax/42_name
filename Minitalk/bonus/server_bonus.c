@@ -43,7 +43,7 @@ char	*fill_str(char c, char *str, int pid)
 {
 	if (c == 0)
 	{
-		ft_printf(str);
+		ft_printf("%s\n\n", str);
 		kill(pid, SIGUSR2);
 		free(str);
 		str = NULL;
