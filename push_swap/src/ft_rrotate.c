@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_rrotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 14:50:56 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/09 23:32:33 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/13 12:11:09 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/13 12:15:38 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_list.h"
+#include "push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+void ft_rrotate(t_stack *stacks, char c)
 {
-	t_list	*list;
-	t_list	*node;
-
-	list = NULL;
-	if (!lst || !f || !del)
-		return (NULL);
-	while (lst)
+	t_list	*a;
+	t_list	*b;
+	
+	a = stacks.a;
+	b = stacks.b;
+	if (c == 'a')
+		ft_rr(a, c);
+	else if (c == 'b')
+		ft_rr(b, c);
+	else
 	{
-		node = ft_lstnew(f(lst->content));
-		if (!node)
-		{
-			ft_lstclear(&list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&list, node);
-		lst = lst->next;
+		ft_rr(a, c);
+		ft_rr(b, c);
 	}
-	return (list);
+	if (c == 'a' || c == 'b')
+		ft_printf("rr%c\n", c);
+	else
+		ft_printf("rrr\n")
 }

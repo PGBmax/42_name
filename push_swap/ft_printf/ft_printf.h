@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 22:45:21 by pboucher          #+#    #+#             */
-/*   Updated: 2024/10/12 22:45:21 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/04 17:58:24 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/04 17:58:24 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_list.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (lst)
-	{
-		while (lst->next)
-			lst = lst->next;
-	}
-	return (lst);
-}
+int	ft_printf(const char *str, ...);
+int	ft_putchar(char c);
+int	ft_putnbr(long n, int check);
+int	ft_putstr(char *s);
+int	ft_strlen(const char *s);
+int	ft_puthexa(unsigned long n);
+int	ft_puthexa_uol(unsigned int n, int uporlow);
+int	ft_atoi(char *nptr);
+
+#endif
