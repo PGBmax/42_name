@@ -6,11 +6,27 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:34:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/02 00:01:33 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:56:44 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
 int	ft_format(va_list list, char str)
 {
@@ -63,10 +79,4 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(list);
 	return (count);
-}
-
-int main(void)
-{
-	ft_printf("vdjefvuev fe %c\n", 'c');
-	printf("%c\n", 'c');
 }

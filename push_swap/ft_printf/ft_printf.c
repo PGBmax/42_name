@@ -6,7 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:07:24 by pboucher          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2024/11/19 00:41:54 by pboucher         ###   ########.fr       */
+=======
 /*   Updated: 2024/11/08 14:38:34 by pboucher         ###   ########.fr       */
+>>>>>>> de39aed00c7688252fa8716c5f50d494b817f41d
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +32,19 @@ int	ft_putchar(char c)
 	return (1);
 }
 
+<<<<<<< HEAD
+long	ft_atoi(char *nptr)
+{
+	int		i;
+	long	temp;
+	int		negatif;
+=======
 int	ft_atoi(char *nptr)
 {
 	int	i;
 	int	temp;
 	int	negatif;
+>>>>>>> de39aed00c7688252fa8716c5f50d494b817f41d
 
 	i = 0;
 	temp = 0;
