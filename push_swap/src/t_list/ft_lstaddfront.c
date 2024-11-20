@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstaddfront.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:08:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/09 23:08:10 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/20 15:39:06 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/20 15:39:06 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../ft_printf/ft_printf.h"
+#include "../push_swap.h"
 
-typedef struct s_list
+void ft_lstadd_front(t_list **list, t_list *new)
 {
-	int				content;
-	struct s_list	*next;
-}	t_list;
-
-typedef struct s_stack
-{
-	struct t_list	*a;
-	struct t_list	*b;
-}	t_stack;
-
-void	ft_sorting(t_list **a, t_list **b);
-int		ft_push(t_list	**list, char c, int check);
-
-#endif
+	if (!*list)
+	{
+		*list = new;
+		new->next = NULL;
+	}
+	else
+	{
+		*list = new;
+		new->next = *list;
+	}
+}

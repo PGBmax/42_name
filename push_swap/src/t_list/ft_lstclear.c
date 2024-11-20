@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:08:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/09 23:08:10 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/20 15:43:54 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/20 15:43:54 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../ft_printf/ft_printf.h"
+#include "../push_swap.h"
 
-typedef struct s_list
+void ft_lstclear(t_list **list)
 {
-	int				content;
-	struct s_list	*next;
-}	t_list;
+	t_list	*temp;
+	t_list	*lst;
 
-typedef struct s_stack
-{
-	struct t_list	*a;
-	struct t_list	*b;
-}	t_stack;
-
-void	ft_sorting(t_list **a, t_list **b);
-int		ft_push(t_list	**list, char c, int check);
-
-#endif
+	if (!(*list))
+		return ;
+	temp = *list;
+	while (temp->next)
+	{
+		lst = temp->next;
+		if (temp)
+			free (temp);
+		temp = lst;
+	}
+	if (temp)
+		free (temp);
+	*list = NULL;
+}

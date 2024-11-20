@@ -23,10 +23,5 @@ int	ft_putstr(char *s);
 int	ft_strlen(const char *s);
 int	ft_puthexa(unsigned long n);
 int	ft_puthexa_uol(unsigned int n, int uporlow);
-<<<<<<< HEAD
 long	ft_atoi(char *nptr);
-=======
-int	ft_atoi(char *nptr);
->>>>>>> de39aed00c7688252fa8716c5f50d494b817f41d
-
 #endif

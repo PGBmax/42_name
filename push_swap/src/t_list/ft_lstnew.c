@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 23:08:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/09 23:08:10 by pboucher         ###   ########.fr       */
+/*   Created: 2024/11/20 15:30:16 by pboucher          #+#    #+#             */
+/*   Updated: 2024/11/20 15:30:16 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "../ft_printf/ft_printf.h"
+#include "../push_swap.h"
 
-typedef struct s_list
+t_list	*ft_lstnew(int content)
 {
-	int				content;
-	struct s_list	*next;
-}	t_list;
+	t_list	*temp;
 
-typedef struct s_stack
-{
-	struct t_list	*a;
-	struct t_list	*b;
-}	t_stack;
-
-void	ft_sorting(t_list **a, t_list **b);
-int		ft_push(t_list	**list, char c, int check);
-
-#endif
+	temp = malloc(sizeof(*temp));
+	if (!temp)
+		return (NULL);
+	temp->content = content;
+	temp->next = NULL;
+	return (temp);
+}

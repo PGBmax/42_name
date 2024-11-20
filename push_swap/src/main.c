@@ -12,15 +12,31 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_sorting(t_list **a, t_list **b)
+{
+	int index;
+
+	index = 0;
+	if ()
+}
+
+int	main(int ac, char **av)
 {
 	t_stack	stacks;
 
-	ft_error(argc, argv);
-	stacks.a = create_list_a(argc, argv);
+	if (ac == 1)
+		exit (0);
+	stacks.a = NULL;
 	stacks.b = NULL;
-	check_for_doubles(stacks.a);
-	sorting(&stacks);
-	ft_clearnodes(&stacks->a);
-	ft_clearnodes(&stacks->b);
+	av = ft_split_all(ac, av);
+	if (!av || ft_double(ac, av) || ft_stack_check(ac, av, stacks.a) == 0)
+	{
+		ft_clean_all(stacks.a, NULL, av);
+		ft_printf("Error\n");
+		exit (0);
+	}
+	if (!ft_sorted(stacks.a))
+		ft_sorting(&stacks.a, &stacks.b);
+	ft_clean_all(stacks.a, stacks.b, av);
+	exit (0);
 }
