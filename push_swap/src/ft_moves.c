@@ -57,7 +57,7 @@ int	ft_push(t_list **a, t_list **b, char c, int check)
 	return (1);
 }
 
-int	ft_rotate(t_list **list, int index, char c, int check)
+int	ft_rotate(t_list **list, int *index, char c, int check)
 {
 	t_list	*temp;
 
@@ -71,14 +71,14 @@ int	ft_rotate(t_list **list, int index, char c, int check)
 		temp->next->next = NULL;
 		if (check == 1)
 			ft_printf("r%c\n", c);
-		if (index)
-			index--;
+		if (index && *index)
+			*index--;
 		return (1);
 	}
 	return (0);
 }
 
-int	ft_reverse_rotate(t_list **list, int index, char c, int check)
+int	ft_reverse_rotate(t_list **list, int *index, char c, int check)
 {
 	t_list	*temp;
 
@@ -92,8 +92,8 @@ int	ft_reverse_rotate(t_list **list, int index, char c, int check)
 		temp->next = NULL;
 		if (check == 1)
 			ft_printf("rr%c\n", c);
-		if (index)
-			index++;
+		if (index && *index)
+			*index++;
 		return (1);
 	}
 	return (0);
