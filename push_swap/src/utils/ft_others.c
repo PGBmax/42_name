@@ -66,7 +66,7 @@ int	ft_get_place(t_list *list, int num)
 	while (list && !(list->content > num
 			&& ft_lstlast(list)->content < num) && i < ft_lstsize(list))
 	{
-		fake_rotate(&list, NULL);
+		ft_rotate(&list, NULL, 'c', 0);
 		i ++;
 	}
 	ft_replace_list(&list, -1 * i);
@@ -76,8 +76,15 @@ int	ft_get_place(t_list *list, int num)
 void	ft_empty_b(t_list **a, t_list **b)
 {
 	int	move_count;
-
-	while (ft_lstsize(*b) != 0)
+	// t_list	*temp = *b;
+	// while (temp)
+	// {
+	// 	ft_printf("%d ", temp->content);
+	// 	temp = temp->next;
+	// }
+	// ft_printf("\n");
+	// ft_printf("1: %p, 2: %p, 3: %p, 4: %p\n", &(*b), &((*b)->next), &((*b)->next->next), &((*b)->next->next->next));
+	while (ft_lstsize(*b))
 	{
 		if ((*b)->content > ft_get_max(*a))
 			move_count = ft_find_index_max(*a) + 1;
@@ -94,4 +101,6 @@ void	ft_empty_b(t_list **a, t_list **b)
 		}
 		ft_push(a, b, 'a', 1);
 	}
+	ft_push(a, b, 'a', 1);
+	// ft_printf("lstsize(b): %d\n", ft_lstsize(*b));
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	ft_replace_list(t_list **list, int index)
 {
@@ -18,13 +18,13 @@ void	ft_replace_list(t_list **list, int index)
 
 	if (index > 0)
 		while (index > 0)
-			fake_rotate(list, &index);
+			ft_rotate(list, &index, 'c', 0);
 	else
 	{
 		index = index * -1;
 		temp = 0;
 		while (temp < index)
-			fake_rrotate(list, &temp);
+			ft_reverse_rotate(list, &temp, 'c', 0);
 	}
 }
 
@@ -44,11 +44,11 @@ int	ft_get_index_b(t_list **a, t_list **b)
 		if (rr_bool == 1 || ((*a)->content > (*b)->content
 				&& ft_find_index_min(*b) > ft_lstsize(*b) / 2))
 		{
-			fake_rrotate(b, NULL);
+			ft_reverse_rotate(b, NULL, 'b', 0);
 			rr_bool = 1;
 		}
 		else
-			fake_rotate(b, NULL);
+			ft_rotate(b, NULL, 'b', 0);
 	}
 	ft_replace_list(b, index * rr_bool);
 	if (rr_bool == 1)
@@ -64,14 +64,14 @@ int	ft_move_list(t_list **a, t_list **b, int index, int *indexb_help)
 	{
 		temp = index;
 		while (temp > 0)
-			fake_rotate(a, &temp);
+			ft_rotate(a, &temp, 'a', 0);
 	}
 	else if (a)
 	{
 		index = index * -1;
 		temp = 0;
 		while (temp < index * 2)
-			fake_rrotate(a, &temp);
+			ft_reverse_rotate(a, &temp, 'a', 0);
 	}
 	temp = ft_get_index_b(a, b);
 	*indexb_help = temp;

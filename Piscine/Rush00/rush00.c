@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   rush00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 10:04:36 by pboucher          #+#    #+#             */
-/*   Updated: 2024/08/10 12:58:41 by doley            ###   ########.fr       */
+/*   Updated: 2024/11/21 18:24:38 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+#include "unistd.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 int	x_while(int x_pos, int y_pos, int x, int y)
 {
-	while (x_pos <= x)
+	while (x_pos <= x && x > 0)
 	{
 		if ((x_pos == 1 && y_pos == y && y > 1)
 			|| (x_pos == x && y_pos == 1 && x > 1))

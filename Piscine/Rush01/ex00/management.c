@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   management.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:09:01 by pboucher          #+#    #+#             */
-/*   Updated: 2024/08/18 18:25:55 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:36:31 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "skycrapper.h"
 
 void	comb(int *tab)
 {

@@ -24,21 +24,19 @@ typedef struct values
 {
 	int	min_move;
 	int	best_index;
-	int index;
+	int	index;
 	int	indexb_help;
 }	t_values;
 
 void	ft_lstadd_back(t_list **list, t_list *new);
-void	 ft_lstadd_front(t_list **list, t_list *new);
-void	 ft_lstclear(t_list **list);
+void	ft_lstadd_front(t_list **list, t_list *new);
+void	ft_lstclear(t_list **list);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int content);
 int		ft_lstsize(t_list *list);
 
 int		ft_get_max(t_list *list);
 int		ft_get_min(t_list *list);
-int		fake_rotate(t_list **list, int *place);
-int		fake_rrotate(t_list **list, int *place);
 int		ft_find_index_max(t_list *list);
 int		ft_find_index_min(t_list *list);
 

@@ -15,7 +15,7 @@
 void	ft_lstadd_back(t_list **list, t_list *new)
 {
 	t_list	*temp;
-	
+
 	if (!new)
 		return ;
 	if (!(*list))

@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 13:06:09 by pboucher          #+#    #+#             */
-/*   Updated: 2024/08/18 19:46:47 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:15:40 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-
-void	comb(int *tab);
-int		verif(char *line, char *view);
-char	*create_line(int a, int b, int c, int d);
+#include "skycrapper.h"
 
 int	ft_print_plate(int *base, int *tvar, char *line, char *view)
 {
@@ -28,16 +23,17 @@ int	ft_print_plate(int *base, int *tvar, char *line, char *view)
 	{
 		while (i <= 15)
 		{
-			write(1, &line[i], 1);
+			ft_printf("\e[96m%c\e[97m", line[i]);
 			if (i == 3 || i == 7 || i == 11 || i == 15)
 			{
-				write(1, "\n", 1);
+				ft_printf("\n");
 			}
 			else
-				write(1, " ", 1);
+				ft_printf(" ");
 			i++;
 		}
 		free(line);
+		ft_printf("\n\e[92mSuccess !\n\n\e[97m");
 		return (1);
 	}
 	free(line);
@@ -46,8 +42,6 @@ int	ft_print_plate(int *base, int *tvar, char *line, char *view)
 
 int	ft_loop(int *base, int *tvar, char *line, char *view)
 {
-	line = malloc(17 * sizeof(char));
-	free(line);
 	tvar[0] = 0;
 	while (tvar[0] <= 23)
 	{
@@ -84,10 +78,17 @@ int	ft_prepare(char *view)
 	base = malloc(24 * sizeof(int));
 	comb(base);
 	if (!ft_loop(base, tvar, line, view))
-		write(1, "Error\n", 6);
+		ft_error();
 	free(line);
 	free(tvar);
 	free(base);
+	return (0);
+}
+
+int ft_error(void)
+{
+	ft_printf("\e[91mError!\n\e[97m");
+	ft_printf("\e[91mWrongs Input or there are no solutions!\n\e[97m");
 	return (0);
 }
 
@@ -95,23 +96,14 @@ int	main(int argc, char **argv)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	if (argc != 2)
-	{
-		write(1, "Error\n", 6);
-		return (0);
-	}
-	while (argv[1][i] != '\0')
-	{
+		return(ft_error());
+	while (argv[1][++i] != '\0')
 		if (argv[1][i] != 32 && i % 2 == 1)
-		{
-			write(1, "Error\n", 6);
-			return (0);
-		}
-		i++;
-	}
+			return(ft_error());
 	if (i != 31)
-		write(1, "Error\n", 6);
+		ft_error();
 	else
 		ft_prepare(argv[1]);
 }

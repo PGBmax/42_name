@@ -21,8 +21,10 @@ int	ft_lstsize(t_list *list)
 		return (0);
 	i = 0;
 	temp = list;
-	while (temp->next)
+	while (temp && temp->next)
 	{
+		// ft_printf("%p, %d\n", &temp, temp->content);
+		// ft_printf("%p, %d\n", &temp->next, temp->next->content);
 		temp = temp->next;
 		i++;
 	}

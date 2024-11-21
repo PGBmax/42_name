@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pboucher <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:01:05 by pboucher          #+#    #+#             */
-/*   Updated: 2024/08/18 19:12:33 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:14:45 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*create_line(int a, int b, int c, int d);
-void	create_column(char *line, char *column);
+#include "skycrapper.h"
 
 int	verif_echo(char *plate)
 {
@@ -94,6 +91,8 @@ int	verif(char *line, char *view)
 	char	*column;
 
 	column = malloc(17 * sizeof(char));
+	if (!column)
+		return (0);
 	create_column(line, column);
 	if (verif_left(&column[0], view[0]) && verif_left(&column[4], view[2])
 		&& verif_left(&column[8], view[4]) && verif_left(&column[12], view[6])

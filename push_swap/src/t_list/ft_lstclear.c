@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void ft_lstclear(t_list **list)
+void	ft_lstclear(t_list **list)
 {
 	t_list	*temp;
 	t_list	*lst;
