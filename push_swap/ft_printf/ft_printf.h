@@ -16,12 +16,13 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int	ft_printf(const char *str, ...);
-int	ft_putchar(char c);
-int	ft_putnbr(long n, int check);
-int	ft_putstr(char *s);
-int	ft_strlen(const char *s);
-int	ft_puthexa(unsigned long n);
-int	ft_puthexa_uol(unsigned int n, int uporlow);
+int		ft_printf(const char *str, ...);
+int		ft_putchar(char c);
+int		ft_putnbr(long n, int check);
+int		ft_putstr(char *s);
+int		ft_strlen(const char *s);
+int		ft_puthexa(unsigned long n);
+int		ft_puthexa_uol(unsigned int n, int uporlow);
 long	ft_atoi(char *nptr);
+
 #endif

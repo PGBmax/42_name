@@ -28,6 +28,28 @@ void	ft_replace_list(t_list **list, int index)
 	}
 }
 
+int	ft_get_index_a(t_list **a, t_list **b, int *indexb)
+{
+	t_values	vals;
+	int			temp;
+
+	vals.index = -1;
+	vals.min_move = -1;
+	vals.indexb_help = 0;
+	while (++vals.index < (ft_lstsize(*a) / 2) + 1
+		&& vals.index < (ft_lstsize(*b) / 2) + 1)
+	{
+		temp = ft_move_list(a, b, vals.index, &vals.indexb_help);
+		if (vals.min_move == -1 || vals.index + temp < vals.min_move)
+			ft_set_values(&vals, temp, indexb, vals.index);
+		temp = ft_move_list(a, b, (vals.index * -1), &vals.indexb_help);
+		if (vals.index + temp < vals.min_move)
+			ft_set_values(&vals, temp, indexb, ft_lstsize(*a) - vals.index);
+		ft_replace_list(a, vals.index);
+	}
+	return (vals.best_index);
+}
+
 int	ft_get_index_b(t_list **a, t_list **b)
 {
 	int	index;
@@ -85,26 +107,4 @@ void	ft_set_values(t_values *vals, int temp, int *indb, int bst_index)
 	(*vals).min_move = (*vals).index + temp;
 	(*vals).best_index = bst_index;
 	*indb = (*vals).indexb_help;
-}
-
-int	ft_get_index_a(t_list **a, t_list **b, int *indexb)
-{
-	t_values	vals;
-	int			temp;
-
-	vals.index = -1;
-	vals.min_move = -1;
-	vals.indexb_help = 0;
-	while (++vals.index < (ft_lstsize(*a) / 2) + 1
-		&& vals.index < (ft_lstsize(*b) / 2) + 1)
-	{
-		temp = ft_move_list(a, b, vals.index, &vals.indexb_help);
-		if (vals.min_move == -1 || vals.index + temp < vals.min_move)
-			ft_set_values(&vals, temp, indexb, vals.index);
-		temp = ft_move_list(a, b, (vals.index * -1), &vals.indexb_help);
-		if (vals.index + temp < vals.min_move)
-			ft_set_values(&vals, temp, indexb, ft_lstsize(*a) - vals.index);
-		ft_replace_list(a, vals.index);
-	}
-	return (vals.best_index);
 }

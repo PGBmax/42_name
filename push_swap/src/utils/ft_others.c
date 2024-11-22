@@ -54,7 +54,7 @@ void	ft_sort_three(t_list **a)
 	max = ft_find_index_max(*a);
 	if ((min == 0 && max == 1) || (min == 2 && max == 0))
 		ft_swap(a, 'a', 1);
-	else if ((min == 1 && max == 2) || (min == 1 && max == 2))
+	if ((min == 1 && max == 2) || (min == 1 && max == 2))
 		ft_swap(a, 'a', 1);
 }
 
@@ -76,14 +76,7 @@ int	ft_get_place(t_list *list, int num)
 void	ft_empty_b(t_list **a, t_list **b)
 {
 	int	move_count;
-	// t_list	*temp = *b;
-	// while (temp)
-	// {
-	// 	ft_printf("%d ", temp->content);
-	// 	temp = temp->next;
-	// }
-	// ft_printf("\n");
-	// ft_printf("1: %p, 2: %p, 3: %p, 4: %p\n", &(*b), &((*b)->next), &((*b)->next->next), &((*b)->next->next->next));
+
 	while (ft_lstsize(*b))
 	{
 		if ((*b)->content > ft_get_max(*a))
@@ -101,6 +94,4 @@ void	ft_empty_b(t_list **a, t_list **b)
 		}
 		ft_push(a, b, 'a', 1);
 	}
-	ft_push(a, b, 'a', 1);
-	// ft_printf("lstsize(b): %d\n", ft_lstsize(*b));
 }

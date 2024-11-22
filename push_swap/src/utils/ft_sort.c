@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:50:04 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/21 20:03:44 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:04:52 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_sorting(t_list **a, t_list **b)
 		if (ft_lstsize(*a) > 3)
 			ft_push(b, a, 'b', 1);
 	}
-	while (ft_lstsize(*a) >= 3 && !ft_sorted(*a))
+	while (ft_lstsize(*a) > 3 && !ft_sorted(*a))
 	{
 		indexa = ft_get_index_a(a, b, &indexb);
 		ft_do_move(a, b, indexa, indexb);

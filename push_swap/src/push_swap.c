@@ -28,21 +28,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (!ft_sorted(a))
 		ft_sorting(&a, &b);
-	ft_printf("is sorted : %d\n", ft_sorted(a));
-	// t_list	*temp = b;
-	// while (temp)
-	// {
-	// 	ft_printf("%d ", temp->content);
-	// 	temp = temp->next;
-	// }
-	// ft_printf("\n");
 	ft_lstclear(&b);
-	b = a;
-	while (b)
-	{
-		ft_printf("%d ", b->content);
-		b = b->next;
-	}
 	ft_lstclear(&a);
 	exit (0);
 }
