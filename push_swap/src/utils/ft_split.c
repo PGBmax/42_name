@@ -17,9 +17,28 @@ static void	ft_free_tab(char **splitted, int nb_elem)
 	while (nb_elem >= 0)
 	{
 		free(splitted[nb_elem]);
-		nb_elem --;
+		nb_elem--;
 	}
 	free(splitted);
+}
+
+static int	ft_n_len(char const *s, char c, int index, int chc)
+{
+	int	res;
+
+	res = 0;
+	if (chc == 0)
+	{
+		res = index;
+		while (s[res] == c && s[res] != 0)
+			res++;
+	}
+	else
+	{
+		while (s[index + res] != c && s[index + res] != 0)
+			res++;
+	}
+	return (res);
 }
 
 static char	**ft_fill_tab(char	**splitted, char const *s, char c, int nb_nb)
@@ -43,25 +62,6 @@ static char	**ft_fill_tab(char	**splitted, char const *s, char c, int nb_nb)
 	}
 	splitted[i] = 0;
 	return (splitted);
-}
-
-static int	ft_n_len(char const *s, char c, int index, int chc)
-{
-	int	res;
-
-	res = 0;
-	if (chc == 0)
-	{
-		res = index;
-		while (s[res] == c && s[res] != 0)
-			res ++;
-	}
-	else
-	{
-		while (s[index + res] != c && s[index + res] != 0)
-			res ++;
-	}
-	return (res);
 }
 
 static int	ft_find_nb_nb(char const *str, char stop)

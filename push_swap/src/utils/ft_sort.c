@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:50:04 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/23 01:31:35 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:53:12 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,41 +98,37 @@ char	*ft_strlcat(char *dest, char *src, int check)
 	temp = (char *)ft_calloc(ft_strlen(dest) + ft_strlen(src) + 1, 1);
 	if (!temp)
 		return (NULL);
-	i = -1;
+	i = 0;
 	j = -1;
-	while (dest && dest[++i] != 0)
+	while (dest && dest[i])
+	{
 		temp[i] = dest[i];
+		i++;
+	}
 	temp[i] = ' ';
-	while (src && src[j] != 0)
+	while (src && src[++j])
 		temp[++i] = src[j];
 	if (dest && check == 1)
 		free(dest);
 	return (temp);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_clean_all(t_list *a, t_list *b, char **argv)
 {
-	void	*temp;
-	size_t	i;
+	int	i;
 
+	if (a)
+		ft_lstclear(&a);
+	if (b)
+		ft_lstclear(&b);
 	i = 0;
-	if (nmemb == 0 || size == 0)
+	if (argv)
 	{
-		temp = ft_calloc(1, 1);
-		if (!temp)
-			return (NULL);
-		return (temp);
+		while (argv[i])
+		{
+			free(argv[i]);
+			i ++;
+		}
+		free(argv);
 	}
-	if (nmemb * size > 2147483647)
-		return (0);
-	temp = malloc((size * nmemb) + 1);
-	if (!temp)
-		return (NULL);
-	while (i < nmemb * size)
-	{
-		((char *)temp)[i] = 0;
-		i ++;
-	}
-	((char *)temp)[size * nmemb] = 0;
-	return (temp);
 }

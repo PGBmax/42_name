@@ -1,13 +1,16 @@
 NAME = push_swap
 NAMEBONUS = checker
 
-SOURCES =	ft_printf/ft_printf.c ft_printf/ft_utils.c src/push_swap.c \
+SOURCES =	ft_printf/ft_printf.c ft_printf/ft_utils.c  \
 			src/t_list/ft_lstaddback.c src/t_list/ft_lstaddfront.c src/t_list/ft_lstclear.c src/t_list/ft_lstlast.c src/t_list/ft_lstnew.c src/t_list/ft_lstsize.c \
-			src/utils/ft_min_max.c src/utils/ft_others.c src/utils/ft_sort.c src/utils/ft_index.c src/utils/ft_moves.c
+			src/utils/ft_index.c src/utils/ft_list.c src/utils/ft_min_max.c src/utils/ft_moves.c src/utils/ft_others.c src/utils/ft_sort.c src/utils/ft_split.c src/utils/ft_substr.c
 
-SOURCESBONUS = bonus/
+SOURCESMAIN = src/push_swap.c
+
+SOURCESBONUS = bonus/ft_checker_bonus.c bonus/ft_utils_bonus.c bonus/GNL/get_next_line_bonus.c bonus/GNL/get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
+OBJECTSMAIN = $(SOURCESMAIN:.c=.o)
 OBJECTSBONUS = $(SOURCESBONUS:.c=.o)
 
 CC = cc
@@ -15,12 +18,12 @@ CFLAGS = -Wall -Werror -Wextra -g
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-		@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+$(NAME): $(OBJECTS) $(OBJECTSMAIN)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSMAIN) -o $(NAME)
 		@printf "\rCompiled push_swap ✅\n"
 
 clean:
-		@rm -f $(OBJECTS) $(OBJECTSBONUS)
+		@rm -f $(OBJECTS) $(OBJECTSBONUS) $(OBJECTSMAIN)
 		@printf "Cleaned objects ✅\n"
 
 fclean:	clean
@@ -29,6 +32,9 @@ fclean:	clean
 
 re: fclean all
 
+bonus: $(OBJECTS) $(OBJECTSBONUS)
+		@$(CC) $(CFLAGS) $(OBJECTS) $(OBJECTSBONUS) -o $(NAMEBONUS)
+		@printf "\rCompiled checker ✅\n"
 
 scorpionem :
 	@printf "\033[0;34m\n"
@@ -46,6 +52,9 @@ pgbmax :
 	@echo "█    ▐▙▄▞▘▐▙▄▞▘                "
 	@echo "▀"
 	@printf "\033[0m\n"
+
+manualouest :
+	@printf "\e[91m𝔪𝔞𝔫𝔲𝔞𝔩𝔬𝔲𝔢𝔰𝔱\n\e[97m"
 
 izzokz :
 	@printf "\033[0;31m\n"
@@ -69,5 +78,8 @@ chazzup :
 	@echo "twitch.tv/chazzup"
 	@printf "\033[0m\n"
 
-.PHONY: all clean fclean re scorpionem pgbmax izzokz ghostizzokz toro_gi chazzup
+
+credits : scorpionem pgbmax manualouest izzokz ghostizzokz toro_gi chazzup
+
+.PHONY: all clean fclean re scorpionem pgbmax manualouest izzokz ghostizzokz toro_gi chazzup credits
 

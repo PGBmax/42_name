@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:30:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/23 13:42:55 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:56:43 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_list	*create_a(int ac, char **av)
 
 	a = NULL;
 	av = ft_clean_args(&ac, av);
-	if (!av || ft_has_double(av, ac)
+	if (!av || ft_has_double(ac, av)
 		|| ft_create_list(ac, av, &a) == 0)
 	{
 		ft_clean_all(a, NULL, av);
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	ft_clean_all(NULL, NULL, av);
@@ -67,13 +67,13 @@ int	ft_do_moves(t_list **a, t_list **b, char *move)
 	if (ft_strncmp("ss", move, ft_strlen(move)) == 0)
 		return (ft_ss(a, b));
 	if (ft_strncmp("ra", move, ft_strlen(move)) == 0)
-		return (ft_rotate(a, NULL,'a', 0));
+		return (ft_rotate(a, NULL, 'a', 0));
 	if (ft_strncmp("rb", move, ft_strlen(move)) == 0)
-		return (ft_rotate(b, NULL,'b', 0));
+		return (ft_rotate(b, NULL, 'b', 0));
 	if (ft_strncmp("rra", move, ft_strlen(move)) == 0)
-		return (ft_reverse_rotate(a, NULL,'a', 0));
+		return (ft_reverse_rotate(a, NULL, 'a', 0));
 	if (ft_strncmp("rrb", move, ft_strlen(move)) == 0)
-		return (ft_reverse_rotate(b, NULL,'b', 0));
+		return (ft_reverse_rotate(b, NULL, 'b', 0));
 	if (ft_strncmp("pa", move, ft_strlen(move)) == 0)
 		return (ft_push(a, b, 'a', 0));
 	if (ft_strncmp("pb", move, ft_strlen(move)) == 0)
@@ -88,7 +88,7 @@ int	ft_do_moves(t_list **a, t_list **b, char *move)
 int	ft_error(t_list *a, t_list *b, char **moves)
 {
 	ft_clean_all(a, b, moves);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	return (0);
 }
 
@@ -107,12 +107,12 @@ int	main(int argc, char **argv)
 	if (a == NULL)
 		return (ft_error(a, NULL, NULL));
 	moves = ft_get_movelist(argc);
-	if (moves == NULL && (!ft_is_sorted(a) || ft_lstsize(b) != 0))
+	if (moves == NULL && (!ft_sorted(a) || ft_lstsize(b) != 0))
 		return (ft_error(a, NULL, moves));
 	while (moves && moves[++i] != 0)
 		if (ft_do_moves(&a, &b, moves[i]) == 0)
 			return (ft_error(a, b, moves));
-	if (!ft_is_sorted(a) || ft_lstsize(b) != 0)
+	if (!ft_sorted(a) || ft_lstsize(b) != 0)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");

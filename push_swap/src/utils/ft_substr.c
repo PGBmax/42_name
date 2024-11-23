@@ -55,3 +55,30 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub[i] = 0;
 	return (sub);
 }
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*temp;
+	size_t	i;
+
+	i = 0;
+	if (nmemb == 0 || size == 0)
+	{
+		temp = ft_calloc(1, 1);
+		if (!temp)
+			return (NULL);
+		return (temp);
+	}
+	if (nmemb * size > 2147483647)
+		return (0);
+	temp = malloc((size * nmemb) + 1);
+	if (!temp)
+		return (NULL);
+	while (i < nmemb * size)
+	{
+		((char *)temp)[i] = 0;
+		i ++;
+	}
+	((char *)temp)[size * nmemb] = 0;
+	return (temp);
+}

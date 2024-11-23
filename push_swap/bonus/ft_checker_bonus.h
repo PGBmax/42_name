@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:30:23 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/23 13:36:24 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:54:02 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_CHECKER_BONUS_H
 
 # include "../src/push_swap.h"
+#
 # include "GNL/get_next_line_bonus.h"
 
 t_list	*create_a(int ac, char **av);

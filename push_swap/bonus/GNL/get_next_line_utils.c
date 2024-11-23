@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:35:25 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/22 17:04:02 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:23:58 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strchr(char *s, int c)
 {
 	int	i;
@@ -60,41 +50,4 @@ char	*ft_strchr(char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)(&s[i]));
 	return (NULL);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	int		i;
-	int		j;
-	char	*tab;
-
-	if (!s || ft_strlen(s) < start)
-		return (NULL);
-	j = ft_strlen(s) - start;
-	if (j < len)
-		len = j;
-	tab = ft_calloc(len + 1, 1);
-	if (!tab)
-		return (NULL);
-	i = -1;
-	while (++i < len)
-		tab[i] = s[start + i];
-	return (tab);
-}
-
-void	*ft_calloc(int nmemb, int size)
-{
-	void	*alloc;
-	int		i;
-
-	if (size * nmemb <= 0)
-		alloc = malloc(0);
-	else
-		alloc = malloc(size * nmemb);
-	if (!alloc)
-		return (NULL);
-	i = -1;
-	while (++i < size * nmemb)
-		*(unsigned char *)(alloc + i) = 0;
-	return (alloc);
 }

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:35:17 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/20 15:35:25 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:34:56 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strlen(const char *s)
 {
 	int	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
@@ -30,28 +32,31 @@ int	ft_putchar(char c)
 
 long	ft_atoi(char *nptr)
 {
-	int		i;
-	long	temp;
-	int		negatif;
+	int				i;
+	int				sign;
+	unsigned int	num;
 
 	i = 0;
-	temp = 0;
-	negatif = 1;
-	while (((nptr[i] >= 9 && nptr[i] <= 13)
-			|| nptr[i] == 32) && nptr[i] != '\0')
-		i++;
-	if ((nptr[i] == 43 || nptr[i] == 45) && nptr[i] != '\0')
+	sign = 1;
+	num = 0;
+	if (!nptr || !*nptr)
+		return (0);
+	if ((nptr[0] == '-' || nptr[0] == '+') && ++i != -1)
+		if (nptr[0] == '-')
+			sign = -1;
+	if (i > 0 && (nptr[0] != '-' && nptr[0] != '+'))
+		i = 0;
+	while (nptr[i] != 0 && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
-		if (nptr[i] == 45)
-			negatif = -1;
-		i++;
+		if (num >= 2147483647)
+			return (0);
+		num = num * 10 + (nptr[i] - '0');
+		i ++;
 	}
-	while (nptr[i] != '\0' && (nptr[i] >= 48 && nptr[i] <= 57))
-	{
-		temp = 10 * temp + (nptr[i] - '0');
-		i++;
-	}
-	return (temp * negatif);
+	if (((num > 2147483647 && sign == 1) || (num > 2147483648 && sign == -1))
+		|| (nptr[i] != 0 && !(nptr[i] >= '0' && nptr[i] <= '9')))
+		return (0);
+	return ((int)num * sign);
 }
 
 int	ft_format(va_list list, char str)
