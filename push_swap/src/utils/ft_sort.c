@@ -6,39 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:50:04 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/22 15:04:52 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/23 01:31:35 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	ft_double(int ac, char **av)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (++i < ac)
-	{
-		j = i;
-		while (++j < ac)
-			if (ft_atoi(av[i]) == ft_atoi(av[j]))
-				return (1);
-	}
-	return (0);
-}
-
-t_list	*create_list(int ac, char **av)
-{
-	int		i;
-	t_list	*list;
-
-	i = 1;
-	list = ft_lstnew(ft_atoi(av[i]));
-	while (++i < ac)
-		ft_lstadd_back(&list, ft_lstnew(ft_atoi(av[i])));
-	return (list);
-}
 
 int	ft_sorted(t_list *list)
 {
@@ -115,4 +87,52 @@ void	ft_do_rrr(t_list **a, t_list **b, int *indexa, int *indexb)
 			ft_printf("rr\n");
 		}
 	}
+}
+
+char	*ft_strlcat(char *dest, char *src, int check)
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	temp = (char *)ft_calloc(ft_strlen(dest) + ft_strlen(src) + 1, 1);
+	if (!temp)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (dest && dest[++i] != 0)
+		temp[i] = dest[i];
+	temp[i] = ' ';
+	while (src && src[j] != 0)
+		temp[++i] = src[j];
+	if (dest && check == 1)
+		free(dest);
+	return (temp);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*temp;
+	size_t	i;
+
+	i = 0;
+	if (nmemb == 0 || size == 0)
+	{
+		temp = ft_calloc(1, 1);
+		if (!temp)
+			return (NULL);
+		return (temp);
+	}
+	if (nmemb * size > 2147483647)
+		return (0);
+	temp = malloc((size * nmemb) + 1);
+	if (!temp)
+		return (NULL);
+	while (i < nmemb * size)
+	{
+		((char *)temp)[i] = 0;
+		i ++;
+	}
+	((char *)temp)[size * nmemb] = 0;
+	return (temp);
 }
