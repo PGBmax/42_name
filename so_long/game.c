@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/21 19:24:59 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:56:00 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ static void ft_hook(void* param)
     (void)mlx;
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     int x = -1;
     int y;
 
+	if (ac != 2)
+		return (printf("Error!\nCorrect Usage : %s <map.ber>\n", av[0]));
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
 	if (!mlx)

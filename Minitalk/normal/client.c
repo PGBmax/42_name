@@ -68,7 +68,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	pid = ft_atoi(av[1]);
-	if (kill(pid, 0))
+	if (pid <= 0 || kill(pid, 0))
 	{
 		ft_printf("\n\e[91mError !\n\e[92mNot a valid PID.\n");
 		ft_printf("\e[96mPID must be an unsigned int. If the PID is ");

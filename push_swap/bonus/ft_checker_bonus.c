@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:30:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/23 19:56:43 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/24 13:53:22 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_list	*create_a(int ac, char **av)
 		|| ft_create_list(ac, av, &a) == 0)
 	{
 		ft_clean_all(a, NULL, av);
-		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	ft_clean_all(NULL, NULL, av);
