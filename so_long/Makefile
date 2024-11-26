@@ -1,6 +1,6 @@
 NAME = so_long
 
-SOURCES = game.c
+SOURCES = src/game.c src/read_map.c includes/GNL/get_next_line.c includes/GNL/get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
