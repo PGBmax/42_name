@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:41:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/26 18:10:07 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:33:21 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,30 @@ char **ft_read_map(char *str)
 	fd = open(str, O_RDONLY);
 	true_map = ft_calloc(i + 1, sizeof(char *));
 	true_map[j] = get_next_line(fd);
-	while (j < i)
-	{
-		j++;
+	while (++j < i)
 		true_map[j] = get_next_line(fd);
-	}
 	true_map[j] = NULL;
 	return (true_map);
 }
 
-void ft_show_map(mlx_t *mlx, t_game game, char c)
+void ft_create_map(mlx_t *mlx, t_game game)
 {
-	mlx_image_t		*image;
-	
-	if (c == '1')
-		image = mlx_texture_to_image(mlx, game.walls);
-	if (c == '0')
-		image = mlx_texture_to_image(mlx, game.ground);
-	if (c == 'E')
-		image = mlx_texture_to_image(mlx, game.exit);
-	if (c == 'P')
-		image = mlx_texture_to_image(mlx, game.player);
-	if (c == 'C')
-		image = mlx_texture_to_image(mlx, game.collec);
-	mlx_image_to_window(mlx, image, game.y * SIZE, game.x * SIZE);
-}
-void ft_create_map(mlx_t *mlx, char *str, t_game game)
-{
-	char			**map;
+	int	i;
 
-	int i = 0;
-	map = ft_read_map(str);
-	while (map[i])
+	i = 0;
+	while (game.map[i])
 	{
-		if (map[i][ft_strlen(map[i]) - 1] == '\n')
-			map[i][ft_strlen(map[i]) - 1] = 0;
+		if (game.map[i][ft_strlen(game.map[i]) - 1] == '\n')
+			game.map[i][ft_strlen(game.map[i]) - 1] = 0;
 		i++;
 	}
 	game.x = 0;
-	while (map[game.x])
+	while (game.map[game.x])
 	{
 		game.y = 0;
-		while (map[game.x][game.y])
+		while (game.map[game.x][game.y])
 		{
-			ft_show_map(mlx, game, map[game.x][game.y]);
+			ft_show_map(mlx, game, game.map[game.x][game.y]);
 			game.y++;
 		}
 		game.x++;

@@ -1,6 +1,7 @@
 NAME = so_long
 
-SOURCES = src/game.c src/read_map.c includes/GNL/get_next_line.c includes/GNL/get_next_line_utils.c
+SOURCES =	src/game.c src/map.c src/ft_check_map.c src/ft_textures.c \
+			includes/GNL/get_next_line.c includes/GNL/get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -32,10 +33,10 @@ $(NAME) : $(OBJECTS)
 
 clean:
 		@rm -f $(OBJECTS)
-		@echo "\033[0;32mCleaned objects ✅\033[0m"
+		@echo "\e[97mCleaned objects ✅\e[97m"
 
 fclean: clean
 		@rm -f $(NAME)
-		@echo "\033[0;32mCleaned executables ✅\033[0m"
+		@echo "\e[97mCleaned executables ✅\e[97m"
 
 re : fclean all
