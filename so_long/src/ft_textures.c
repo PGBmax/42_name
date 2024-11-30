@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/30 18:12:09 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/30 22:41:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,67 +18,67 @@ void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_3, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1'
 		&& game.map[x + 1][y - 1] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_top_right, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_4, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1'
 		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_3, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1'
 		&& game.map[x - 1][y - 1] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_bottom_right, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_1, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1'
 		&& game.map[x - 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_bottom_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_2, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] != '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.block_corner_top_right, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_4, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_bottom_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_2, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] != '1'
 		&& game.map[x + 1][y] != '1')
-		mlx_image_to_window(mlx, game.image.block_corner_bottom_right, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_1, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y + 1] != '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.block_wall_right, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.wall_v, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.block_wall_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.wall_v, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1')
-		mlx_image_to_window(mlx, game.image.block_wall_top, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.wall_h, y * SIZE, x * SIZE);
 	else if (game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] != '1')
-		mlx_image_to_window(mlx, game.image.block_wall_bottom, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.wall_h, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.corner_3, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
