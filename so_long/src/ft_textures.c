@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/27 19:16:59 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:12:09 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,145 +14,113 @@
 
 void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 {
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] != '1'
-		&& game.map[x - 1][y + 1] != '1'
+	if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] != '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] == '1')
-		mlx_image_to_window(mlx, game.image.corner_top_left, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] != '1'
-		&& game.map[x - 1][y + 1] != '1'
+		&& game.map[x + 1][y - 1] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_top_right, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y] == '1'
+		&& game.map[x + 1][y + 1] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y] == '1'
+		&& game.map[x - 1][y - 1] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_bottom_right, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y] == '1'
+		&& game.map[x - 1][y + 1] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_bottom_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] != '1'
-		&& game.map[x + 1][y - 1] == '1'
-		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_top_right, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] == '1'
-		&& game.map[x - 1][y + 1] == '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.block_corner_top_right, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] != '1'
-		&& game.map[x + 1][y] != '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_bottom_left, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] == '1'
-		&& game.map[x - 1][y] == '1'
-		&& game.map[x - 1][y + 1] != '1'
+		&& game.map[x + 1][y] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_bottom_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] != '1'
-		&& game.map[x + 1][y - 1] != '1'
-		&& game.map[x + 1][y] != '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_bottom_right, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] == '1'
-		&& game.map[x - 1][y] == '1'
-		&& game.map[x -1][y + 1] != '1'
-		&& game.map[x][y - 1] == '1'
+		&& game.map[x + 1][y] != '1')
+		mlx_image_to_window(mlx, game.image.block_corner_bottom_right, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y + 1] != '1'
-		&& game.map[x + 1][y - 1] == '1'
-		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.wall_right, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] == '1'
-		&& game.map[x -1][y + 1] == '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.block_wall_right, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] != '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.block_wall_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] != '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1')
+		mlx_image_to_window(mlx, game.image.block_wall_top, y * SIZE, x * SIZE);
+	else if (game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y] != '1')
+		mlx_image_to_window(mlx, game.image.block_wall_bottom, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] != '1'
-		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] == '1')
-		mlx_image_to_window(mlx, game.image.wall_left, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] != '1'
-		&& game.map[x -1][y + 1] != '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.block_corner_top_left, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] == '1'
-		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] == '1')
-		mlx_image_to_window(mlx, game.image.wall_top, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] == '1'
-		&& game.map[x - 1][y] == '1'
-		&& game.map[x -1][y + 1] == '1'
-		&& game.map[x][y - 1] == '1'
-		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] != '1'
-		&& game.map[x + 1][y] != '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.wall_bottom, y * SIZE, x * SIZE);
-	if (game.map[x - 1][y - 1] != '1'
-		&& game.map[x - 1][y] != '1'
-		&& game.map[x -1][y + 1] != '1'
-		&& game.map[x][y - 1] != '1'
-		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y - 1] != '1'
-		&& game.map[x + 1][y] == '1'
-		&& game.map[x + 1][y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_top_left, y * SIZE, x * SIZE);
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.ground, y * SIZE, x * SIZE);
+	else
+		mlx_image_to_window(mlx, game.image.exit, y * SIZE, x * SIZE);
 }
 
-
-void	ft_show_details(mlx_t *mlx, t_game game)
+void ft_link_walls(mlx_t *mlx, t_game game, int x, int y)
 {
-	if (game.x != 0 && game.y == 0 && game.x != game.max_y
-		&& game.map[game.x - 1][game.y] == '1' 
-		&& game.map[game.x - 1][game.y + 1] != '1' 
-		&& game.map[game.x][game.y + 1] == '1'
-		&& game.map[game.x + 1][game.y] != '1'
-		&& game.map[game.x + 1][game.y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_bottom_left, game.y * SIZE, game.x * SIZE);
-	if (game.x != 0 && game.y == 0 && game.x != game.max_y
-		&& game.map[game.x - 1][game.y] != '1' 
-		&& game.map[game.x - 1][game.y + 1] != '1' 
-		&& game.map[game.x][game.y + 1] == '1'
-		&& game.map[game.x + 1][game.y] == '1'
-		&& game.map[game.x + 1][game.y + 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_top_left, game.y * SIZE, game.x * SIZE);
-	if (game.x != 0 && game.y == game.max_x && game.x != game.max_y
-		&& game.map[game.x - 1][game.y] == '1' 
-		&& game.map[game.x - 1][game.y - 1] != '1' 
-		&& game.map[game.x][game.y - 1] == '1'
-		&& game.map[game.x + 1][game.y] != '1'
-		&& game.map[game.x + 1][game.y - 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_bottom_right, game.y * SIZE, game.x * SIZE);
-	if (game.x != 0 && game.y == game.max_x && game.x != game.max_y
-		&& game.map[game.x - 1][game.y] != '1' 
-		&& game.map[game.x - 1][game.y - 1] != '1' 
-		&& game.map[game.x][game.y - 1] == '1'
-		&& game.map[game.x + 1][game.y] == '1'
-		&& game.map[game.x + 1][game.y - 1] != '1')
-		mlx_image_to_window(mlx, game.image.corner_top_right, game.y * SIZE, game.x * SIZE);
-	if (game.x != 0 && game.x != game.max_y && game.y != 0 && game.y != game.max_x)
-		ft_block_walls(mlx, game, game.x, game.y);
-		
-		
+	if (y == game.max_x && x != game.max_y && x != 0
+		&& game.map[x - 1][y - 1] != '1'
+		&& game.map[x - 1][y] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.wall_link_1, y * SIZE, x * SIZE);
 }
+
+
 
 void	ft_show_walls(mlx_t *mlx, t_game game)
 {
 	if (game.x == 0 && game.y == 0)
 		mlx_image_to_window(mlx, game.image.corner_top_left, game.y * SIZE, game.x * SIZE);
-	else if (game.x == 0 && game.y == game.max_x)
+	if (game.x == 0 && game.y == game.max_x)
 		mlx_image_to_window(mlx, game.image.corner_top_right, game.y * SIZE, game.x * SIZE);
-	else if (game.x == game.max_y && game.y == 0)
+	if (game.x == game.max_y && game.y == 0)
 		mlx_image_to_window(mlx, game.image.corner_bottom_left, game.y * SIZE, game.x * SIZE);
-	else if (game.x == game.max_y && game.y == game.max_x)
+	if (game.x == game.max_y && game.y == game.max_x)
 		mlx_image_to_window(mlx, game.image.corner_bottom_right, game.y * SIZE, game.x * SIZE);
-	else if (game.y == 0 && game.x != 0 && game.x != game.max_y)
+	if (game.y == 0 && game.x != 0 && game.x != game.max_y)
 		mlx_image_to_window(mlx, game.image.wall_left, game.y * SIZE, game.x * SIZE);
-	else if (game.y == game.max_x  && game.x != 0 && game.x != game.max_y)
+	if (game.y == game.max_x  && game.x != 0 && game.x != game.max_y)
 		mlx_image_to_window(mlx, game.image.wall_right, game.y * SIZE, game.x * SIZE);
-	else if (game.x == 0 && game.y != 0 && game.y != game.max_x)
+	if (game.x == 0 && game.y != 0 && game.y != game.max_x)
 		mlx_image_to_window(mlx, game.image.wall_top, game.y * SIZE, game.x * SIZE);
-	else if (game.x == game.max_y && game.y != 0 && game.y != game.max_x)
+	if (game.x == game.max_y && game.y != 0 && game.y != game.max_x)
 		mlx_image_to_window(mlx, game.image.wall_bottom, game.y * SIZE, game.x * SIZE);
-	ft_show_details(mlx, game);
+	if (game.x != 0 && game.x != game.max_y && game.y != 0 && game.y != game.max_x)
+		ft_block_walls(mlx, game, game.x, game.y);
+	ft_link_walls(mlx, game, game.x, game.y);
 }
 
 void ft_show_map(mlx_t *mlx, t_game game, char c)

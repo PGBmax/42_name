@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/27 18:02:28 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/11/30 19:12:40 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ typedef struct s_textures
 	mlx_texture_t	*corner_top_left;
 	mlx_texture_t	*corner_top_right;
 
-	mlx_texture_t	*block_wall_left;
-	mlx_texture_t	*block_wall_right;
-	mlx_texture_t	*block_wall_top;
-	mlx_texture_t	*block_wall_bottom;
-	mlx_texture_t	*block_corner_bottom_left;
-	mlx_texture_t	*block_corner_bottom_right;
-	mlx_texture_t	*block_corner_top_left;
-	mlx_texture_t	*block_corner_top_right;
+	mlx_texture_t	*wall_v;
+	mlx_texture_t	*wall_h;
+	mlx_texture_t	*corner_1;
+	mlx_texture_t	*corner_2;
+	mlx_texture_t	*corner_3;
+	mlx_texture_t	*corner_4;
 
 	mlx_texture_t	*ground;
 	mlx_texture_t	*player;
@@ -59,14 +57,15 @@ typedef struct s_image
 	mlx_image_t	*corner_top_left;
 	mlx_image_t	*corner_top_right;
 
-	mlx_image_t	*block_wall_left;
-	mlx_image_t	*block_wall_right;
-	mlx_image_t	*block_wall_top;
-	mlx_image_t	*block_wall_bottom;
-	mlx_image_t	*block_corner_bottom_left;
-	mlx_image_t	*block_corner_bottom_right;
-	mlx_image_t	*block_corner_top_left;
-	mlx_image_t	*block_corner_top_right;
+	mlx_image_t	*wall_v;
+	mlx_image_t	*wall_h;
+	mlx_image_t	*corner_1;
+	mlx_image_t	*corner_2;
+	mlx_image_t	*corner_3;
+	mlx_image_t	*corner_4;
+
+	mlx_image_t	*wall_link_1;
+	mlx_image_t	*wall_link_2;
 
 	mlx_image_t	*ground;
 	mlx_image_t	*player;
@@ -94,5 +93,6 @@ int			ft_error(int n);
 void		ft_load_textures(mlx_t *mlx, t_game *game);
 char		**ft_read_map(char *str);
 void		ft_create_map(mlx_t *mlx, t_game game);
+void		ft_link_walls(mlx_t *mlx, t_game game, int x, int y);
 
 #endif
