@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:34:10 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/14 23:56:44 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/01 14:53:45 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_format(va_list list, char str)
 		count += ft_putchar('%');
 	else
 	{
-		count+= ft_putchar("%");
+		count+= ft_putchar('%');
 		count+= ft_putchar(str);
 	}
 	return (count);
@@ -79,4 +79,9 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(list);
 	return (count);
+}
+
+int main(void)
+{
+	ft_printf("%d\n%", "hello world");
 }

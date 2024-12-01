@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/30 19:15:12 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:12:05 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->textures.corner_3 = mlx_load_png("./textures/corner_3.png");
 	game->textures.corner_4 = mlx_load_png("./textures/corner_4.png");
 
+	game->textures.link_left = mlx_load_png("./textures/link_walls_left.png");
+	game->textures.link_right = mlx_load_png("./textures/link_walls_right.png");
+	game->textures.link_top = mlx_load_png("./textures/link_walls_top.png");
+	game->textures.link_bottom = mlx_load_png("./textures/link_walls_bottom.png");
+
 	game->image.wall_left = mlx_texture_to_image(mlx, game->textures.wall_left);
 	game->image.wall_right = mlx_texture_to_image(mlx, game->textures.wall_right);
 	game->image.wall_top = mlx_texture_to_image(mlx, game->textures.wall_top);
@@ -64,7 +69,13 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->image.corner_2 = mlx_texture_to_image(mlx, game->textures.corner_2);
 	game->image.corner_3 = mlx_texture_to_image(mlx, game->textures.corner_3);
 	game->image.corner_4 = mlx_texture_to_image(mlx, game->textures.corner_4);
+
+	game->image.link_left = mlx_texture_to_image(mlx, game->textures.link_left);
+	game->image.link_right = mlx_texture_to_image(mlx, game->textures.link_right);
+	game->image.link_top = mlx_texture_to_image(mlx, game->textures.link_top);
+	game->image.link_bottom = mlx_texture_to_image(mlx, game->textures.link_bottom);
 }
+
 
 int main(int ac, char **av)
 {

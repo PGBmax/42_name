@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/30 22:41:34 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/01 17:14:40 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 {
-	if (game.map[x - 1][y] != '1'
+	if (game.map[x - 1][y - 1] == '1' && game.map[x - 1][y] == '1' && game.map[x - 1][y + 1] == '1'
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y - 1] == '1' && game.map[x + 1][y] == '1' && game.map[x + 1][y + 1] == '1')
+		mlx_image_to_window(mlx, game.image.ground, y * SIZE, x * SIZE);
+	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1')
@@ -67,23 +72,18 @@ void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 		&& game.map[x + 1][y] == '1')
 		mlx_image_to_window(mlx, game.image.wall_v, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
-		&& game.map[x][y - 1] == '1'
-		&& game.map[x][y + 1] == '1')
+		&& (game.map[x][y - 1] == '1'
+		|| game.map[x][y + 1] == '1'))
 		mlx_image_to_window(mlx, game.image.wall_h, y * SIZE, x * SIZE);
 	else if (game.map[x][y - 1] == '1'
-		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y] != '1')
+		&& (game.map[x][y + 1] == '1'
+		|| game.map[x + 1][y] != '1'))
 		mlx_image_to_window(mlx, game.image.wall_h, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
 		&& game.map[x][y - 1] != '1'
 		&& game.map[x][y + 1] == '1'
 		&& game.map[x + 1][y] == '1')
 		mlx_image_to_window(mlx, game.image.corner_3, y * SIZE, x * SIZE);
-	else if (game.map[x - 1][y] == '1'
-		&& game.map[x][y - 1] == '1'
-		&& game.map[x][y + 1] == '1'
-		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.ground, y * SIZE, x * SIZE);
 	else
 		mlx_image_to_window(mlx, game.image.exit, y * SIZE, x * SIZE);
 }
@@ -91,11 +91,29 @@ void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 void ft_link_walls(mlx_t *mlx, t_game game, int x, int y)
 {
 	if (y == game.max_x && x != game.max_y && x != 0
-		&& game.map[x - 1][y - 1] != '1'
+		&& (game.map[x - 1][y - 1] != '1' || game.map[x + 1][y - 1] != '1')
 		&& game.map[x - 1][y] == '1'
 		&& game.map[x][y - 1] == '1'
 		&& game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.wall_link_1, y * SIZE, x * SIZE);
+		mlx_image_to_window(mlx, game.image.link_right, y * SIZE, x * SIZE);
+	if (y == 0 && x != game.max_y && x != 0
+		&& (game.map[x - 1][y + 1] != '1' || game.map[x + 1][y + 1] != '1')
+		&& game.map[x - 1][y] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.link_left, y * SIZE, x * SIZE);
+	if (x == 0 && y != game.max_x && y != 0
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& (game.map[x + 1][y - 1] != '1' || game.map[x + 1][y + 1] != '1')
+		&& game.map[x + 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.link_top, y * SIZE, x * SIZE);
+	if (x == game.max_y && y != game.max_x && y != 0
+		&& game.map[x][y - 1] == '1'
+		&& game.map[x][y + 1] == '1'
+		&& (game.map[x - 1][y - 1] != '1' || game.map[x - 1][y + 1] != '1')
+		&& game.map[x - 1][y] == '1')
+		mlx_image_to_window(mlx, game.image.link_bottom, y * SIZE, x * SIZE);
 }
 
 

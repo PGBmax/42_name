@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/11/30 22:22:27 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/01 13:48:17 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct s_textures
 	mlx_texture_t	*corner_3;
 	mlx_texture_t	*corner_4;
 
+	mlx_texture_t	*link_left;
+	mlx_texture_t	*link_right;
+	mlx_texture_t	*link_top;
+	mlx_texture_t	*link_bottom;
+
 	mlx_texture_t	*ground;
 	mlx_texture_t	*player;
 	mlx_texture_t	*collec;
@@ -64,8 +69,10 @@ typedef struct s_image
 	mlx_image_t	*corner_3;
 	mlx_image_t	*corner_4;
 
-	mlx_image_t	*wall_link_1;
-	mlx_image_t	*wall_link_2;
+	mlx_image_t	*link_left;
+	mlx_image_t	*link_right;
+	mlx_image_t	*link_top;
+	mlx_image_t	*link_bottom;
 
 	mlx_image_t	*ground;
 	mlx_image_t	*player;
