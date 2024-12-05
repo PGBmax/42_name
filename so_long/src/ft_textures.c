@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/01 17:14:40 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:39:51 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,11 @@ void ft_block_walls(mlx_t *mlx, t_game game, int x, int y)
 		&& game.map[x][y + 1] != '1'
 		&& game.map[x + 1][y] != '1')
 		mlx_image_to_window(mlx, game.image.corner_1, y * SIZE, x * SIZE);
-	else if (game.map[x - 1][y] == '1'
-		&& game.map[x][y + 1] != '1'
-		&& game.map[x + 1][y] == '1')
+	else if ((game.map[x - 1][y] == '1' || game.map[x + 1][y] == '1')
+		&& game.map[x][y + 1] != '1')
 		mlx_image_to_window(mlx, game.image.wall_v, y * SIZE, x * SIZE);
-	else if (game.map[x - 1][y] == '1'
-		&& game.map[x][y - 1] != '1'
-		&& game.map[x + 1][y] == '1')
+	else if ((game.map[x - 1][y] == '1' || game.map[x + 1][y] == '1')
+		&& game.map[x][y - 1] != '1')
 		mlx_image_to_window(mlx, game.image.wall_v, y * SIZE, x * SIZE);
 	else if (game.map[x - 1][y] != '1'
 		&& (game.map[x][y - 1] == '1'
@@ -114,6 +112,12 @@ void ft_link_walls(mlx_t *mlx, t_game game, int x, int y)
 		&& (game.map[x - 1][y - 1] != '1' || game.map[x - 1][y + 1] != '1')
 		&& game.map[x - 1][y] == '1')
 		mlx_image_to_window(mlx, game.image.link_bottom, y * SIZE, x * SIZE);
+	if (x != game.max_y && y != game.max_x && y != 0 && x != 0
+		&& game.map[x - 1][y] != '1'
+		&& game.map[x][y - 1] != '1'
+		&& game.map[x][y + 1] != '1'
+		&& game.map[x + 1][y] != '1')
+		mlx_image_to_window(mlx, game.image.single_wall, y * SIZE, x * SIZE);
 }
 
 
@@ -145,10 +149,8 @@ void ft_show_map(mlx_t *mlx, t_game game, char c)
 {	
 	if (c == '1')
 		ft_show_walls(mlx, game);
-	if (c == '0')
+	if (c == '0' || c == 'E')
 		mlx_image_to_window(mlx, game.image.ground, game.y * SIZE, game.x * SIZE);
-	if (c == 'E')
-		mlx_image_to_window(mlx, game.image.exit, game.y * SIZE, game.x * SIZE);
 	if (c == 'P')
 		mlx_image_to_window(mlx, game.image.player, game.y * SIZE, game.x * SIZE);
 	if (c == 'C')
