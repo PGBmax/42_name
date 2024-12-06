@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/06 18:25:08 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:58:05 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,12 @@ typedef struct s_textures
 	mlx_texture_t	*player_r;
 	
 	mlx_texture_t	*collec;
-	mlx_texture_t	*collec_2;
-	mlx_texture_t	*collec_3;
-	mlx_texture_t	*collec_4;
 	mlx_texture_t	*exit;
 	mlx_texture_t 	*pac_man_exit1;
 	mlx_texture_t 	*pac_man_exit2;
 	mlx_texture_t 	*pac_man_exit3;
 	mlx_texture_t 	*pac_man_exit4;
 	mlx_texture_t 	*pac_man_exit5;
-	
-	mlx_texture_t	*pac_up_frame2;
-	mlx_texture_t	*pac_up_frame3;
-	mlx_texture_t	*pac_up_frame4;
-
-	mlx_texture_t	*pac_down_frame2;
-	mlx_texture_t	*pac_down_frame3;
-	mlx_texture_t	*pac_down_frame4;
-
-	mlx_texture_t	*pac_left_frame2;
-	mlx_texture_t	*pac_left_frame3;
-	mlx_texture_t	*pac_left_frame4;
-
-	mlx_texture_t	*pac_right_frame2;
-	mlx_texture_t	*pac_right_frame3;
-	mlx_texture_t	*pac_right_frame4;
 	
 }	t_textures;
 
@@ -115,32 +96,12 @@ typedef struct s_image
 	mlx_image_t	*player_r;
 
 	mlx_image_t	*collec;
-	mlx_image_t	*collec_2;
-	mlx_image_t	*collec_3;
-	mlx_image_t	*collec_4;
 	mlx_image_t	*exit;
 	mlx_image_t *pac_man_exit1;
 	mlx_image_t *pac_man_exit2;
 	mlx_image_t *pac_man_exit3;
 	mlx_image_t *pac_man_exit4;
 	mlx_image_t *pac_man_exit5;
-
-	mlx_image_t	*pac_up_frame2;
-	mlx_image_t	*pac_up_frame3;
-	mlx_image_t	*pac_up_frame4;
-
-	mlx_image_t	*pac_down_frame2;
-	mlx_image_t	*pac_down_frame3;
-	mlx_image_t	*pac_down_frame4;
-
-	mlx_image_t	*pac_left_frame2;
-	mlx_image_t	*pac_left_frame3;
-	mlx_image_t	*pac_left_frame4;
-
-	mlx_image_t	*pac_right_frame2;
-	mlx_image_t	*pac_right_frame3;
-	mlx_image_t	*pac_right_frame4;
-	
 }	t_image;
 
 typedef struct	s_game
@@ -160,7 +121,6 @@ typedef struct	s_game
 	int exit_y;
 	int nmb_exit;
 	int nmb_player;
-	int state;
 
 	int max_collec;
 	int get_collec;

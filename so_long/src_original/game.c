@@ -6,66 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/06 19:48:56 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:41:37 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-#include <sys/time.h>
-
-char    *ft_itoa(int n)
-{
-    int        i;
-    int        tp_num;
-    char    *nbr;
-
-    i = (n <= 0);
-    tp_num = n;
-    while (tp_num != 0 && ++i > 0)
-        tp_num /= 10;
-    nbr = malloc(sizeof(*nbr) * (i + 1));
-    if (!nbr)
-        return (NULL);
-    nbr[i] = 0;
-    tp_num = n;
-    while (--i >= (tp_num < 0))
-    {
-        nbr[i] = (tp_num % 10) * (1 - 2 * (n < 0)) + '0';
-        tp_num /= 10;
-    }
-    if (n < 0)
-        nbr[0] = '-';
-    return (nbr);
-}
-
-
-mlx_image_t    *cd_slow_raycast(t_game *game, struct timeval start_time,
-                int target_fps)
-{
-    mlx_image_t        *img;
-    struct timeval    end_time;
-    char            *fps;
-    int                start;
-    int                end;
-
-    gettimeofday(&end_time, NULL);
-    start = start_time.tv_sec * 1000000 + start_time.tv_usec;
-    end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    while (1000000 / abs(end - start + 1) > target_fps)
-    {
-        gettimeofday(&end_time, NULL);
-        end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    }
-    gettimeofday(&end_time, NULL);
-    end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    fps = ft_itoa(1000000 / abs(end - start + 1));
-    img = mlx_put_string(game->mlx, fps, 5, -4);
-    free(fps);
-    return (img);
-    mlx_delete_image(game->mlx, img);
-}
-
-
 
 int ft_error(int n)
 {
@@ -115,30 +60,11 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->textures.pac_man_exit4 = mlx_load_png("./textures/pac_man_exit4.png");
 	game->textures.pac_man_exit5 = mlx_load_png("./textures/pac_man_exit5.png");
 
-	game->textures.pac_up_frame2 = mlx_load_png("./tex_bonus/pac_up_2.png");
-	game->textures.pac_up_frame3 = mlx_load_png("./tex_bonus/pac_up_3.png");
-	game->textures.pac_up_frame4 = mlx_load_png("./tex_bonus/pac_up_4.png");
-	
-	game->textures.pac_down_frame2 = mlx_load_png("./tex_bonus/pac_down_2.png");
-	game->textures.pac_down_frame3 = mlx_load_png("./tex_bonus/pac_down_3.png");
-	game->textures.pac_down_frame4 = mlx_load_png("./tex_bonus/pac_down_4.png");
-	
-	game->textures.pac_left_frame2 = mlx_load_png("./tex_bonus/pac_left_2.png");
-	game->textures.pac_left_frame3 = mlx_load_png("./tex_bonus/pac_left_3.png");
-	game->textures.pac_left_frame4 = mlx_load_png("./tex_bonus/pac_left_4.png");
-	
-	game->textures.pac_right_frame2 = mlx_load_png("./tex_bonus/pac_right_2.png");
-	game->textures.pac_right_frame3 = mlx_load_png("./tex_bonus/pac_right_3.png");
-	game->textures.pac_right_frame4 = mlx_load_png("./tex_bonus/pac_right_4.png");
-
 	game->textures.player_u = mlx_load_png("./textures/pac_up.png");
 	game->textures.player_d = mlx_load_png("./textures/pac_down.png");
 	game->textures.player_l = mlx_load_png("./textures/pac_left.png");
 	game->textures.player_r = mlx_load_png("./textures/pac_right.png");
 	game->textures.collec = mlx_load_png("./textures/collec.png");
-	game->textures.collec_2 = mlx_load_png("./tex_bonus/collec_2.png");
-	game->textures.collec_3 = mlx_load_png("./tex_bonus/collec_3.png");
-	game->textures.collec_4 = mlx_load_png("./tex_bonus/collec_4.png");
 	game->textures.single_wall = mlx_load_png("./textures/single_wall.png");
 
 	game->textures.wall_h = mlx_load_png("./textures/wall_h.png");
@@ -171,30 +97,11 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->image.pac_man_exit4 = mlx_texture_to_image(mlx, game->textures.pac_man_exit4);
 	game->image.pac_man_exit5 = mlx_texture_to_image(mlx, game->textures.pac_man_exit5);
 
-	game->image.pac_up_frame2 = mlx_texture_to_image(mlx, game->textures.pac_up_frame2);
-	game->image.pac_up_frame3 = mlx_texture_to_image(mlx, game->textures.pac_up_frame3);
-	game->image.pac_up_frame4 = mlx_texture_to_image(mlx, game->textures.pac_up_frame4);
-
-	game->image.pac_down_frame2 = mlx_texture_to_image(mlx, game->textures.pac_down_frame2);
-	game->image.pac_down_frame3 = mlx_texture_to_image(mlx, game->textures.pac_down_frame3);
-	game->image.pac_down_frame4 = mlx_texture_to_image(mlx, game->textures.pac_down_frame4);
-
-	game->image.pac_left_frame2 = mlx_texture_to_image(mlx, game->textures.pac_left_frame2);
-	game->image.pac_left_frame3 = mlx_texture_to_image(mlx, game->textures.pac_left_frame3);
-	game->image.pac_left_frame4 = mlx_texture_to_image(mlx, game->textures.pac_left_frame4);
-
-	game->image.pac_right_frame2 = mlx_texture_to_image(mlx, game->textures.pac_right_frame2);
-	game->image.pac_right_frame3 = mlx_texture_to_image(mlx, game->textures.pac_right_frame3);
-	game->image.pac_right_frame4 = mlx_texture_to_image(mlx, game->textures.pac_right_frame4);
-
 	game->image.player_u = mlx_texture_to_image(mlx, game->textures.player_u);
 	game->image.player_d = mlx_texture_to_image(mlx, game->textures.player_d);
 	game->image.player_l = mlx_texture_to_image(mlx, game->textures.player_l);
 	game->image.player_r = mlx_texture_to_image(mlx, game->textures.player_r);
 	game->image.collec = mlx_texture_to_image(mlx, game->textures.collec);
-	game->image.collec_2 = mlx_texture_to_image(mlx, game->textures.collec_2);
-	game->image.collec_3 = mlx_texture_to_image(mlx, game->textures.collec_3);
-	game->image.collec_4 = mlx_texture_to_image(mlx, game->textures.collec_4);
 	game->image.single_wall = mlx_texture_to_image(mlx, game->textures.single_wall);
 
 	game->image.wall_v = mlx_texture_to_image(mlx, game->textures.wall_v);
@@ -239,179 +146,26 @@ void ft_screen_victory(t_game *game)
 	count++;
 }
 
-void ft_pac_man_instances(mlx_image_t *image, t_game *game)
-{
-	game->image.player->instances->x = -1 * SIZE;
-	game->image.player_u->instances->x = -1 * SIZE;
-	game->image.player_d->instances->x = -1 * SIZE;
-	game->image.player_l->instances->x = -1 * SIZE;
-	game->image.player_r->instances->x = -1 * SIZE;
-	game->image.pac_up_frame2->instances->x = -1 * SIZE;
-	game->image.pac_up_frame3->instances->x = -1 * SIZE;
-	game->image.pac_up_frame4->instances->x = -1 * SIZE;
-	game->image.pac_down_frame2->instances->x = -1 * SIZE;
-	game->image.pac_down_frame3->instances->x = -1 * SIZE;
-	game->image.pac_down_frame4->instances->x = -1 * SIZE;
-	game->image.pac_left_frame2->instances->x = -1 * SIZE;
-	game->image.pac_left_frame3->instances->x = -1 * SIZE;
-	game->image.pac_left_frame4->instances->x = -1 * SIZE;
-	game->image.pac_right_frame2->instances->x = -1 * SIZE;
-	game->image.pac_right_frame3->instances->x = -1 * SIZE;
-	game->image.pac_right_frame4->instances->x = -1 * SIZE;
-	image->instances->x = game->player_y * SIZE;
-	image->instances->y = game->player_x * SIZE;
-}
 
-void ft_frame_pac_man(t_game *game, int n)
+void	ft_move_pac_man(t_game *game, int o, char c)
 {
-	if (n == 5)
-		ft_pac_man_instances(game->image.player, game);
-	if (game->state == 1 && n == 1)
-		ft_pac_man_instances(game->image.player_u, game);
-	if (game->state == 2 && n == 1)
-		ft_pac_man_instances(game->image.player_d, game);
-	if (game->state == 3 && n == 1)
-		ft_pac_man_instances(game->image.player_l, game);
-	if (game->state == 4 && n == 1)
-		ft_pac_man_instances(game->image.player_r, game);
-	if (game->state == 1 && n == 2)
-		ft_pac_man_instances(game->image.pac_up_frame2, game);
-	if (game->state == 2 && n == 2)
-		ft_pac_man_instances(game->image.pac_down_frame2, game);
-	if (game->state == 3 && n == 2)
-		ft_pac_man_instances(game->image.pac_left_frame2, game);
-	if (game->state == 4 && n == 2)
-		ft_pac_man_instances(game->image.pac_right_frame2, game);
-	if (game->state == 1 && n == 3)
-		ft_pac_man_instances(game->image.pac_up_frame3, game);
-	if (game->state == 2 && n == 3)
-		ft_pac_man_instances(game->image.pac_down_frame3, game);
-	if (game->state == 3 && n == 3)
-		ft_pac_man_instances(game->image.pac_left_frame3, game);
-	if (game->state == 4 && n == 3)
-		ft_pac_man_instances(game->image.pac_right_frame3, game);
-	if (game->state == 1 && n == 4)
-		ft_pac_man_instances(game->image.pac_up_frame4, game);
-	if (game->state == 2 && n == 4)
-		ft_pac_man_instances(game->image.pac_down_frame4, game);
-	if (game->state == 3 && n == 4)
-		ft_pac_man_instances(game->image.pac_left_frame4, game);
-	if (game->state == 4 && n == 4)
-		ft_pac_man_instances(game->image.pac_right_frame4, game);
-}
-
-void frames_player(t_game *game)
-{
-	static int count = 0;
-	static mlx_image_t *test = NULL;
-	struct timeval time;
-	
-	gettimeofday(&time, NULL);
-	if (test != NULL)
-		mlx_delete_image(game->mlx, test);
-	if (game->victory == 1)
-		return ;
-	if (count < 5)
-		ft_frame_pac_man(game, 1);
-	else if (count < 10)
-		ft_frame_pac_man(game, 2);
-	else if (count < 15)
-		ft_frame_pac_man(game, 3);
-	else if (count < 20)
-		ft_frame_pac_man(game, 4);
-	else if (count < 25)
-		ft_frame_pac_man(game, 5);
-	else if (count < 30)
-		ft_frame_pac_man(game, 4);
-	else if (count < 35)
-		ft_frame_pac_man(game, 3);
-	else if (count < 40)
-		ft_frame_pac_man(game, 2);
-	else if (count == 40)
-	{
-		ft_frame_pac_man(game, 1);
-		count = 0;
-	}
-	count++;
-	test = cd_slow_raycast(game, time, 2147483647);
-}
-
-void	frames_collec(t_game *game, int state)
-{
-	int	i;
-
-	i = -1;
-	while (++i < game->max_collec)
-	{
-		game->image.collec->instances[i].enabled = 0;
-		game->image.collec_2->instances[i].enabled = 0;
-		game->image.collec_3->instances[i].enabled = 0;
-		game->image.collec_4->instances[i].enabled = 0;
-		if (state == 1)
-			game->image.collec->instances[i].enabled = 1;
-		if (state == 2)
-			game->image.collec_2->instances[i].enabled = 1;
-		if (state == 3)
-			game->image.collec_3->instances[i].enabled = 1;
-		if (state == 4)
-			game->image.collec_4->instances[i].enabled = 1;
-	}
-}
-
-void	ft_frames(t_game *game)
-{
-	static int count = 0;
-	if (count < 10)
-		frames_collec(game, 1);
-	else if (count < 20)
-		frames_collec(game, 2);
-	else if (count < 30)
-		frames_collec(game, 3);
-	else if (count < 45)
-		frames_collec(game, 4);
-	else if (count < 55)
-		frames_collec(game, 3);
-	else if (count < 65)
-		frames_collec(game, 2);
-	else if (count == 65)
-	{
-		frames_collec(game, 1);
-		count = 0;
-	}
-	count++;
-}
-
-void	disable_collec(t_game *game)
-{
-	int i;
-	
-	i = -1;
-	while (++i < game->max_collec)
-	{
-		if (game->image.collec->instances[i].x == game->player_y 
-			&& game->image.collec->instances[i].y == game->player_x)
-		{
-			game->image.collec->instances[i].enabled = 0;
-			game->image.collec_2->instances[i].enabled = 0;
-			game->image.collec_3->instances[i].enabled = 0;
-			game->image.collec_4->instances[i].enabled = 0;
-		}
-	}
-}
-
-void	ft_move_pac_man(t_game *game, int o, char c, int state)
-{
+	mlx_image_to_window(game->mlx, game->image.ground, game->player_y * SIZE, game->player_x * SIZE);
 	if (c == 'u' || c == 'd')
 		game->player_x = game->player_x + o;
 	else
 		game->player_y = game->player_y + o;
-	frames_player(game);
-	game->state = state;
+	if (c == 'u')
+		mlx_image_to_window(game->mlx, game->image.player_u, game->player_y * SIZE, game->player_x * SIZE);
+	else if (c == 'd')
+		mlx_image_to_window(game->mlx, game->image.player_d, game->player_y * SIZE, game->player_x * SIZE);
+	else if (c == 'l')
+		mlx_image_to_window(game->mlx, game->image.player_l, game->player_y * SIZE, game->player_x * SIZE);
+	else if (c == 'r')
+		mlx_image_to_window(game->mlx, game->image.player_r, game->player_y * SIZE, game->player_x * SIZE);
 	game->mooves++;
 	if (game->map[game->player_x][game->player_y] == 'C')
 	{
 		game->map[game->player_x][game->player_y] = '0';
-		disable_collec(game);
 		game->get_collec++;
 		if (game->get_collec == game->max_collec)
 			mlx_image_to_window(game->mlx, game->image.exit, game->exit_y * SIZE, game->exit_x * SIZE);
@@ -433,21 +187,21 @@ void	ft_hook(mlx_key_data_t key_data,t_game *game)
 			printf("\n\e[91mPac Man just got deleted from the existence. 😔\n\n\e[97m");
 	}
 	else if (key_data.key == MLX_KEY_UP && game->map[game->player_x - 1][game->player_y] != '1')
-		ft_move_pac_man(game, -1, 'u', 1);
+		ft_move_pac_man(game, -1, 'u');
 	else if (key_data.key == MLX_KEY_DOWN && game->map[game->player_x + 1][game->player_y] != '1')
-		ft_move_pac_man(game, 1, 'd', 2);
+		ft_move_pac_man(game, 1, 'd');
 	else if (key_data.key == MLX_KEY_LEFT && game->map[game->player_x][game->player_y - 1] != '1')
-		ft_move_pac_man(game, -1, 'l', 3);
+		ft_move_pac_man(game, -1, 'l');
 	else if (key_data.key == MLX_KEY_RIGHT && game->map[game->player_x][game->player_y + 1] != '1')
-		ft_move_pac_man(game, 1, 'r', 4);
+		ft_move_pac_man(game, 1, 'r');
 	else if (key_data.key == MLX_KEY_UP && game->map[game->player_x - 1][game->player_y] == '1')
-		ft_move_pac_man(game, 0, 'u', 1);
+		mlx_image_to_window(game->mlx, game->image.player_u, game->player_y * SIZE, game->player_x * SIZE);
 	else if (key_data.key == MLX_KEY_DOWN && game->map[game->player_x + 1][game->player_y] == '1')
-		ft_move_pac_man(game, 0, 'd', 2);
+		mlx_image_to_window(game->mlx, game->image.player_d, game->player_y * SIZE, game->player_x * SIZE);
 	else if (key_data.key == MLX_KEY_LEFT && game->map[game->player_x][game->player_y - 1] == '1')
-		ft_move_pac_man(game, 0, 'l', 3);
+		mlx_image_to_window(game->mlx, game->image.player_l, game->player_y * SIZE, game->player_x * SIZE);
 	else if (key_data.key == MLX_KEY_RIGHT && game->map[game->player_x][game->player_y + 1] == '1')
-		ft_move_pac_man(game, 0, 'r', 4);
+		mlx_image_to_window(game->mlx, game->image.player_r, game->player_y * SIZE, game->player_x * SIZE);
 }
 
 void init_game_values(t_game *game)
@@ -483,8 +237,6 @@ int main(int ac, char **av)
 		return (0);
 	mlx_key_hook(game.mlx, (void (*))ft_hook, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_victory, (void *)&game);
-	mlx_loop_hook(game.mlx, (void (*))ft_frames, (void *)&game);
-	mlx_loop_hook(game.mlx, (void (*))frames_player, (void *)&game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 }

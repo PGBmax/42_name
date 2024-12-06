@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/06 19:41:06 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:39:51 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,48 +145,14 @@ void	ft_show_walls(mlx_t *mlx, t_game game)
 	ft_link_walls(mlx, game, game.x, game.y);
 }
 
-void ft_frames_of_player(mlx_t *mlx, t_game game)
-{
-	mlx_image_to_window(mlx, game.image.pac_up_frame2, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_up_frame3, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_up_frame4, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_down_frame2, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_down_frame3, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_down_frame4, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_left_frame2, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_left_frame3, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_left_frame4, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_right_frame2, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_right_frame3, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.pac_right_frame4, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.player_u, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.player_d, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.player_l, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.player_r, -1 * SIZE, -1 * SIZE);
-	mlx_image_to_window(mlx, game.image.player, game.y * SIZE, game.x * SIZE);
-}
-
-
 void ft_show_map(mlx_t *mlx, t_game game, char c)
-{
-	static int collec_i = 0;
-
+{	
 	if (c == '1')
 		ft_show_walls(mlx, game);
 	if (c == '0' || c == 'E')
 		mlx_image_to_window(mlx, game.image.ground, game.y * SIZE, game.x * SIZE);
 	if (c == 'P')
-		ft_frames_of_player(mlx, game);
+		mlx_image_to_window(mlx, game.image.player, game.y * SIZE, game.x * SIZE);
 	if (c == 'C')
-	{
-		mlx_image_to_window(mlx, game.image.ground, game.y * SIZE, game.x * SIZE);
 		mlx_image_to_window(mlx, game.image.collec, game.y * SIZE, game.x * SIZE);
-		mlx_image_to_window(mlx, game.image.collec_2, game.y * SIZE, game.x * SIZE);
-		mlx_image_to_window(mlx, game.image.collec_3, game.y * SIZE, game.x * SIZE);
-		mlx_image_to_window(mlx, game.image.collec_4, game.y * SIZE, game.x * SIZE);
-		game.image.collec_2->instances[collec_i].enabled = 0;
-		game.image.collec_3->instances[collec_i].enabled = 0;
-		game.image.collec_4->instances[collec_i].enabled = 0;
-		collec_i++;
-	}
 }
