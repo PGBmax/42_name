@@ -6,66 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/06 19:48:56 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/13 18:00:37 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-#include <sys/time.h>
-
-char    *ft_itoa(int n)
-{
-    int        i;
-    int        tp_num;
-    char    *nbr;
-
-    i = (n <= 0);
-    tp_num = n;
-    while (tp_num != 0 && ++i > 0)
-        tp_num /= 10;
-    nbr = malloc(sizeof(*nbr) * (i + 1));
-    if (!nbr)
-        return (NULL);
-    nbr[i] = 0;
-    tp_num = n;
-    while (--i >= (tp_num < 0))
-    {
-        nbr[i] = (tp_num % 10) * (1 - 2 * (n < 0)) + '0';
-        tp_num /= 10;
-    }
-    if (n < 0)
-        nbr[0] = '-';
-    return (nbr);
-}
-
-
-mlx_image_t    *cd_slow_raycast(t_game *game, struct timeval start_time,
-                int target_fps)
-{
-    mlx_image_t        *img;
-    struct timeval    end_time;
-    char            *fps;
-    int                start;
-    int                end;
-
-    gettimeofday(&end_time, NULL);
-    start = start_time.tv_sec * 1000000 + start_time.tv_usec;
-    end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    while (1000000 / abs(end - start + 1) > target_fps)
-    {
-        gettimeofday(&end_time, NULL);
-        end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    }
-    gettimeofday(&end_time, NULL);
-    end = end_time.tv_sec * 1000000 + end_time.tv_usec;
-    fps = ft_itoa(1000000 / abs(end - start + 1));
-    img = mlx_put_string(game->mlx, fps, 5, -4);
-    free(fps);
-    return (img);
-    mlx_delete_image(game->mlx, img);
-}
-
-
 
 int ft_error(int n)
 {
@@ -106,6 +51,7 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->textures.corner_top_left = mlx_load_png("./textures/corner_top_left.png");
 	game->textures.corner_top_right = mlx_load_png("./textures/corner_top_right.png");
 	game->textures.ground = mlx_load_png("./textures/ground.png");
+	game->textures.fake_ground = mlx_load_png("./tex_bonus/fake_ground.png");
 	game->textures.exit = mlx_load_png("./textures/exit.png");
 	game->textures.player = mlx_load_png("./textures/pac_man.png");
 
@@ -130,6 +76,37 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->textures.pac_right_frame2 = mlx_load_png("./tex_bonus/pac_right_2.png");
 	game->textures.pac_right_frame3 = mlx_load_png("./tex_bonus/pac_right_3.png");
 	game->textures.pac_right_frame4 = mlx_load_png("./tex_bonus/pac_right_4.png");
+
+	game->textures.digit[0] = mlx_load_png("./tex_bonus/zero.png");
+	game->textures.digit[1] = mlx_load_png("./tex_bonus/one.png");
+	game->textures.digit[2] = mlx_load_png("./tex_bonus/two.png");
+	game->textures.digit[3] = mlx_load_png("./tex_bonus/three.png");
+	game->textures.digit[4] = mlx_load_png("./tex_bonus/four.png");
+	game->textures.digit[5] = mlx_load_png("./tex_bonus/five.png");
+	game->textures.digit[6] = mlx_load_png("./tex_bonus/six.png");
+	game->textures.digit[7] = mlx_load_png("./tex_bonus/seven.png");
+	game->textures.digit[8] = mlx_load_png("./tex_bonus/eight.png");
+	game->textures.digit[9] = mlx_load_png("./tex_bonus/nine.png");
+
+	game->textures.inky[0] = mlx_load_png("./tex_bonus/cyan_up.png");
+	game->textures.inky[1] = mlx_load_png("./tex_bonus/cyan_down.png");
+	game->textures.inky[2] = mlx_load_png("./tex_bonus/cyan_left.png");
+	game->textures.inky[3] = mlx_load_png("./tex_bonus/cyan_right.png");
+
+	game->textures.pinky[0] = mlx_load_png("./tex_bonus/pink_up.png");
+	game->textures.pinky[1] = mlx_load_png("./tex_bonus/pink_down.png");
+	game->textures.pinky[2] = mlx_load_png("./tex_bonus/pink_left.png");
+	game->textures.pinky[3] = mlx_load_png("./tex_bonus/pink_right.png");
+
+	game->textures.blinky[0] = mlx_load_png("./tex_bonus/red_up.png");
+	game->textures.blinky[1] = mlx_load_png("./tex_bonus/red_down.png");
+	game->textures.blinky[2] = mlx_load_png("./tex_bonus/red_left.png");
+	game->textures.blinky[3] = mlx_load_png("./tex_bonus/red_right.png");
+
+	game->textures.clyde[0] = mlx_load_png("./tex_bonus/orange_up.png");
+	game->textures.clyde[1] = mlx_load_png("./tex_bonus/orange_down.png");
+	game->textures.clyde[2] = mlx_load_png("./tex_bonus/orange_left.png");
+	game->textures.clyde[3] = mlx_load_png("./tex_bonus/orange_right.png");
 
 	game->textures.player_u = mlx_load_png("./textures/pac_up.png");
 	game->textures.player_d = mlx_load_png("./textures/pac_down.png");
@@ -162,6 +139,7 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->image.corner_top_left = mlx_texture_to_image(mlx, game->textures.corner_top_left);
 	game->image.corner_top_right = mlx_texture_to_image(mlx, game->textures.corner_top_right);
 	game->image.ground = mlx_texture_to_image(mlx, game->textures.ground);
+	game->image.fake_ground = mlx_texture_to_image(mlx, game->textures.fake_ground);
 	game->image.exit = mlx_texture_to_image(mlx, game->textures.exit);
 	game->image.player = mlx_texture_to_image(mlx, game->textures.player);
 
@@ -186,6 +164,37 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->image.pac_right_frame2 = mlx_texture_to_image(mlx, game->textures.pac_right_frame2);
 	game->image.pac_right_frame3 = mlx_texture_to_image(mlx, game->textures.pac_right_frame3);
 	game->image.pac_right_frame4 = mlx_texture_to_image(mlx, game->textures.pac_right_frame4);
+
+	game->image.digit[0] = mlx_texture_to_image(mlx, game->textures.digit[0]);
+	game->image.digit[1] = mlx_texture_to_image(mlx, game->textures.digit[1]);
+	game->image.digit[2] = mlx_texture_to_image(mlx, game->textures.digit[2]);
+	game->image.digit[3] = mlx_texture_to_image(mlx, game->textures.digit[3]);
+	game->image.digit[4] = mlx_texture_to_image(mlx, game->textures.digit[4]);
+	game->image.digit[5] = mlx_texture_to_image(mlx, game->textures.digit[5]);
+	game->image.digit[6] = mlx_texture_to_image(mlx, game->textures.digit[6]);
+	game->image.digit[7] = mlx_texture_to_image(mlx, game->textures.digit[7]);
+	game->image.digit[8] = mlx_texture_to_image(mlx, game->textures.digit[8]);
+	game->image.digit[9] = mlx_texture_to_image(mlx, game->textures.digit[9]);
+
+	game->image.inky[0] = mlx_texture_to_image(mlx, game->textures.inky[0]);
+	game->image.inky[1] = mlx_texture_to_image(mlx, game->textures.inky[1]);
+	game->image.inky[2] = mlx_texture_to_image(mlx, game->textures.inky[2]);
+	game->image.inky[3] = mlx_texture_to_image(mlx, game->textures.inky[3]);
+
+	game->image.pinky[0] = mlx_texture_to_image(mlx, game->textures.pinky[0]);
+	game->image.pinky[1] = mlx_texture_to_image(mlx, game->textures.pinky[1]);
+	game->image.pinky[2] = mlx_texture_to_image(mlx, game->textures.pinky[2]);
+	game->image.pinky[3] = mlx_texture_to_image(mlx, game->textures.pinky[3]);
+
+	game->image.blinky[0] = mlx_texture_to_image(mlx, game->textures.blinky[0]);
+	game->image.blinky[1] = mlx_texture_to_image(mlx, game->textures.blinky[1]);
+	game->image.blinky[2] = mlx_texture_to_image(mlx, game->textures.blinky[2]);
+	game->image.blinky[3] = mlx_texture_to_image(mlx, game->textures.blinky[3]);
+
+	game->image.clyde[0] = mlx_texture_to_image(mlx, game->textures.clyde[0]);
+	game->image.clyde[1] = mlx_texture_to_image(mlx, game->textures.clyde[1]);
+	game->image.clyde[2] = mlx_texture_to_image(mlx, game->textures.clyde[2]);
+	game->image.clyde[3] = mlx_texture_to_image(mlx, game->textures.clyde[3]);
 
 	game->image.player_u = mlx_texture_to_image(mlx, game->textures.player_u);
 	game->image.player_d = mlx_texture_to_image(mlx, game->textures.player_d);
@@ -218,19 +227,19 @@ void ft_screen_victory(t_game *game)
 		return ;
 	if (count == 0)
 		mlx_image_to_window(game->mlx, game->image.player, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 5)
+	else if (count == FRAMEP)
 		mlx_image_to_window(game->mlx, game->image.pac_man_exit1, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 10)
+	else if (count == FRAMEP * 2)
 		mlx_image_to_window(game->mlx, game->image.pac_man_exit2, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 15)
+	else if (count == FRAMEP * 3)
 		mlx_image_to_window(game->mlx, game->image.pac_man_exit3, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 20)
+	else if (count == FRAMEP * 4)
 		mlx_image_to_window(game->mlx, game->image.pac_man_exit4, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 25)
+	else if (count == FRAMEP * 5)
 		mlx_image_to_window(game->mlx, game->image.pac_man_exit5, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 30)
+	else if (count == FRAMEP * 6)
 		mlx_image_to_window(game->mlx, game->image.exit, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == 50)
+	else if (count == FRAMEP * 7)
 	{
 		mlx_close_window(game->mlx);
 		free(game->map);
@@ -303,37 +312,31 @@ void ft_frame_pac_man(t_game *game, int n)
 void frames_player(t_game *game)
 {
 	static int count = 0;
-	static mlx_image_t *test = NULL;
-	struct timeval time;
-	
-	gettimeofday(&time, NULL);
-	if (test != NULL)
-		mlx_delete_image(game->mlx, test);
+
 	if (game->victory == 1)
 		return ;
-	if (count < 5)
+	if (count < FRAMEP)
 		ft_frame_pac_man(game, 1);
-	else if (count < 10)
+	else if (count < FRAMEP * 2)
 		ft_frame_pac_man(game, 2);
-	else if (count < 15)
+	else if (count < FRAMEP * 3)
 		ft_frame_pac_man(game, 3);
-	else if (count < 20)
+	else if (count < FRAMEP * 4)
 		ft_frame_pac_man(game, 4);
-	else if (count < 25)
+	else if (count < FRAMEP * 5)
 		ft_frame_pac_man(game, 5);
-	else if (count < 30)
+	else if (count < FRAMEP * 6)
 		ft_frame_pac_man(game, 4);
-	else if (count < 35)
+	else if (count < FRAMEP * 7)
 		ft_frame_pac_man(game, 3);
-	else if (count < 40)
+	else if (count < FRAMEP * 8)
 		ft_frame_pac_man(game, 2);
-	else if (count == 40)
+	else if (count == FRAMEP * 8)
 	{
 		ft_frame_pac_man(game, 1);
 		count = 0;
-	}
+	} 
 	count++;
-	test = cd_slow_raycast(game, time, 2147483647);
 }
 
 void	frames_collec(t_game *game, int state)
@@ -341,19 +344,19 @@ void	frames_collec(t_game *game, int state)
 	int	i;
 
 	i = -1;
-	while (++i < game->max_collec)
+	while (++i < game->max_collec )
 	{
 		game->image.collec->instances[i].enabled = 0;
 		game->image.collec_2->instances[i].enabled = 0;
 		game->image.collec_3->instances[i].enabled = 0;
 		game->image.collec_4->instances[i].enabled = 0;
-		if (state == 1)
+		if (state == 1 && game->image.fake_ground->instances[i].enabled != 1)
 			game->image.collec->instances[i].enabled = 1;
-		if (state == 2)
+		if (state == 2 && game->image.fake_ground->instances[i].enabled != 1)
 			game->image.collec_2->instances[i].enabled = 1;
-		if (state == 3)
+		if (state == 3 && game->image.fake_ground->instances[i].enabled != 1)
 			game->image.collec_3->instances[i].enabled = 1;
-		if (state == 4)
+		if (state == 4 && game->image.fake_ground->instances[i].enabled != 1)
 			game->image.collec_4->instances[i].enabled = 1;
 	}
 }
@@ -361,21 +364,21 @@ void	frames_collec(t_game *game, int state)
 void	ft_frames(t_game *game)
 {
 	static int count = 0;
-	if (count < 10)
-		frames_collec(game, 1);
-	else if (count < 20)
-		frames_collec(game, 2);
-	else if (count < 30)
+	if (count < FRAMEC)
 		frames_collec(game, 3);
-	else if (count < 45)
-		frames_collec(game, 4);
-	else if (count < 55)
-		frames_collec(game, 3);
-	else if (count < 65)
+	else if (count < FRAMEC * 2)
 		frames_collec(game, 2);
-	else if (count == 65)
+	else if (count < FRAMEC * 3)
+		frames_collec(game, 3);
+	else if (count < FRAMEC * 4)
+		frames_collec(game, 2);
+	else if (count < FRAMEC * 5)
+		frames_collec(game, 3);
+	else if (count < FRAMEC * 6)
+		frames_collec(game, 2);
+	else if (count == FRAMEC * 6)
 	{
-		frames_collec(game, 1);
+		frames_collec(game, 3);
 		count = 0;
 	}
 	count++;
@@ -388,15 +391,38 @@ void	disable_collec(t_game *game)
 	i = -1;
 	while (++i < game->max_collec)
 	{
-		if (game->image.collec->instances[i].x == game->player_y 
-			&& game->image.collec->instances[i].y == game->player_x)
+		if (game->image.collec->instances[i].x / SIZE == game->player_y
+			&& game->image.collec->instances[i].y / SIZE == game->player_x)
 		{
 			game->image.collec->instances[i].enabled = 0;
 			game->image.collec_2->instances[i].enabled = 0;
 			game->image.collec_3->instances[i].enabled = 0;
 			game->image.collec_4->instances[i].enabled = 0;
+			game->image.fake_ground->instances[i].enabled = 1;
 		}
 	}
+}
+
+void ft_show_count(t_game *game, int j, int i)
+{
+	game->image.digit[1]->instances[i].enabled = 0;
+	game->image.digit[2]->instances[i].enabled = 0;
+	game->image.digit[3]->instances[i].enabled = 0;
+	game->image.digit[4]->instances[i].enabled = 0;
+	game->image.digit[5]->instances[i].enabled = 0;
+	game->image.digit[6]->instances[i].enabled = 0;
+	game->image.digit[7]->instances[i].enabled = 0;
+	game->image.digit[8]->instances[i].enabled = 0;
+	game->image.digit[9]->instances[i].enabled = 0;
+	game->image.digit[0]->instances[i].enabled = 0;
+	game->image.digit[j]->instances[i].enabled = 1;
+}
+
+void	ft_update_count(t_game *game, int num, int step)
+{
+	if (num >= 10)
+		ft_update_count(game, num / 10, step - 1);
+	ft_show_count(game, num % 10, step);
 }
 
 void	ft_move_pac_man(t_game *game, int o, char c, int state)
@@ -407,11 +433,16 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 		game->player_y = game->player_y + o;
 	frames_player(game);
 	game->state = state;
-	game->mooves++;
+	if (o != 0)
+	{
+		game->mooves++;
+		ft_update_count(game, game->mooves, game->nmb_count - 1);
+		printf("\e[94mNumber of steps : %d\n\e[94m", game->mooves);
+	}
 	if (game->map[game->player_x][game->player_y] == 'C')
 	{
-		game->map[game->player_x][game->player_y] = '0';
 		disable_collec(game);
+		game->map[game->player_x][game->player_y] = '0';
 		game->get_collec++;
 		if (game->get_collec == game->max_collec)
 			mlx_image_to_window(game->mlx, game->image.exit, game->exit_y * SIZE, game->exit_x * SIZE);
@@ -459,6 +490,8 @@ void init_game_values(t_game *game)
 	game->nmb_exit = 0;
 	game->nmb_player = 0;
 	game->victory = 0;
+	game->state = 0;
+	game->nmb_count = 0;
 }
 
 int main(int ac, char **av)
@@ -471,13 +504,14 @@ int main(int ac, char **av)
 		return (ft_error(2));
 	if (!open(av[1], O_RDONLY) || open(av[1], O_RDONLY) == -1)
 		return (ft_error(3));
-	game.map = ft_read_map(av[1]);
 	init_game_values(&game);
+	game.map = ft_read_map(av[1]);
 	ft_know_size_map(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
 	ft_load_textures(game.mlx, &game);
-	if (!ft_create_map(game.mlx, game))
+	game.nmb_count = ft_create_map(game.mlx, game);
+	if (!game.nmb_count)
 		return (ft_error(9));
 	if (!ft_parsing(game))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/06 16:11:23 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/13 18:01:49 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ void	ft_know_size_map(t_game *game)
 				game->nmb_exit++;
 				game->exit_x = game->x;
 				game->exit_y = game->y;
+			}
+			if (game->map[game->x][game->y] == 'K')
+			{
+				game->pinky_x = game->x;
+				game->pinky_y = game->y;
+			}
+			if (game->map[game->x][game->y] == 'B')
+			{
+				game->inky_x = game->x;
+				game->inky_y = game->y;
+			}
+			if (game->map[game->x][game->y] == 'R')
+			{
+				game->blinky_x = game->x;
+				game->blinky_y = game->y;
+			}
+			if (game->map[game->x][game->y] == 'O')
+			{
+				game->clyde_x = game->x;
+				game->clyde_y = game->y;
 			}
 		}	
 	}
@@ -98,7 +118,7 @@ void fill(t_game *game, int row, int col, char **map)
 
 int ft_check_values(char c)
 {
-	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
+	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C' && c != 'K' && c != 'O' && c != 'R' && c != 'B')
 		return (0);
 	return (1);
 }

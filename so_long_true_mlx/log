@@ -1,0 +1,179 @@
+src/ft_check_map.c: Error!
+Error: SPC_BEFORE_NL        (line:  38, col:  10):	Space before newline
+Error: SPACE_BEFORE_FUNC    (line:  44, col:   4):	space before function name
+Error: SPACE_REPLACE_TAB    (line:  46, col:   8):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  47, col:   8):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  48, col:   9):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line:  48, col:  10):	Misaligned variable declaration
+Error: SPACE_BEFORE_FUNC    (line:  64, col:   4):	space before function name
+Error: SPACE_REPLACE_TAB    (line:  66, col:   8):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  67, col:   8):	Found space when expecting tab
+Error: SPACE_BEFORE_FUNC    (line:  86, col:   5):	space before function name
+Error: SPACE_AFTER_KW       (line:  89, col:   9):	Missing space after keyword
+Error: TAB_INSTEAD_SPC      (line:  89, col:  15):	Found tab when expecting space
+Error: SPACE_AFTER_KW       (line:  91, col:   9):	Missing space after keyword
+Error: TAB_INSTEAD_SPC      (line:  91, col:  15):	Found tab when expecting space
+Error: SPACE_BEFORE_FUNC    (line:  99, col:   4):	space before function name
+Error: TOO_MANY_FUNCS       (line: 106, col:   1):	Too many functions in file
+Error: SPACE_BEFORE_FUNC    (line: 106, col:   5):	space before function name
+Error: SPACE_REPLACE_TAB    (line: 108, col:   9):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line: 109, col:   9):	Misaligned variable declaration
+Error: SPACE_REPLACE_TAB    (line: 110, col:   8):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line: 110, col:   9):	Misaligned variable declaration
+Error: SPACE_EMPTY_LINE     (line: 111, col:   1):	Space on empty line
+Error: CONSECUTIVE_NEWLINES (line: 135, col:   1):	Consecutive newlines
+Error: TOO_MANY_FUNCS       (line: 136, col:   1):	Too many functions in file
+Error: SPACE_BEFORE_FUNC    (line: 136, col:   4):	space before function name
+Error: SPACE_REPLACE_TAB    (line: 138, col:   8):	Found space when expecting tab
+Error: DECL_ASSIGN_LINE     (line: 138, col:  11):	Declaration and assignation on a single line
+Error: SPACE_REPLACE_TAB    (line: 139, col:   8):	Found space when expecting tab
+Error: DECL_ASSIGN_LINE     (line: 139, col:  11):	Declaration and assignation on a single line
+Error: SPACE_REPLACE_TAB    (line: 140, col:   9):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line: 140, col:  10):	Misaligned variable declaration
+Error: SPACE_EMPTY_LINE     (line: 141, col:   1):	Space on empty line
+Error: TOO_MANY_LINES       (line: 166, col:   1):	Function has more than 25 lines
+src/ft_textures.c: Error!
+Error: SPACE_BEFORE_FUNC    (line:  15, col:   5):	space before function name
+Error: LINE_TOO_LONG        (line:  17, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  20, col:  82):	line too long
+Error: TOO_MANY_LINES       (line:  87, col:   1):	Function has more than 25 lines
+Error: SPACE_BEFORE_FUNC    (line:  89, col:   5):	space before function name
+Error: TOO_MANY_LINES       (line: 121, col:   1):	Function has more than 25 lines
+Error: CONSECUTIVE_NEWLINES (line: 123, col:   1):	Consecutive newlines
+Error: CONSECUTIVE_NEWLINES (line: 124, col:   1):	Consecutive newlines
+Error: LINE_TOO_LONG        (line: 128, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 130, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 132, col:  84):	line too long
+Error: LINE_TOO_LONG        (line: 134, col:  85):	line too long
+Error: LINE_TOO_LONG        (line: 136, col:  84):	line too long
+Error: CONSECUTIVE_SPC      (line: 137, col:  29):	Two or more consecutives spaces
+Error: LINE_TOO_LONG        (line: 138, col:  85):	line too long
+Error: LINE_TOO_LONG        (line: 140, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 142, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 143, col:  83):	line too long
+Error: SPACE_BEFORE_FUNC    (line: 148, col:   5):	space before function name
+Error: SPACE_REPLACE_TAB    (line: 150, col:  15):	Found space when expecting tab
+Error: LINE_TOO_LONG        (line: 155, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 157, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 160, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 161, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 162, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 163, col:  83):	line too long
+src/game.c: Error!
+Error: SPACE_BEFORE_FUNC    (line:  15, col:   4):	space before function name
+Error: LINE_TOO_LONG        (line:  49, col:  89):	line too long
+Error: LINE_TOO_LONG        (line:  50, col:  91):	line too long
+Error: LINE_TOO_LONG        (line:  51, col:  83):	line too long
+Error: LINE_TOO_LONG        (line:  52, col:  85):	line too long
+Error: EMPTY_LINE_FUNCTION  (line:  56, col:   1):	Empty line in function
+Error: EMPTY_LINE_FUNCTION  (line:  62, col:   1):	Empty line in function
+Error: EMPTY_LINE_FUNCTION  (line:  66, col:   1):	Empty line in function
+Error: SPACE_EMPTY_LINE     (line:  66, col:   1):	Space on empty line
+Error: EMPTY_LINE_FUNCTION  (line:  70, col:   1):	Empty line in function
+Error: SPACE_EMPTY_LINE     (line:  70, col:   1):	Space on empty line
+Error: EMPTY_LINE_FUNCTION  (line:  74, col:   1):	Empty line in function
+Error: SPACE_EMPTY_LINE     (line:  74, col:   1):	Space on empty line
+Error: LINE_TOO_LONG        (line:  75, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  76, col:  82):	line too long
+Error: LINE_TOO_LONG        (line:  77, col:  82):	line too long
+Error: EMPTY_LINE_FUNCTION  (line:  78, col:   1):	Empty line in function
+Error: EMPTY_LINE_FUNCTION  (line:  88, col:   1):	Empty line in function
+Error: EMPTY_LINE_FUNCTION  (line:  95, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line:  99, col:  82):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 100, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 102, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 104, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 105, col:  97):	line too long
+Error: LINE_TOO_LONG        (line: 106, col:  99):	line too long
+Error: LINE_TOO_LONG        (line: 107, col:  91):	line too long
+Error: LINE_TOO_LONG        (line: 108, col:  93):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 112, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 113, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 114, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 115, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 116, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 117, col:  87):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 118, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 119, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 120, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 121, col:  87):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 122, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 123, col:  91):	line too long
+Error: LINE_TOO_LONG        (line: 124, col:  91):	line too long
+Error: LINE_TOO_LONG        (line: 125, col:  91):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 126, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 127, col:  91):	line too long
+Error: LINE_TOO_LONG        (line: 128, col:  91):	line too long
+Error: LINE_TOO_LONG        (line: 129, col:  91):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 130, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 131, col:  93):	line too long
+Error: LINE_TOO_LONG        (line: 132, col:  93):	line too long
+Error: LINE_TOO_LONG        (line: 133, col:  93):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 134, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 143, col:  83):	line too long
+Error: EMPTY_LINE_FUNCTION  (line: 144, col:   1):	Empty line in function
+Error: EMPTY_LINE_FUNCTION  (line: 151, col:   1):	Empty line in function
+Error: LINE_TOO_LONG        (line: 153, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 155, col:  83):	line too long
+Error: TOO_MANY_LINES       (line: 156, col:   1):	Function has more than 25 lines
+Error: SPACE_BEFORE_FUNC    (line: 158, col:   5):	space before function name
+Error: SPACE_REPLACE_TAB    (line: 160, col:  15):	Found space when expecting tab
+Error: LINE_TOO_LONG        (line: 165, col:  85):	line too long
+Error: LINE_TOO_LONG        (line: 167, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 169, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 171, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 173, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 175, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 177, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 182, col:  82):	line too long
+Error: SPACE_BEFORE_FUNC    (line: 187, col:   5):	space before function name
+Error: LINE_TOO_LONG        (line: 190, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 192, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 194, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 196, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 198, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 200, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 202, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 204, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 206, col:  84):	line too long
+Error: LINE_TOO_LONG        (line: 208, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 210, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 212, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 214, col:  84):	line too long
+Error: LINE_TOO_LONG        (line: 216, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 218, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 220, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 222, col:  84):	line too long
+Error: TOO_MANY_LINES       (line: 223, col:   1):	Function has more than 25 lines
+Error: SPACE_BEFORE_FUNC    (line: 225, col:   5):	space before function name
+Error: SPACE_REPLACE_TAB    (line: 227, col:  15):	Found space when expecting tab
+Error: NL_AFTER_VAR_DECL    (line: 228, col:   1):	Variable declarations must be followed by a newline
+Error: TOO_MANY_FUNCS       (line: 254, col:   1):	Too many functions in file
+Error: TOO_MANY_FUNCS       (line: 276, col:   1):	Too many functions in file
+Error: SPACE_REPLACE_TAB    (line: 278, col:  15):	Found space when expecting tab
+Error: NL_AFTER_VAR_DECL    (line: 279, col:   1):	Variable declarations must be followed by a newline
+Error: TOO_MANY_FUNCS       (line: 299, col:   1):	Too many functions in file
+Error: LINE_TOO_LONG        (line: 301, col:  83):	line too long
+Error: LINE_TOO_LONG        (line: 314, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 316, col:  85):	line too long
+Error: TOO_MANY_FUNCS       (line: 320, col:   1):	Too many functions in file
+Error: SPC_AFTER_OPERATOR   (line: 320, col:  40):	missing space after operator
+Error: LINE_TOO_LONG        (line: 322, col:  95):	line too long
+Error: LINE_TOO_LONG        (line: 330, col:  86):	line too long
+Error: LINE_TOO_LONG        (line: 332, col:  88):	line too long
+Error: LINE_TOO_LONG        (line: 334, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 336, col:  86):	line too long
+Error: LINE_TOO_LONG        (line: 338, col:  87):	line too long
+Error: LINE_TOO_LONG        (line: 340, col:  88):	line too long
+Error: LINE_TOO_LONG        (line: 342, col:  82):	line too long
+Error: LINE_TOO_LONG        (line: 344, col:  86):	line too long
+Error: LINE_TOO_LONG        (line: 346, col:  87):	line too long
+Error: TOO_MANY_LINES       (line: 348, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 350, col:   1):	Too many functions in file
+Error: SPACE_BEFORE_FUNC    (line: 350, col:   5):	space before function name
+Error: TOO_MANY_FUNCS       (line: 361, col:   1):	Too many functions in file
+Error: SPACE_BEFORE_FUNC    (line: 361, col:   4):	space before function name
+src/map.c: Error!
+Error: SPACE_BEFORE_FUNC    (line:  15, col:   5):	space before function name
+Error: TOO_MANY_LINES       (line:  44, col:   1):	Function has more than 25 lines
+Error: SPACE_BEFORE_FUNC    (line:  46, col:   4):	space before function name
