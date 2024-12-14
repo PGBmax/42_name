@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/13 18:03:47 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:03:19 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,6 @@ void ft_link_walls(mlx_t *mlx, t_game game, int x, int y)
 		mlx_image_to_window(mlx, game.image.single_wall, y * SIZE, x * SIZE);
 }
 
-
-
 void	ft_show_walls(mlx_t *mlx, t_game game)
 {
 	if (game.x == 0 && game.y == 0)
@@ -151,10 +149,22 @@ void ft_frames_of_ghosts(mlx_t *mlx, t_game game)
 	mlx_image_to_window(mlx, game.image.ground, game.pinky_y * SIZE, game.pinky_x * SIZE);
 	mlx_image_to_window(mlx, game.image.ground, game.blinky_y * SIZE, game.blinky_x * SIZE);
 	mlx_image_to_window(mlx, game.image.ground, game.inky_y * SIZE, game.inky_x * SIZE);
-	mlx_image_to_window(mlx, game.image.clyde[0], game.clyde_y * SIZE, game.clyde_x * SIZE);
-	mlx_image_to_window(mlx, game.image.pinky[0], game.pinky_y * SIZE, game.pinky_x * SIZE);
-	mlx_image_to_window(mlx, game.image.inky[0], game.inky_y * SIZE, game.inky_x * SIZE);
-	mlx_image_to_window(mlx, game.image.blinky[0], game.blinky_y * SIZE, game.blinky_x * SIZE);
+	mlx_image_to_window(mlx, game.image.clyde[0], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.pinky[0], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.inky[0],-1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.blinky[0], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.clyde[1], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.pinky[1], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.inky[1],-1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.blinky[1], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.clyde[2], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.pinky[2], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.inky[2],-1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.blinky[2], -1 * SIZE, -1 * SIZE);
+	mlx_image_to_window(mlx, game.image.clyde[3], game.clyde_y * SIZE, game.clyde_x * SIZE);
+	mlx_image_to_window(mlx, game.image.pinky[3], game.pinky_y * SIZE, game.pinky_x * SIZE);
+	mlx_image_to_window(mlx, game.image.inky[3], game.inky_y * SIZE, game.inky_x * SIZE);
+	mlx_image_to_window(mlx, game.image.blinky[3], game.blinky_y * SIZE, game.blinky_x * SIZE);
 }
 
 void ft_frames_of_player(mlx_t *mlx, t_game game)

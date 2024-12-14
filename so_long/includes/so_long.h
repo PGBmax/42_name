@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/13 17:54:59 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:23:19 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "GNL/get_next_line.h"
 #include "fcntl.h"
 #define SIZE 32
-#define FRAMEP 5
+#define FRAMEP 6
 #define FRAMEC 10
 
 typedef struct s_textures
@@ -87,6 +87,7 @@ typedef struct s_textures
 	mlx_texture_t	*inky[4];
 	mlx_texture_t	*pinky[4];
 	mlx_texture_t	*blinky[4];
+	mlx_texture_t	*pac_death[7];
 
 	mlx_texture_t	*digit[10];
 	
@@ -156,6 +157,7 @@ typedef struct s_image
 	mlx_image_t	*inky[4];
 	mlx_image_t	*pinky[4];
 	mlx_image_t	*blinky[4];
+	mlx_image_t	*pac_death[7];
 
 	mlx_image_t	*digit[10];
 }	t_image;

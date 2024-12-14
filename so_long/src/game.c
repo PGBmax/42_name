@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/13 18:00:37 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/14 18:19:46 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,14 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->textures.clyde[2] = mlx_load_png("./tex_bonus/orange_left.png");
 	game->textures.clyde[3] = mlx_load_png("./tex_bonus/orange_right.png");
 
+	game->textures.pac_death[0] = mlx_load_png("./tex_bonus/pac_death_1.png");
+	game->textures.pac_death[1] = mlx_load_png("./tex_bonus/pac_death_2.png");
+	game->textures.pac_death[2] = mlx_load_png("./tex_bonus/pac_death_3.png");
+	game->textures.pac_death[3] = mlx_load_png("./tex_bonus/pac_death_4.png");
+	game->textures.pac_death[4] = mlx_load_png("./tex_bonus/pac_death_5.png");
+	game->textures.pac_death[5] = mlx_load_png("./tex_bonus/pac_death_6.png");
+	game->textures.pac_death[6] = mlx_load_png("./tex_bonus/pac_death_7.png");
+
 	game->textures.player_u = mlx_load_png("./textures/pac_up.png");
 	game->textures.player_d = mlx_load_png("./textures/pac_down.png");
 	game->textures.player_l = mlx_load_png("./textures/pac_left.png");
@@ -175,6 +183,14 @@ void	ft_load_textures(mlx_t *mlx, t_game *game)
 	game->image.digit[7] = mlx_texture_to_image(mlx, game->textures.digit[7]);
 	game->image.digit[8] = mlx_texture_to_image(mlx, game->textures.digit[8]);
 	game->image.digit[9] = mlx_texture_to_image(mlx, game->textures.digit[9]);
+
+	game->image.pac_death[0] = mlx_texture_to_image(mlx, game->textures.pac_death[0]);
+	game->image.pac_death[1] = mlx_texture_to_image(mlx, game->textures.pac_death[1]);
+	game->image.pac_death[2] = mlx_texture_to_image(mlx, game->textures.pac_death[2]);
+	game->image.pac_death[3] = mlx_texture_to_image(mlx, game->textures.pac_death[3]);
+	game->image.pac_death[4] = mlx_texture_to_image(mlx, game->textures.pac_death[4]);
+	game->image.pac_death[5] = mlx_texture_to_image(mlx, game->textures.pac_death[5]);
+	game->image.pac_death[6] = mlx_texture_to_image(mlx, game->textures.pac_death[6]);
 
 	game->image.inky[0] = mlx_texture_to_image(mlx, game->textures.inky[0]);
 	game->image.inky[1] = mlx_texture_to_image(mlx, game->textures.inky[1]);
@@ -244,6 +260,39 @@ void ft_screen_victory(t_game *game)
 		mlx_close_window(game->mlx);
 		free(game->map);
 		printf("\n\e[92mGood Job! 🎉\nYou won with %d mooves! 🥳\n\n\e[97m", game->mooves);
+	}
+	count++;
+}
+
+void ft_lose_victory(t_game *game)
+{
+	static int count = 0;
+
+	if (game->victory != -1)
+		return ;
+	if (count == 0)
+		mlx_image_to_window(game->mlx, game->image.player, game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP)
+		mlx_image_to_window(game->mlx, game->image.pac_death[0], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 2)
+		mlx_image_to_window(game->mlx, game->image.pac_death[1], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 3)
+		mlx_image_to_window(game->mlx, game->image.pac_death[2], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 4)
+		mlx_image_to_window(game->mlx, game->image.pac_death[3], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 5)
+		mlx_image_to_window(game->mlx, game->image.pac_death[4], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 6)
+		mlx_image_to_window(game->mlx, game->image.pac_death[5], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 7)
+		mlx_image_to_window(game->mlx, game->image.pac_death[6], game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 8)
+		mlx_image_to_window(game->mlx, game->image.ground, game->player_y * SIZE, game->player_x * SIZE);
+	else if (count == FRAMEP * 9)
+	{
+		mlx_close_window(game->mlx);
+		free(game->map);
+		printf("\n\e[95mOH NOOO! 😢\nPAC MAN IS TRAGICALLY CRUSHED BY A GHOST! 😭\n\n\e[97m");
 	}
 	count++;
 }
@@ -365,20 +414,20 @@ void	ft_frames(t_game *game)
 {
 	static int count = 0;
 	if (count < FRAMEC)
-		frames_collec(game, 3);
+		frames_collec(game, 1);
 	else if (count < FRAMEC * 2)
 		frames_collec(game, 2);
 	else if (count < FRAMEC * 3)
 		frames_collec(game, 3);
 	else if (count < FRAMEC * 4)
-		frames_collec(game, 2);
+		frames_collec(game, 4);
 	else if (count < FRAMEC * 5)
 		frames_collec(game, 3);
 	else if (count < FRAMEC * 6)
 		frames_collec(game, 2);
 	else if (count == FRAMEC * 6)
 	{
-		frames_collec(game, 3);
+		frames_collec(game, 1);
 		count = 0;
 	}
 	count++;
@@ -405,6 +454,8 @@ void	disable_collec(t_game *game)
 
 void ft_show_count(t_game *game, int j, int i)
 {
+	if (i < 0)
+		return	;
 	game->image.digit[1]->instances[i].enabled = 0;
 	game->image.digit[2]->instances[i].enabled = 0;
 	game->image.digit[3]->instances[i].enabled = 0;
@@ -425,6 +476,26 @@ void	ft_update_count(t_game *game, int num, int step)
 	ft_show_count(game, num % 10, step);
 }
 
+void ft_moves_blinky(t_game *game)
+{
+	// if (game->blinky_x != -1 && game->blinky_x != -1 &&
+	// (game->map[game->blinky_x - 1][game->blinky_y] == '0' ||
+	// game->map[game->blinky_x - 1][game->blinky_y] == 'C'))
+	// {
+	// 	printf("\e[95mTrue\n\e[97m");
+	// 	game->image.blinky[0]->instances->x = -1 * SIZE;
+	// 	game->image.blinky[1]->instances->x = -1 * SIZE;
+	// 	game->image.blinky[2]->instances->x = -1 * SIZE;
+	// 	game->image.blinky[3]->instances->x = -1 * SIZE;
+	// 	game->blinky_x--;
+	// 	game->image.blinky[0]->instances->x = game->blinky_y * SIZE;
+	// 	game->image.blinky[0]->instances->y = game->blinky_x * SIZE;
+	// }
+	if (game->blinky_x == game->player_x && game->blinky_y == game->player_y)
+		game->victory = -1;
+	
+}
+
 void	ft_move_pac_man(t_game *game, int o, char c, int state)
 {
 	if (c == 'u' || c == 'd')
@@ -437,8 +508,12 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 	{
 		game->mooves++;
 		ft_update_count(game, game->mooves, game->nmb_count - 1);
-		printf("\e[94mNumber of steps : %d\n\e[94m", game->mooves);
+		printf("\e[96mNumber of steps : %d\n\e[97m", game->mooves);
 	}
+	ft_moves_blinky(game);
+	// ft_moves_inky(game);
+	// ft_moves_pinky(game);
+	// ft_moves_clyde(game);
 	if (game->map[game->player_x][game->player_y] == 'C')
 	{
 		disable_collec(game);
@@ -453,13 +528,15 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 
 void	ft_hook(mlx_key_data_t key_data,t_game *game)
 {
-	if ((key_data.action != MLX_PRESS || game->victory == 1) && key_data.key != MLX_KEY_ESCAPE)
+	if ((key_data.action != MLX_PRESS || game->victory == 1 || game->victory == -1) && key_data.key != MLX_KEY_ESCAPE)
 		return ;
 	else if (key_data.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(game->mlx);
 		if (game->victory == 1)
 			printf("\n\e[93mPac Man just gave up about winning. 💀\n\n\e[97m");
+		else if (game->victory == -1)
+			printf("\n\e[93mPac Man just killed himself before dying. 💀\n\n\e[97m");
 		else
 			printf("\n\e[91mPac Man just got deleted from the existence. 😔\n\n\e[97m");
 	}
@@ -492,6 +569,14 @@ void init_game_values(t_game *game)
 	game->victory = 0;
 	game->state = 0;
 	game->nmb_count = 0;
+	game->blinky_x = -1;
+	game->blinky_y = -1;
+	game->inky_x = -1;
+	game->inky_y = -1;
+	game->pinky_x = -1;
+	game->pinky_y = -1;
+	game->clyde_x = -1;
+	game->clyde_y = -1;
 }
 
 int main(int ac, char **av)
@@ -517,6 +602,7 @@ int main(int ac, char **av)
 		return (0);
 	mlx_key_hook(game.mlx, (void (*))ft_hook, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_victory, (void *)&game);
+	mlx_loop_hook(game.mlx, (void (*))ft_lose_victory, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_frames, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))frames_player, (void *)&game);
 	mlx_loop(game.mlx);
