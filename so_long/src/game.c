@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 02:19:33 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:24:22 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,68 +40,6 @@ int ft_error(int n)
 	return (0);
 }
 
-void ft_screen_victory(t_game *game)
-{
-	static int count = 0;
-
-	if (game->victory != 1)
-		return ;
-	if (count == 0)
-		mlx_image_to_window(game->mlx, game->image.player[0], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit[0], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 2)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit[1], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 3)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit[2], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 4)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit[3], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 5)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit[4], game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 6)
-		mlx_image_to_window(game->mlx, game->image.exit, game->exit_y * SIZE, game->exit_x * SIZE);
-	else if (count == FRAMEP * 7)
-	{
-		mlx_close_window(game->mlx);
-		free(game->map);
-		printf("\n\e[92mGood Job! 🎉\nYou won with %d mooves! 🥳\n\n\e[97m", game->mooves);
-	}
-	count++;
-}
-
-void ft_lose_victory(t_game *game)
-{
-	static int count = 0;
-
-	if (game->victory != -1)
-		return ;
-	if (count == 0)
-		mlx_image_to_window(game->mlx, game->image.player[0], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP)
-		mlx_image_to_window(game->mlx, game->image.pac_death[0], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 2)
-		mlx_image_to_window(game->mlx, game->image.pac_death[1], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 3)
-		mlx_image_to_window(game->mlx, game->image.pac_death[2], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 4)
-		mlx_image_to_window(game->mlx, game->image.pac_death[3], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 5)
-		mlx_image_to_window(game->mlx, game->image.pac_death[4], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 6)
-		mlx_image_to_window(game->mlx, game->image.pac_death[5], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 7)
-		mlx_image_to_window(game->mlx, game->image.pac_death[6], game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 8)
-		mlx_image_to_window(game->mlx, game->image.ground, game->player_y * SIZE, game->player_x * SIZE);
-	else if (count == FRAMEP * 9)
-	{
-		mlx_close_window(game->mlx);
-		free(game->map);
-		printf("\n\e[95mOH NOOO! 😢\nPAC MAN IS TRAGICALLY CRUSHED BY A GHOST! 😭\n\n\e[97m");
-	}
-	count++;
-}
-
 void ft_pac_man_instances(mlx_image_t *image, t_game *game)
 {
 	int i;
@@ -118,7 +56,9 @@ void ft_pac_man_instances(mlx_image_t *image, t_game *game)
 
 void ft_frame_pac_man(t_game *game, int n)
 {
-	if (n == 5 || n == 1)
+	if (n == 5)
+		ft_pac_man_instances(game->image.player[0], game);
+	if (n == 1)
 		ft_pac_man_instances(game->image.player[game->state], game);
 	if (game->state == 1 && n == 2)
 		ft_pac_man_instances(game->image.pac_frame[0], game);
@@ -139,7 +79,7 @@ void ft_frame_pac_man(t_game *game, int n)
 	if (game->state == 1 && n == 4)
 		ft_pac_man_instances(game->image.pac_frame[2], game);
 	if (game->state == 2 && n == 4)
-		ft_pac_man_instances(game->imagepac_frame[5], game);
+		ft_pac_man_instances(game->image.pac_frame[5], game);
 	if (game->state == 3 && n == 4)
 		ft_pac_man_instances(game->image.pac_frame[8], game);
 	if (game->state == 4 && n == 4)
@@ -187,7 +127,7 @@ void	frames_collec(t_game *game, int state)
 		game->image.collec[1]->instances[i].enabled = 0;
 		game->image.collec[2]->instances[i].enabled = 0;
 		game->image.collec[3]->instances[i].enabled = 0;
-		if (game->image.fake_ground->instances[i].enabled != 1)
+		if (game->image.fground->instances[i].enabled != 1)
 			game->image.collec[state]->instances[i].enabled = 1;
 	}
 }
@@ -228,8 +168,8 @@ void	disable_collec(t_game *game)
 			game->image.collec[1]->instances[i].enabled = 0;
 			game->image.collec[2]->instances[i].enabled = 0;
 			game->image.collec[3]->instances[i].enabled = 0;
-			game->image.collec[4]->instances[i].enabled = 0;
-			game->image.fake_ground->instances[i].enabled = 1;
+			game->image.collec[0]->instances[i].enabled = 0;
+			game->image.fground->instances[i].enabled = 1;
 		}
 	}
 }
@@ -384,7 +324,7 @@ int main(int ac, char **av)
 		return (0);
 	mlx_key_hook(game.mlx, (void (*))ft_hook, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_victory, (void *)&game);
-	mlx_loop_hook(game.mlx, (void (*))ft_lose_victory, (void *)&game);
+	mlx_loop_hook(game.mlx, (void (*))ft_screen_lose, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_frames, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))frames_player, (void *)&game);
 	mlx_loop(game.mlx);

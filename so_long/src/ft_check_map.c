@@ -6,11 +6,25 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 02:49:45 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:55:48 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+void	ft_check_case2(t_game *game, char c)
+{
+	if (c == 'R')
+	{
+		game->blinky_x = game->x;
+		game->blinky_y = game->y;
+	}
+	if (c == 'O')
+	{
+		game->clyde_x = game->x;
+		game->clyde_y = game->y;
+	}
+}
 
 void	ft_check_case(t_game *game, char c)
 {
@@ -26,16 +40,19 @@ void	ft_check_case(t_game *game, char c)
 		game->inky_x = game->x;
 		game->inky_y = game->y;
 	}
-	if (c == 'R')
+	if (c == 'E')
 	{
-		game->blinky_x = game->x;
-		game->blinky_y = game->y;
+		game->nmb_exit++;
+		game->exit_x = game->x;
+		game->exit_y = game->y;
 	}
-	if (c == 'O')
+	if (c == 'P')
 	{
-		game->clyde_x = game->x;
-		game->clyde_y = game->y;
+		game->nmb_player++;
+		game->player_x = game->x;
+		game->player_y = game->y;
 	}
+		ft_check_case2(game, c);
 }
 
 void	ft_know_size_map(t_game *game)
@@ -47,31 +64,24 @@ void	ft_know_size_map(t_game *game)
 		game->y = -1;
 		while (game->map[game->x][++game->y])
 		{
-			if (game->map[game->x][game->y] == 'E')
+			ft_check_case(game, game->map[game->x][game->y]);
+			if (game->map[game->x][0] == 0)
 			{
-				game->nmb_exit++;
-				game->exit_x = game->x;
-				game->exit_y = game->y;
+				free(game->map[game->x]);
+				game->x--;
+				break ;
 			}
-			if (game->map[game->x][game->y] == 'P')
-			{
-				game->nmb_player++;
-				game->player_x = game->x;
-				game->player_y = game->y;
-			}
-			else
-				ft_check_case(game, game->map[game->x][game->y])
 		}
 	}
 	game->max_x = game->y - 1;
 	game->max_y = game->x - 1;
 }
 
-int check_map(char *map)
+int	check_map(char *map)
 {
-	int i;
-	int j;
-	char *check;
+	int		i;
+	int		j;
+	char	*check;
 
 	i = ft_strlen(map) - 1;
 	check = ".ber";
@@ -87,10 +97,10 @@ int check_map(char *map)
 		return (0);
 }
 
-int ft_pars_walls(t_game game)
+int	ft_pars_walls(t_game game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (game.map[x])
@@ -109,93 +119,15 @@ int ft_pars_walls(t_game game)
 	return (0);
 }
 
-void fill(t_game *game, int row, int col, char **map)
+void	fill(t_game *game, int row, int col, char **map)
 {
 	if (row < 0 || col < 0 || row > game->max_x || col > game->max_y)
-		return	;
+		return ;
 	if (map[col][row] == '1' || map[col][row] == 'D')
-		return	;
+		return ;
 	map[col][row] = 'D';
 	fill(game, row - 1, col, map);
 	fill(game, row + 1, col, map);
 	fill(game, row, col + 1, map);
 	fill(game, row, col - 1, map);
-}
-
-int ft_check_values(char c)
-{
-	if (c != '0' && c != '1'
-		&& c != 'P' && c != 'E'
-		&& c != 'C' && c != 'K'
-		&& c != 'O' && c != 'R' && c != 'B')
-		return (0);
-	return (1);
-}
-
-char **fill_map(t_game game)
-{
-	char **map;
-	int	x;
-	int y;
-	
-	x = -1;
-	map = ft_calloc(sizeof(char *), game.max_y + 2);
-	map[game.max_y + 1] = NULL;
-	while (++x <= game.max_y)
-	{
-		map[x] = ft_calloc(game.max_x + 2, 1);
-		if (!map[x])
-			return (NULL);
-		y = -1;
-		while (++y <= game.max_x)
-		{
-			map[x][y] = game.map[x][y];
-			if (!ft_check_values(map[x][y]))
-			{
-				ft_error(11);
-				return (NULL);
-			}
-		}
-		map[x][y] = 0;
-	}
-	return (map);
-}
-
-int ft_somes_verifs(t_game game, char **map)
-{
-	if (!map)
-		return (0);
-	if (game.nmb_player != 1)
-		return (ft_error(10));
-	if (game.nmb_exit != 1)
-		return (ft_error(5));
-	return (1);
-}
-
-int ft_parsing(t_game game)
-{
-	int x = -1;
-	int y = -1;
-	char **map;
-	
-	map = fill_map(game);
-	if (!ft_somes_verifs(game, map))
-		return (0);
-	fill(&game, game.player_y, game.player_x, map);
-	x = -1;
-	if (game.max_collec == 0)
-		return (ft_error(8));
-	while (map[++x])
-	{
-		y = -1;
-		while (map[x][++y])
-		{
-			if (map[x][y] == 'C')
-				return (ft_error(6));
-			if (map[x][y] == 'E')
-				return (ft_error(7));
-		}
-	}
-	free(map);
-	return (1);
 }

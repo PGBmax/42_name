@@ -6,17 +6,17 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:41:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 03:07:48 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 15:18:24 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-int ft_know_map(int fd)
+int	ft_know_map(int fd)
 {
-	char *map;
-	int i;
-	
+	char	*map;
+	int		i;
+
 	i = 0;
 	map = get_next_line(fd);
 	while (map)
@@ -26,12 +26,12 @@ int ft_know_map(int fd)
 		map = get_next_line(fd);
 	}
 	free(map);
+	return (i);
 }
 
-char **ft_read_map(char *str)
+char	**ft_read_map(char *str)
 {
 	char			**true_map;
-	char			*map;
 	int				fd;
 	int				i;
 	int				j;
@@ -52,7 +52,7 @@ char **ft_read_map(char *str)
 	return (true_map);
 }
 
-void ft_display_number(mlx_t *mlx, t_game game, int i, t_image img)
+void	ft_display_number(mlx_t *mlx, t_game game, int i, t_image img)
 {
 	mlx_image_to_window(mlx, img.digit[1], game.y * SIZE, game.x * SIZE);
 	mlx_image_to_window(mlx, img.digit[2], game.y * SIZE, game.x * SIZE);
@@ -75,7 +75,7 @@ void ft_display_number(mlx_t *mlx, t_game game, int i, t_image img)
 	img.digit[9]->instances[i].enabled = 0;
 }
 
-char **remove_return_line(char **map)
+char	**remove_return_line(char **map)
 {
 	int	i;
 
@@ -91,7 +91,7 @@ char **remove_return_line(char **map)
 	return (map);
 }
 
-int ft_create_map(mlx_t *mlx, t_game game)
+int	ft_create_map(mlx_t *mlx, t_game game)
 {
 	int	i;
 
@@ -113,7 +113,7 @@ int ft_create_map(mlx_t *mlx, t_game game)
 		}
 		game.x++;
 	}
-	ft_frames_of_ghosts(mlx, game);
-	ft_frames_of_player(mlx, game);
+	ft_frames_of_ghosts(mlx, game, &game.image);
+	ft_frames_of_player(mlx, game, &game.image);
 	return (i);
 }
