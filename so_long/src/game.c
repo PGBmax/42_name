@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/14 18:19:46 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 02:19:33 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,201 +40,6 @@ int ft_error(int n)
 	return (0);
 }
 
-void	ft_load_textures(mlx_t *mlx, t_game *game)
-{
-	game->textures.wall_left = mlx_load_png("./textures/walls_left.png");
-	game->textures.wall_right = mlx_load_png("./textures/walls_right.png");
-	game->textures.wall_top = mlx_load_png("./textures/walls_top.png");
-	game->textures.wall_bottom = mlx_load_png("./textures/walls_bottom.png");
-	game->textures.corner_bottom_left = mlx_load_png("./textures/corner_bottom_left.png");
-	game->textures.corner_bottom_right = mlx_load_png("./textures/corner_bottom_right.png");
-	game->textures.corner_top_left = mlx_load_png("./textures/corner_top_left.png");
-	game->textures.corner_top_right = mlx_load_png("./textures/corner_top_right.png");
-	game->textures.ground = mlx_load_png("./textures/ground.png");
-	game->textures.fake_ground = mlx_load_png("./tex_bonus/fake_ground.png");
-	game->textures.exit = mlx_load_png("./textures/exit.png");
-	game->textures.player = mlx_load_png("./textures/pac_man.png");
-
-	game->textures.pac_man_exit1 = mlx_load_png("./textures/pac_man_exit1.png");
-	game->textures.pac_man_exit2 = mlx_load_png("./textures/pac_man_exit2.png");
-	game->textures.pac_man_exit3 = mlx_load_png("./textures/pac_man_exit3.png");
-	game->textures.pac_man_exit4 = mlx_load_png("./textures/pac_man_exit4.png");
-	game->textures.pac_man_exit5 = mlx_load_png("./textures/pac_man_exit5.png");
-
-	game->textures.pac_up_frame2 = mlx_load_png("./tex_bonus/pac_up_2.png");
-	game->textures.pac_up_frame3 = mlx_load_png("./tex_bonus/pac_up_3.png");
-	game->textures.pac_up_frame4 = mlx_load_png("./tex_bonus/pac_up_4.png");
-	
-	game->textures.pac_down_frame2 = mlx_load_png("./tex_bonus/pac_down_2.png");
-	game->textures.pac_down_frame3 = mlx_load_png("./tex_bonus/pac_down_3.png");
-	game->textures.pac_down_frame4 = mlx_load_png("./tex_bonus/pac_down_4.png");
-	
-	game->textures.pac_left_frame2 = mlx_load_png("./tex_bonus/pac_left_2.png");
-	game->textures.pac_left_frame3 = mlx_load_png("./tex_bonus/pac_left_3.png");
-	game->textures.pac_left_frame4 = mlx_load_png("./tex_bonus/pac_left_4.png");
-	
-	game->textures.pac_right_frame2 = mlx_load_png("./tex_bonus/pac_right_2.png");
-	game->textures.pac_right_frame3 = mlx_load_png("./tex_bonus/pac_right_3.png");
-	game->textures.pac_right_frame4 = mlx_load_png("./tex_bonus/pac_right_4.png");
-
-	game->textures.digit[0] = mlx_load_png("./tex_bonus/zero.png");
-	game->textures.digit[1] = mlx_load_png("./tex_bonus/one.png");
-	game->textures.digit[2] = mlx_load_png("./tex_bonus/two.png");
-	game->textures.digit[3] = mlx_load_png("./tex_bonus/three.png");
-	game->textures.digit[4] = mlx_load_png("./tex_bonus/four.png");
-	game->textures.digit[5] = mlx_load_png("./tex_bonus/five.png");
-	game->textures.digit[6] = mlx_load_png("./tex_bonus/six.png");
-	game->textures.digit[7] = mlx_load_png("./tex_bonus/seven.png");
-	game->textures.digit[8] = mlx_load_png("./tex_bonus/eight.png");
-	game->textures.digit[9] = mlx_load_png("./tex_bonus/nine.png");
-
-	game->textures.inky[0] = mlx_load_png("./tex_bonus/cyan_up.png");
-	game->textures.inky[1] = mlx_load_png("./tex_bonus/cyan_down.png");
-	game->textures.inky[2] = mlx_load_png("./tex_bonus/cyan_left.png");
-	game->textures.inky[3] = mlx_load_png("./tex_bonus/cyan_right.png");
-
-	game->textures.pinky[0] = mlx_load_png("./tex_bonus/pink_up.png");
-	game->textures.pinky[1] = mlx_load_png("./tex_bonus/pink_down.png");
-	game->textures.pinky[2] = mlx_load_png("./tex_bonus/pink_left.png");
-	game->textures.pinky[3] = mlx_load_png("./tex_bonus/pink_right.png");
-
-	game->textures.blinky[0] = mlx_load_png("./tex_bonus/red_up.png");
-	game->textures.blinky[1] = mlx_load_png("./tex_bonus/red_down.png");
-	game->textures.blinky[2] = mlx_load_png("./tex_bonus/red_left.png");
-	game->textures.blinky[3] = mlx_load_png("./tex_bonus/red_right.png");
-
-	game->textures.clyde[0] = mlx_load_png("./tex_bonus/orange_up.png");
-	game->textures.clyde[1] = mlx_load_png("./tex_bonus/orange_down.png");
-	game->textures.clyde[2] = mlx_load_png("./tex_bonus/orange_left.png");
-	game->textures.clyde[3] = mlx_load_png("./tex_bonus/orange_right.png");
-
-	game->textures.pac_death[0] = mlx_load_png("./tex_bonus/pac_death_1.png");
-	game->textures.pac_death[1] = mlx_load_png("./tex_bonus/pac_death_2.png");
-	game->textures.pac_death[2] = mlx_load_png("./tex_bonus/pac_death_3.png");
-	game->textures.pac_death[3] = mlx_load_png("./tex_bonus/pac_death_4.png");
-	game->textures.pac_death[4] = mlx_load_png("./tex_bonus/pac_death_5.png");
-	game->textures.pac_death[5] = mlx_load_png("./tex_bonus/pac_death_6.png");
-	game->textures.pac_death[6] = mlx_load_png("./tex_bonus/pac_death_7.png");
-
-	game->textures.player_u = mlx_load_png("./textures/pac_up.png");
-	game->textures.player_d = mlx_load_png("./textures/pac_down.png");
-	game->textures.player_l = mlx_load_png("./textures/pac_left.png");
-	game->textures.player_r = mlx_load_png("./textures/pac_right.png");
-	game->textures.collec = mlx_load_png("./textures/collec.png");
-	game->textures.collec_2 = mlx_load_png("./tex_bonus/collec_2.png");
-	game->textures.collec_3 = mlx_load_png("./tex_bonus/collec_3.png");
-	game->textures.collec_4 = mlx_load_png("./tex_bonus/collec_4.png");
-	game->textures.single_wall = mlx_load_png("./textures/single_wall.png");
-
-	game->textures.wall_h = mlx_load_png("./textures/wall_h.png");
-	game->textures.wall_v = mlx_load_png("./textures/wall_v.png");
-	game->textures.corner_1 = mlx_load_png("./textures/corner_1.png");
-	game->textures.corner_2 = mlx_load_png("./textures/corner_2.png");
-	game->textures.corner_3 = mlx_load_png("./textures/corner_3.png");
-	game->textures.corner_4 = mlx_load_png("./textures/corner_4.png");
-
-	game->textures.link_left = mlx_load_png("./textures/link_walls_left.png");
-	game->textures.link_right = mlx_load_png("./textures/link_walls_right.png");
-	game->textures.link_top = mlx_load_png("./textures/link_walls_top.png");
-	game->textures.link_bottom = mlx_load_png("./textures/link_walls_bottom.png");
-
-	game->image.wall_left = mlx_texture_to_image(mlx, game->textures.wall_left);
-	game->image.wall_right = mlx_texture_to_image(mlx, game->textures.wall_right);
-	game->image.wall_top = mlx_texture_to_image(mlx, game->textures.wall_top);
-	game->image.wall_bottom = mlx_texture_to_image(mlx, game->textures.wall_bottom);
-	game->image.corner_bottom_left = mlx_texture_to_image(mlx, game->textures.corner_bottom_left);
-	game->image.corner_bottom_right = mlx_texture_to_image(mlx, game->textures.corner_bottom_right);
-	game->image.corner_top_left = mlx_texture_to_image(mlx, game->textures.corner_top_left);
-	game->image.corner_top_right = mlx_texture_to_image(mlx, game->textures.corner_top_right);
-	game->image.ground = mlx_texture_to_image(mlx, game->textures.ground);
-	game->image.fake_ground = mlx_texture_to_image(mlx, game->textures.fake_ground);
-	game->image.exit = mlx_texture_to_image(mlx, game->textures.exit);
-	game->image.player = mlx_texture_to_image(mlx, game->textures.player);
-
-	game->image.pac_man_exit1 = mlx_texture_to_image(mlx, game->textures.pac_man_exit1);
-	game->image.pac_man_exit2 = mlx_texture_to_image(mlx, game->textures.pac_man_exit2);
-	game->image.pac_man_exit3 = mlx_texture_to_image(mlx, game->textures.pac_man_exit3);
-	game->image.pac_man_exit4 = mlx_texture_to_image(mlx, game->textures.pac_man_exit4);
-	game->image.pac_man_exit5 = mlx_texture_to_image(mlx, game->textures.pac_man_exit5);
-
-	game->image.pac_up_frame2 = mlx_texture_to_image(mlx, game->textures.pac_up_frame2);
-	game->image.pac_up_frame3 = mlx_texture_to_image(mlx, game->textures.pac_up_frame3);
-	game->image.pac_up_frame4 = mlx_texture_to_image(mlx, game->textures.pac_up_frame4);
-
-	game->image.pac_down_frame2 = mlx_texture_to_image(mlx, game->textures.pac_down_frame2);
-	game->image.pac_down_frame3 = mlx_texture_to_image(mlx, game->textures.pac_down_frame3);
-	game->image.pac_down_frame4 = mlx_texture_to_image(mlx, game->textures.pac_down_frame4);
-
-	game->image.pac_left_frame2 = mlx_texture_to_image(mlx, game->textures.pac_left_frame2);
-	game->image.pac_left_frame3 = mlx_texture_to_image(mlx, game->textures.pac_left_frame3);
-	game->image.pac_left_frame4 = mlx_texture_to_image(mlx, game->textures.pac_left_frame4);
-
-	game->image.pac_right_frame2 = mlx_texture_to_image(mlx, game->textures.pac_right_frame2);
-	game->image.pac_right_frame3 = mlx_texture_to_image(mlx, game->textures.pac_right_frame3);
-	game->image.pac_right_frame4 = mlx_texture_to_image(mlx, game->textures.pac_right_frame4);
-
-	game->image.digit[0] = mlx_texture_to_image(mlx, game->textures.digit[0]);
-	game->image.digit[1] = mlx_texture_to_image(mlx, game->textures.digit[1]);
-	game->image.digit[2] = mlx_texture_to_image(mlx, game->textures.digit[2]);
-	game->image.digit[3] = mlx_texture_to_image(mlx, game->textures.digit[3]);
-	game->image.digit[4] = mlx_texture_to_image(mlx, game->textures.digit[4]);
-	game->image.digit[5] = mlx_texture_to_image(mlx, game->textures.digit[5]);
-	game->image.digit[6] = mlx_texture_to_image(mlx, game->textures.digit[6]);
-	game->image.digit[7] = mlx_texture_to_image(mlx, game->textures.digit[7]);
-	game->image.digit[8] = mlx_texture_to_image(mlx, game->textures.digit[8]);
-	game->image.digit[9] = mlx_texture_to_image(mlx, game->textures.digit[9]);
-
-	game->image.pac_death[0] = mlx_texture_to_image(mlx, game->textures.pac_death[0]);
-	game->image.pac_death[1] = mlx_texture_to_image(mlx, game->textures.pac_death[1]);
-	game->image.pac_death[2] = mlx_texture_to_image(mlx, game->textures.pac_death[2]);
-	game->image.pac_death[3] = mlx_texture_to_image(mlx, game->textures.pac_death[3]);
-	game->image.pac_death[4] = mlx_texture_to_image(mlx, game->textures.pac_death[4]);
-	game->image.pac_death[5] = mlx_texture_to_image(mlx, game->textures.pac_death[5]);
-	game->image.pac_death[6] = mlx_texture_to_image(mlx, game->textures.pac_death[6]);
-
-	game->image.inky[0] = mlx_texture_to_image(mlx, game->textures.inky[0]);
-	game->image.inky[1] = mlx_texture_to_image(mlx, game->textures.inky[1]);
-	game->image.inky[2] = mlx_texture_to_image(mlx, game->textures.inky[2]);
-	game->image.inky[3] = mlx_texture_to_image(mlx, game->textures.inky[3]);
-
-	game->image.pinky[0] = mlx_texture_to_image(mlx, game->textures.pinky[0]);
-	game->image.pinky[1] = mlx_texture_to_image(mlx, game->textures.pinky[1]);
-	game->image.pinky[2] = mlx_texture_to_image(mlx, game->textures.pinky[2]);
-	game->image.pinky[3] = mlx_texture_to_image(mlx, game->textures.pinky[3]);
-
-	game->image.blinky[0] = mlx_texture_to_image(mlx, game->textures.blinky[0]);
-	game->image.blinky[1] = mlx_texture_to_image(mlx, game->textures.blinky[1]);
-	game->image.blinky[2] = mlx_texture_to_image(mlx, game->textures.blinky[2]);
-	game->image.blinky[3] = mlx_texture_to_image(mlx, game->textures.blinky[3]);
-
-	game->image.clyde[0] = mlx_texture_to_image(mlx, game->textures.clyde[0]);
-	game->image.clyde[1] = mlx_texture_to_image(mlx, game->textures.clyde[1]);
-	game->image.clyde[2] = mlx_texture_to_image(mlx, game->textures.clyde[2]);
-	game->image.clyde[3] = mlx_texture_to_image(mlx, game->textures.clyde[3]);
-
-	game->image.player_u = mlx_texture_to_image(mlx, game->textures.player_u);
-	game->image.player_d = mlx_texture_to_image(mlx, game->textures.player_d);
-	game->image.player_l = mlx_texture_to_image(mlx, game->textures.player_l);
-	game->image.player_r = mlx_texture_to_image(mlx, game->textures.player_r);
-	game->image.collec = mlx_texture_to_image(mlx, game->textures.collec);
-	game->image.collec_2 = mlx_texture_to_image(mlx, game->textures.collec_2);
-	game->image.collec_3 = mlx_texture_to_image(mlx, game->textures.collec_3);
-	game->image.collec_4 = mlx_texture_to_image(mlx, game->textures.collec_4);
-	game->image.single_wall = mlx_texture_to_image(mlx, game->textures.single_wall);
-
-	game->image.wall_v = mlx_texture_to_image(mlx, game->textures.wall_v);
-	game->image.wall_h = mlx_texture_to_image(mlx, game->textures.wall_h);
-	game->image.corner_1 = mlx_texture_to_image(mlx, game->textures.corner_1);
-	game->image.corner_2 = mlx_texture_to_image(mlx, game->textures.corner_2);
-	game->image.corner_3 = mlx_texture_to_image(mlx, game->textures.corner_3);
-	game->image.corner_4 = mlx_texture_to_image(mlx, game->textures.corner_4);
-
-	game->image.link_left = mlx_texture_to_image(mlx, game->textures.link_left);
-	game->image.link_right = mlx_texture_to_image(mlx, game->textures.link_right);
-	game->image.link_top = mlx_texture_to_image(mlx, game->textures.link_top);
-	game->image.link_bottom = mlx_texture_to_image(mlx, game->textures.link_bottom);
-}
-
 void ft_screen_victory(t_game *game)
 {
 	static int count = 0;
@@ -242,17 +47,17 @@ void ft_screen_victory(t_game *game)
 	if (game->victory != 1)
 		return ;
 	if (count == 0)
-		mlx_image_to_window(game->mlx, game->image.player, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.player[0], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit1, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.pac_man_exit[0], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 2)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit2, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.pac_man_exit[1], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 3)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit3, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.pac_man_exit[2], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 4)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit4, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.pac_man_exit[3], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 5)
-		mlx_image_to_window(game->mlx, game->image.pac_man_exit5, game->exit_y * SIZE, game->exit_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.pac_man_exit[4], game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 6)
 		mlx_image_to_window(game->mlx, game->image.exit, game->exit_y * SIZE, game->exit_x * SIZE);
 	else if (count == FRAMEP * 7)
@@ -271,7 +76,7 @@ void ft_lose_victory(t_game *game)
 	if (game->victory != -1)
 		return ;
 	if (count == 0)
-		mlx_image_to_window(game->mlx, game->image.player, game->player_y * SIZE, game->player_x * SIZE);
+		mlx_image_to_window(game->mlx, game->image.player[0], game->player_y * SIZE, game->player_x * SIZE);
 	else if (count == FRAMEP)
 		mlx_image_to_window(game->mlx, game->image.pac_death[0], game->player_y * SIZE, game->player_x * SIZE);
 	else if (count == FRAMEP * 2)
@@ -299,63 +104,46 @@ void ft_lose_victory(t_game *game)
 
 void ft_pac_man_instances(mlx_image_t *image, t_game *game)
 {
-	game->image.player->instances->x = -1 * SIZE;
-	game->image.player_u->instances->x = -1 * SIZE;
-	game->image.player_d->instances->x = -1 * SIZE;
-	game->image.player_l->instances->x = -1 * SIZE;
-	game->image.player_r->instances->x = -1 * SIZE;
-	game->image.pac_up_frame2->instances->x = -1 * SIZE;
-	game->image.pac_up_frame3->instances->x = -1 * SIZE;
-	game->image.pac_up_frame4->instances->x = -1 * SIZE;
-	game->image.pac_down_frame2->instances->x = -1 * SIZE;
-	game->image.pac_down_frame3->instances->x = -1 * SIZE;
-	game->image.pac_down_frame4->instances->x = -1 * SIZE;
-	game->image.pac_left_frame2->instances->x = -1 * SIZE;
-	game->image.pac_left_frame3->instances->x = -1 * SIZE;
-	game->image.pac_left_frame4->instances->x = -1 * SIZE;
-	game->image.pac_right_frame2->instances->x = -1 * SIZE;
-	game->image.pac_right_frame3->instances->x = -1 * SIZE;
-	game->image.pac_right_frame4->instances->x = -1 * SIZE;
+	int i;
+
+	i = -1;
+	while (++i < 5)
+		game->image.player[i]->instances->x = -1 * SIZE;
+	i = -1;
+	while (++i < 12)
+		game->image.pac_frame[i]->instances->x = -1 * SIZE;
 	image->instances->x = game->player_y * SIZE;
 	image->instances->y = game->player_x * SIZE;
 }
 
 void ft_frame_pac_man(t_game *game, int n)
 {
-	if (n == 5)
-		ft_pac_man_instances(game->image.player, game);
-	if (game->state == 1 && n == 1)
-		ft_pac_man_instances(game->image.player_u, game);
-	if (game->state == 2 && n == 1)
-		ft_pac_man_instances(game->image.player_d, game);
-	if (game->state == 3 && n == 1)
-		ft_pac_man_instances(game->image.player_l, game);
-	if (game->state == 4 && n == 1)
-		ft_pac_man_instances(game->image.player_r, game);
+	if (n == 5 || n == 1)
+		ft_pac_man_instances(game->image.player[game->state], game);
 	if (game->state == 1 && n == 2)
-		ft_pac_man_instances(game->image.pac_up_frame2, game);
+		ft_pac_man_instances(game->image.pac_frame[0], game);
 	if (game->state == 2 && n == 2)
-		ft_pac_man_instances(game->image.pac_down_frame2, game);
+		ft_pac_man_instances(game->image.pac_frame[3], game);
 	if (game->state == 3 && n == 2)
-		ft_pac_man_instances(game->image.pac_left_frame2, game);
+		ft_pac_man_instances(game->image.pac_frame[6], game);
 	if (game->state == 4 && n == 2)
-		ft_pac_man_instances(game->image.pac_right_frame2, game);
+		ft_pac_man_instances(game->image.pac_frame[9], game);
 	if (game->state == 1 && n == 3)
-		ft_pac_man_instances(game->image.pac_up_frame3, game);
+		ft_pac_man_instances(game->image.pac_frame[1], game);
 	if (game->state == 2 && n == 3)
-		ft_pac_man_instances(game->image.pac_down_frame3, game);
+		ft_pac_man_instances(game->image.pac_frame[4], game);
 	if (game->state == 3 && n == 3)
-		ft_pac_man_instances(game->image.pac_left_frame3, game);
+		ft_pac_man_instances(game->image.pac_frame[7], game);
 	if (game->state == 4 && n == 3)
-		ft_pac_man_instances(game->image.pac_right_frame3, game);
+		ft_pac_man_instances(game->image.pac_frame[10], game);
 	if (game->state == 1 && n == 4)
-		ft_pac_man_instances(game->image.pac_up_frame4, game);
+		ft_pac_man_instances(game->image.pac_frame[2], game);
 	if (game->state == 2 && n == 4)
-		ft_pac_man_instances(game->image.pac_down_frame4, game);
+		ft_pac_man_instances(game->imagepac_frame[5], game);
 	if (game->state == 3 && n == 4)
-		ft_pac_man_instances(game->image.pac_left_frame4, game);
+		ft_pac_man_instances(game->image.pac_frame[8], game);
 	if (game->state == 4 && n == 4)
-		ft_pac_man_instances(game->image.pac_right_frame4, game);
+		ft_pac_man_instances(game->image.pac_frame[11], game);
 }
 
 void frames_player(t_game *game)
@@ -395,18 +183,12 @@ void	frames_collec(t_game *game, int state)
 	i = -1;
 	while (++i < game->max_collec )
 	{
-		game->image.collec->instances[i].enabled = 0;
-		game->image.collec_2->instances[i].enabled = 0;
-		game->image.collec_3->instances[i].enabled = 0;
-		game->image.collec_4->instances[i].enabled = 0;
-		if (state == 1 && game->image.fake_ground->instances[i].enabled != 1)
-			game->image.collec->instances[i].enabled = 1;
-		if (state == 2 && game->image.fake_ground->instances[i].enabled != 1)
-			game->image.collec_2->instances[i].enabled = 1;
-		if (state == 3 && game->image.fake_ground->instances[i].enabled != 1)
-			game->image.collec_3->instances[i].enabled = 1;
-		if (state == 4 && game->image.fake_ground->instances[i].enabled != 1)
-			game->image.collec_4->instances[i].enabled = 1;
+		game->image.collec[0]->instances[i].enabled = 0;
+		game->image.collec[1]->instances[i].enabled = 0;
+		game->image.collec[2]->instances[i].enabled = 0;
+		game->image.collec[3]->instances[i].enabled = 0;
+		if (game->image.fake_ground->instances[i].enabled != 1)
+			game->image.collec[state]->instances[i].enabled = 1;
 	}
 }
 
@@ -414,20 +196,20 @@ void	ft_frames(t_game *game)
 {
 	static int count = 0;
 	if (count < FRAMEC)
-		frames_collec(game, 1);
+		frames_collec(game, 0);
 	else if (count < FRAMEC * 2)
-		frames_collec(game, 2);
+		frames_collec(game, 1);
 	else if (count < FRAMEC * 3)
-		frames_collec(game, 3);
-	else if (count < FRAMEC * 4)
-		frames_collec(game, 4);
-	else if (count < FRAMEC * 5)
-		frames_collec(game, 3);
-	else if (count < FRAMEC * 6)
 		frames_collec(game, 2);
+	else if (count < FRAMEC * 4)
+		frames_collec(game, 3);
+	else if (count < FRAMEC * 5)
+		frames_collec(game, 2);
+	else if (count < FRAMEC * 6)
+		frames_collec(game, 1);
 	else if (count == FRAMEC * 6)
 	{
-		frames_collec(game, 1);
+		frames_collec(game, 0);
 		count = 0;
 	}
 	count++;
@@ -440,13 +222,13 @@ void	disable_collec(t_game *game)
 	i = -1;
 	while (++i < game->max_collec)
 	{
-		if (game->image.collec->instances[i].x / SIZE == game->player_y
-			&& game->image.collec->instances[i].y / SIZE == game->player_x)
+		if (game->image.collec[0]->instances[i].x / SIZE == game->player_y
+			&& game->image.collec[0]->instances[i].y / SIZE == game->player_x)
 		{
-			game->image.collec->instances[i].enabled = 0;
-			game->image.collec_2->instances[i].enabled = 0;
-			game->image.collec_3->instances[i].enabled = 0;
-			game->image.collec_4->instances[i].enabled = 0;
+			game->image.collec[1]->instances[i].enabled = 0;
+			game->image.collec[2]->instances[i].enabled = 0;
+			game->image.collec[3]->instances[i].enabled = 0;
+			game->image.collec[4]->instances[i].enabled = 0;
 			game->image.fake_ground->instances[i].enabled = 1;
 		}
 	}
@@ -594,7 +376,7 @@ int main(int ac, char **av)
 	ft_know_size_map(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
-	ft_load_textures(game.mlx, &game);
+	ft_load_textures(game.mlx, &game.textures, &game.image);
 	game.nmb_count = ft_create_map(game.mlx, game);
 	if (!game.nmb_count)
 		return (ft_error(9));

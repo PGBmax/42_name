@@ -6,11 +6,37 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/13 18:01:49 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 02:49:45 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
+
+void	ft_check_case(t_game *game, char c)
+{
+	if (c == 'C')
+		game->max_collec++;
+	if (c == 'K')
+	{
+		game->pinky_x = game->x;
+		game->pinky_y = game->y;
+	}
+	if (c == 'B')
+	{
+		game->inky_x = game->x;
+		game->inky_y = game->y;
+	}
+	if (c == 'R')
+	{
+		game->blinky_x = game->x;
+		game->blinky_y = game->y;
+	}
+	if (c == 'O')
+	{
+		game->clyde_x = game->x;
+		game->clyde_y = game->y;
+	}
+}
 
 void	ft_know_size_map(t_game *game)
 {
@@ -21,41 +47,21 @@ void	ft_know_size_map(t_game *game)
 		game->y = -1;
 		while (game->map[game->x][++game->y])
 		{
-			if (game->map[game->x][game->y] == 'C')
-				game->max_collec++;
-			if (game->map[game->x][game->y] == 'P')
-			{
-				game->nmb_player++;
-				game->player_x = game->x;
-				game->player_y = game->y;
-			}
 			if (game->map[game->x][game->y] == 'E')
 			{
 				game->nmb_exit++;
 				game->exit_x = game->x;
 				game->exit_y = game->y;
 			}
-			if (game->map[game->x][game->y] == 'K')
+			if (game->map[game->x][game->y] == 'P')
 			{
-				game->pinky_x = game->x;
-				game->pinky_y = game->y;
+				game->nmb_player++;
+				game->player_x = game->x;
+				game->player_y = game->y;
 			}
-			if (game->map[game->x][game->y] == 'B')
-			{
-				game->inky_x = game->x;
-				game->inky_y = game->y;
-			}
-			if (game->map[game->x][game->y] == 'R')
-			{
-				game->blinky_x = game->x;
-				game->blinky_y = game->y;
-			}
-			if (game->map[game->x][game->y] == 'O')
-			{
-				game->clyde_x = game->x;
-				game->clyde_y = game->y;
-			}
-		}	
+			else
+				ft_check_case(game, game->map[game->x][game->y])
+		}
 	}
 	game->max_x = game->y - 1;
 	game->max_y = game->x - 1;
@@ -118,7 +124,10 @@ void fill(t_game *game, int row, int col, char **map)
 
 int ft_check_values(char c)
 {
-	if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C' && c != 'K' && c != 'O' && c != 'R' && c != 'B')
+	if (c != '0' && c != '1'
+		&& c != 'P' && c != 'E'
+		&& c != 'C' && c != 'K'
+		&& c != 'O' && c != 'R' && c != 'B')
 		return (0);
 	return (1);
 }
@@ -152,6 +161,16 @@ char **fill_map(t_game game)
 	return (map);
 }
 
+int ft_somes_verifs(t_game game, char **map)
+{
+	if (!map)
+		return (0);
+	if (game.nmb_player != 1)
+		return (ft_error(10));
+	if (game.nmb_exit != 1)
+		return (ft_error(5));
+	return (1);
+}
 
 int ft_parsing(t_game game)
 {
@@ -160,12 +179,8 @@ int ft_parsing(t_game game)
 	char **map;
 	
 	map = fill_map(game);
-	if (!map)
+	if (!ft_somes_verifs(game, map))
 		return (0);
-	if (game.nmb_player != 1)
-		return (ft_error(10));
-	if (game.nmb_exit != 1)
-		return (ft_error(5));
 	fill(&game, game.player_y, game.player_x, map);
 	x = -1;
 	if (game.max_collec == 0)

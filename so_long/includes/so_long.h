@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/14 18:23:19 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/15 00:11:01 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,134 +25,41 @@
 
 typedef struct s_textures
 {
-	mlx_texture_t	*wall_left;
-	mlx_texture_t	*wall_right;
-	mlx_texture_t	*wall_top;
-	mlx_texture_t	*wall_bottom;
-	mlx_texture_t	*corner_bottom_left;
-	mlx_texture_t	*corner_bottom_right;
-	mlx_texture_t	*corner_top_left;
-	mlx_texture_t	*corner_top_right;
-	mlx_texture_t	*single_wall;
-
-	mlx_texture_t	*wall_v;
-	mlx_texture_t	*wall_h;
-	mlx_texture_t	*corner_1;
-	mlx_texture_t	*corner_2;
-	mlx_texture_t	*corner_3;
-	mlx_texture_t	*corner_4;
-
-	mlx_texture_t	*link_left;
-	mlx_texture_t	*link_right;
-	mlx_texture_t	*link_top;
-	mlx_texture_t	*link_bottom;
-
+	mlx_texture_t	*off_wall[4];
+	mlx_texture_t	*off_corner[4];
+	mlx_texture_t	*walls[3];
+	mlx_texture_t	*corner[4];
+	mlx_texture_t	*link[4];
 	mlx_texture_t	*ground;
 	mlx_texture_t	*fake_ground;
-	mlx_texture_t	*player;
-
-	mlx_texture_t	*player_u;
-	mlx_texture_t	*player_d;
-	mlx_texture_t	*player_l;
-	mlx_texture_t	*player_r;
-	
-	mlx_texture_t	*collec;
-	mlx_texture_t	*collec_2;
-	mlx_texture_t	*collec_3;
-	mlx_texture_t	*collec_4;
+	mlx_texture_t	*player[5];
+	mlx_texture_t	*collec[4];
 	mlx_texture_t	*exit;
-	mlx_texture_t 	*pac_man_exit1;
-	mlx_texture_t 	*pac_man_exit2;
-	mlx_texture_t 	*pac_man_exit3;
-	mlx_texture_t 	*pac_man_exit4;
-	mlx_texture_t 	*pac_man_exit5;
-	
-	mlx_texture_t	*pac_up_frame2;
-	mlx_texture_t	*pac_up_frame3;
-	mlx_texture_t	*pac_up_frame4;
-
-	mlx_texture_t	*pac_down_frame2;
-	mlx_texture_t	*pac_down_frame3;
-	mlx_texture_t	*pac_down_frame4;
-
-	mlx_texture_t	*pac_left_frame2;
-	mlx_texture_t	*pac_left_frame3;
-	mlx_texture_t	*pac_left_frame4;
-
-	mlx_texture_t	*pac_right_frame2;
-	mlx_texture_t	*pac_right_frame3;
-	mlx_texture_t	*pac_right_frame4;
-
+	mlx_texture_t 	*pac_man_exit[5];
+	mlx_texture_t	*pac_frame[12];
 	mlx_texture_t	*clyde[4];
 	mlx_texture_t	*inky[4];
 	mlx_texture_t	*pinky[4];
 	mlx_texture_t	*blinky[4];
 	mlx_texture_t	*pac_death[7];
-
 	mlx_texture_t	*digit[10];
 	
 }	t_textures;
 
 typedef struct s_image
 {
-	mlx_image_t	*wall_left;
-	mlx_image_t	*wall_right;
-	mlx_image_t	*wall_top;
-	mlx_image_t	*wall_bottom;
-	mlx_image_t	*corner_bottom_left;
-	mlx_image_t	*corner_bottom_right;
-	mlx_image_t	*corner_top_left;
-	mlx_image_t	*corner_top_right;
-	mlx_image_t	*single_wall;
-
-	mlx_image_t	*wall_v;
-	mlx_image_t	*wall_h;
-	mlx_image_t	*corner_1;
-	mlx_image_t	*corner_2;
-	mlx_image_t	*corner_3;
-	mlx_image_t	*corner_4;
-
-	mlx_image_t	*link_left;
-	mlx_image_t	*link_right;
-	mlx_image_t	*link_top;
-	mlx_image_t	*link_bottom;
-
+	mlx_image_t	*off_wall[4];
+	mlx_image_t	*off_corner[4];
+	mlx_image_t	*walls[3];
+	mlx_image_t	*corner[4];
+	mlx_image_t	*link[4];
 	mlx_image_t	*ground;
 	mlx_image_t	*fake_ground;
-	mlx_image_t	*player;
-
-	mlx_image_t	*player_u;
-	mlx_image_t	*player_d;
-	mlx_image_t	*player_l;
-	mlx_image_t	*player_r;
-
-	mlx_image_t	*collec;
-	mlx_image_t	*collec_2;
-	mlx_image_t	*collec_3;
-	mlx_image_t	*collec_4;
+	mlx_image_t	*player[5];
+	mlx_image_t	*collec[4];
 	mlx_image_t	*exit;
-	mlx_image_t *pac_man_exit1;
-	mlx_image_t *pac_man_exit2;
-	mlx_image_t *pac_man_exit3;
-	mlx_image_t *pac_man_exit4;
-	mlx_image_t *pac_man_exit5;
-
-	mlx_image_t	*pac_up_frame2;
-	mlx_image_t	*pac_up_frame3;
-	mlx_image_t	*pac_up_frame4;
-
-	mlx_image_t	*pac_down_frame2;
-	mlx_image_t	*pac_down_frame3;
-	mlx_image_t	*pac_down_frame4;
-
-	mlx_image_t	*pac_left_frame2;
-	mlx_image_t	*pac_left_frame3;
-	mlx_image_t	*pac_left_frame4;
-
-	mlx_image_t	*pac_right_frame2;
-	mlx_image_t	*pac_right_frame3;
-	mlx_image_t	*pac_right_frame4;
-	
+	mlx_image_t *pac_man_exit[5];
+	mlx_image_t	*pac_frame[12];
 	mlx_image_t	*clyde[4];
 	mlx_image_t	*inky[4];
 	mlx_image_t	*pinky[4];
