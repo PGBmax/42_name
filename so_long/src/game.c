@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 15:24:22 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:22:44 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ int ft_error(int n)
 		printf("Just one player is needed!\n\n\e[97m");
 	if (n == 11)
 		printf("A texture is not recognized!\n\n\e[97m");
+	if (n == 12)
+		printf("MLX could not be created!\n\n\e[97m");
+	if (n == 13)
+		printf("Only one Blinky can exist!\n\n\e[97m");
+	if (n == 14)
+		printf("Only one Clyde can exist!\n\n\e[97m");
+	if (n == 15)
+		printf("Only one Pinky can exist!\n\n\e[97m");
+	if (n == 16)
+		printf("Only one Inky can exist!\n\n\e[97m");
 	return (0);
 }
 
@@ -198,26 +208,6 @@ void	ft_update_count(t_game *game, int num, int step)
 	ft_show_count(game, num % 10, step);
 }
 
-void ft_moves_blinky(t_game *game)
-{
-	// if (game->blinky_x != -1 && game->blinky_x != -1 &&
-	// (game->map[game->blinky_x - 1][game->blinky_y] == '0' ||
-	// game->map[game->blinky_x - 1][game->blinky_y] == 'C'))
-	// {
-	// 	printf("\e[95mTrue\n\e[97m");
-	// 	game->image.blinky[0]->instances->x = -1 * SIZE;
-	// 	game->image.blinky[1]->instances->x = -1 * SIZE;
-	// 	game->image.blinky[2]->instances->x = -1 * SIZE;
-	// 	game->image.blinky[3]->instances->x = -1 * SIZE;
-	// 	game->blinky_x--;
-	// 	game->image.blinky[0]->instances->x = game->blinky_y * SIZE;
-	// 	game->image.blinky[0]->instances->y = game->blinky_x * SIZE;
-	// }
-	if (game->blinky_x == game->player_x && game->blinky_y == game->player_y)
-		game->victory = -1;
-	
-}
-
 void	ft_move_pac_man(t_game *game, int o, char c, int state)
 {
 	if (c == 'u' || c == 'd')
@@ -232,10 +222,6 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 		ft_update_count(game, game->mooves, game->nmb_count - 1);
 		printf("\e[96mNumber of steps : %d\n\e[97m", game->mooves);
 	}
-	ft_moves_blinky(game);
-	// ft_moves_inky(game);
-	// ft_moves_pinky(game);
-	// ft_moves_clyde(game);
 	if (game->map[game->player_x][game->player_y] == 'C')
 	{
 		disable_collec(game);
@@ -246,11 +232,23 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 	}
 	if (game->map[game->player_x][game->player_y] == 'E' && game->get_collec == game->max_collec)
 		game->victory = 1;
+	if ((game->blinky_x == game->player_x && game->blinky_y == game->player_y) ||
+		(game->pinky_x == game->player_x && game->pinky_y == game->player_y) ||
+		(game->clyde_x == game->player_x && game->clyde_y == game->player_y) ||
+		(game->inky_x == game->player_x && game->inky_y == game->player_y))
+		game->victory = -1;
+	if (game->victory == 0)
+	{
+		ft_moves_blinky(game);
+		// ft_moves_inky(game);
+		// ft_moves_pinky(game);
+		// ft_moves_clyde(game);
+	}
 }
 
 void	ft_hook(mlx_key_data_t key_data,t_game *game)
 {
-	if ((key_data.action != MLX_PRESS || game->victory == 1 || game->victory == -1) && key_data.key != MLX_KEY_ESCAPE)
+	if ((key_data.action != MLX_PRESS || game->victory != 0) && key_data.key != MLX_KEY_ESCAPE)
 		return ;
 	else if (key_data.key == MLX_KEY_ESCAPE)
 	{
@@ -299,6 +297,10 @@ void init_game_values(t_game *game)
 	game->pinky_y = -1;
 	game->clyde_x = -1;
 	game->clyde_y = -1;
+	game->nmb_ghost[0] = 0;
+	game->nmb_ghost[1] = 0;
+	game->nmb_ghost[2] = 0;
+	game->nmb_ghost[3] = 0;
 }
 
 int main(int ac, char **av)
@@ -316,6 +318,8 @@ int main(int ac, char **av)
 	ft_know_size_map(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
+	if (!game.mlx)
+		return (ft_error(12));
 	ft_load_textures(game.mlx, &game.textures, &game.image);
 	game.nmb_count = ft_create_map(game.mlx, game);
 	if (!game.nmb_count)

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 15:35:38 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:24:28 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #define SIZE 32
 
 /*	DELAY OF FRAMES, YOU CANE MOVE IT BUT DONT WRITE 0 !	*/
-#define FRAMEP 3
+#define FRAMEP 5
 #define FRAMEC 8
 
 /*	MY TEXTURES	*/
@@ -94,6 +94,8 @@ typedef struct	s_game
 	int exit_y;
 	int nmb_exit;
 	int nmb_player;
+	int nmb_count;
+	int nmb_ghost[4];
 	int state;
 
 	int clyde_x;
@@ -107,13 +109,13 @@ typedef struct	s_game
 
 	int max_collec;
 	int get_collec;
-	int nmb_count;
 	int mooves;
 	int victory;
 }	t_game;
 
 /*	temp.c*/
 int ft_error(int n);
+void ft_moves_blinky(t_game *game);
 
 /*	ft_check_map.c	*/
 void	ft_check_case(t_game *game, char c);

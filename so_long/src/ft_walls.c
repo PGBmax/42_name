@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:37:52 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 16:11:06 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:51:54 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	ft_block_walls_3(mlx_t *mlx, t_game game, int x, int y)
 	else if (game.map[x][y - 1] == '1'
 		&& (game.map[x][y + 1] == '1' || game.map[x + 1][y] != '1'))
 		mlx_image_to_window(mlx, game.image.walls[0], y * SIZE, x * SIZE);
-	else if (game.map[x - 1][y] != '1' && game.map[x][y - 1] != '1'
-		&& game.map[x][y + 1] == '1' && game.map[x + 1][y] == '1')
-		mlx_image_to_window(mlx, game.image.corner[2], y * SIZE, x * SIZE);
 	else
 		mlx_image_to_window(mlx, game.image.ground, x * SIZE, y * SIZE);
 }

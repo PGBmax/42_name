@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 16:55:48 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:34:12 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,27 @@ void	ft_check_case2(t_game *game, char c)
 {
 	if (c == 'R')
 	{
+		game->nmb_ghost[0]++;
 		game->blinky_x = game->x;
 		game->blinky_y = game->y;
 	}
 	if (c == 'O')
 	{
+		game->nmb_ghost[1]++;
 		game->clyde_x = game->x;
 		game->clyde_y = game->y;
+	}
+	if (c == 'K')
+	{
+		game->nmb_ghost[2]++;
+		game->pinky_x = game->x;
+		game->pinky_y = game->y;
+	}
+	if (c == 'B')
+	{
+		game->nmb_ghost[3]++;
+		game->inky_x = game->x;
+		game->inky_y = game->y;
 	}
 }
 
@@ -30,16 +44,6 @@ void	ft_check_case(t_game *game, char c)
 {
 	if (c == 'C')
 		game->max_collec++;
-	if (c == 'K')
-	{
-		game->pinky_x = game->x;
-		game->pinky_y = game->y;
-	}
-	if (c == 'B')
-	{
-		game->inky_x = game->x;
-		game->inky_y = game->y;
-	}
 	if (c == 'E')
 	{
 		game->nmb_exit++;

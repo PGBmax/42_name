@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:28:48 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/15 17:00:10 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:39:35 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ int	ft_somes_verifs(t_game game, char **map)
 		return (ft_error(10));
 	if (game.nmb_exit != 1)
 		return (ft_error(5));
+	if (game.nmb_ghost[0] > 1)
+		return (ft_error(13));
+	if (game.nmb_ghost[1] > 1)
+		return (ft_error(14));
+	if (game.nmb_ghost[2] > 1)
+		return (ft_error(15));
+	if (game.nmb_ghost[3] > 1)
+		return (ft_error(16));
 	return (1);
 }
 
