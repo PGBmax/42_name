@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:41:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 14:33:44 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:36:27 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_read_map(char *str)
 	i = ft_know_map(fd);
 	close(fd);
 	fd = open(str, O_RDONLY);
-	true_map = ft_calloc(i + 1, sizeof(char *));
+	true_map = malloc((i + 1) * sizeof(char *));
 	if (!true_map)
 		return (NULL);
 	true_map[j] = get_next_line(fd);

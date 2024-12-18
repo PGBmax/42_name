@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 17:50:20 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 16:19:22 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:52:22 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void frame_mobs(t_game *game)
 	if (count < FRAMEG)
 		ft_frames_mobs(game, 4);
 	else if (count < FRAMEG * 2)
-		ft_frames_mobs(game, 6);
-	else if (count < FRAMEG * 3)
 		ft_frames_mobs(game, 5);
-	else if (count < FRAMEG * 4)
+	else if (count < FRAMEG * 3)
 		ft_frames_mobs(game, 6);
+	else if (count < FRAMEG * 4)
+		ft_frames_mobs(game, 5);
 	else if (count == FRAMEG * 4)
 	{
 		ft_frames_mobs(game, 4);

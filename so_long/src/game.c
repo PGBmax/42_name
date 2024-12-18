@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 16:14:16 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:23:12 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,4 +338,5 @@ int main(int ac, char **av)
 	mlx_loop_hook(game.mlx, (void (*))frame_mobs, (void *)&game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
+	free_all(&game);
 }

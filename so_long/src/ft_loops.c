@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 15:01:59 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 16:19:01 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:23:35 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_screen_victory(t_game *game)
 	else if (count == FRAMEP * 7)
 	{
 		mlx_close_window(game->mlx);
-		free(game->map);
 		printf("\n\e[92mGood Job! 🎉\n");
 		printf("You won with %d mooves! 🥳\n\n\e[97m", game->mooves);
 	}
@@ -67,7 +66,6 @@ void	ft_screen_lose(t_game *game)
 	else if (count == FRAMEP * 9)
 	{
 		mlx_close_window(game->mlx);
-		free(game->map);
 		printf("\n\e[95mOH NOOO! 😢\n");
 		printf("PAC MAN IS TRAGICALLY CRUSHED BY A GHOST! 😭\n\n\e[97m");
 	}

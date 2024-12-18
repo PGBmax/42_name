@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 16:07:39 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:19:50 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	ft_moves_inky(t_game *game, int i);
 void	ft_frames_ghost(mlx_t *mlx, t_textures *tex, t_image *img);
 void	ft_frames_mobs(t_game *game, int n);
 void	frame_mobs(t_game *game);
+void	free_all(t_game *game);
 
 /*	ft_check_map.c	*/
 void	ft_check_case(t_game *game, char c);
