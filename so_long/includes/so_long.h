@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/16 18:24:28 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:07:39 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 #include <unistd.h>
 #include "GNL/get_next_line.h"
 #include "fcntl.h"
+#include <signal.h>
 
 /*	DONT TOUCH !!!	*/
 #define SIZE 32
 
 /*	DELAY OF FRAMES, YOU CANE MOVE IT BUT DONT WRITE 0 !	*/
 #define FRAMEP 5
+#define FRAMEG 8
 #define FRAMEC 8
 
 /*	MY TEXTURES	*/
@@ -43,10 +45,10 @@ typedef struct s_textures
 	mlx_texture_t	*exit;
 	mlx_texture_t 	*pac_man_exit[5];
 	mlx_texture_t	*pac_frame[12];
-	mlx_texture_t	*clyde[4];
-	mlx_texture_t	*inky[4];
-	mlx_texture_t	*pinky[4];
-	mlx_texture_t	*blinky[4];
+	mlx_texture_t	*clyde[7];
+	mlx_texture_t	*inky[7];
+	mlx_texture_t	*pinky[7];
+	mlx_texture_t	*blinky[7];
 	mlx_texture_t	*pac_death[7];
 	mlx_texture_t	*digit[10];
 	
@@ -67,10 +69,10 @@ typedef struct s_image
 	mlx_image_t	*exit;
 	mlx_image_t *pac_man_exit[5];
 	mlx_image_t	*pac_frame[12];
-	mlx_image_t	*clyde[4];
-	mlx_image_t	*inky[4];
-	mlx_image_t	*pinky[4];
-	mlx_image_t	*blinky[4];
+	mlx_image_t	*clyde[7];
+	mlx_image_t	*inky[7];
+	mlx_image_t	*pinky[7];
+	mlx_image_t	*blinky[7];
 	mlx_image_t	*pac_death[7];
 
 	mlx_image_t	*digit[10];
@@ -107,6 +109,7 @@ typedef struct	s_game
 	int pinky_x;
 	int pinky_y;
 
+	int in_move;
 	int max_collec;
 	int get_collec;
 	int mooves;
@@ -114,8 +117,14 @@ typedef struct	s_game
 }	t_game;
 
 /*	temp.c*/
-int ft_error(int n);
-void ft_moves_blinky(t_game *game);
+int		ft_error(int n);
+void	ft_moves_blinky(t_game *game, int i);
+void	ft_moves_clyde(t_game *game, int i);
+void	ft_moves_pinky(t_game *game, int i);
+void	ft_moves_inky(t_game *game, int i);
+void	ft_frames_ghost(mlx_t *mlx, t_textures *tex, t_image *img);
+void	ft_frames_mobs(t_game *game, int n);
+void	frame_mobs(t_game *game);
 
 /*	ft_check_map.c	*/
 void	ft_check_case(t_game *game, char c);

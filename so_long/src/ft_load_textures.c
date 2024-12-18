@@ -12,6 +12,32 @@
 
 #include <so_long.h>
 
+void	ft_frames_ghost(mlx_t *mlx, t_textures *tex, t_image *img)
+{
+	int	i;
+
+	i = 3;
+	tex->blinky[4] = mlx_load_png("./texb/red_frame0.png");
+	tex->blinky[5] = mlx_load_png("./texb/red_frame1.png");
+	tex->pinky[4] = mlx_load_png("./texb/pink_frame0.png");
+	tex->pinky[5] = mlx_load_png("./texb/pink_frame1.png");
+	tex->inky[4] = mlx_load_png("./texb/cyan_frame0.png");
+	tex->inky[5] = mlx_load_png("./texb/cyan_frame1.png");
+	tex->clyde[4] = mlx_load_png("./texb/orange_frame0.png");
+	tex->clyde[5] = mlx_load_png("./texb/orange_frame1.png");
+	tex->blinky[6] = mlx_load_png("./texb/red_frame2.png");
+	tex->pinky[6] = mlx_load_png("./texb/pink_frame2.png");
+	tex->inky[6] = mlx_load_png("./texb/cyan_frame2.png");
+	tex->clyde[6] = mlx_load_png("./texb/orange_frame2.png");
+	while (++i < 7)
+	{
+		img->clyde[i] = mlx_texture_to_image(mlx, tex->clyde[i]);
+		img->inky[i] = mlx_texture_to_image(mlx, tex->inky[i]);
+		img->pinky[i] = mlx_texture_to_image(mlx, tex->pinky[i]);
+		img->blinky[i] = mlx_texture_to_image(mlx, tex->blinky[i]);
+	}
+}
+
 void	ft_textures_ghost(mlx_t *mlx, t_textures *tex, t_image *img)
 {
 	static int	i = -1;

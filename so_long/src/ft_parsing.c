@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:28:48 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/16 17:39:35 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:17:02 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	ft_load_textures(mlx_t *mlx, t_textures *tex, t_image *img)
 	ft_textures_walls_2(mlx, tex, img);
 	ft_textures_data(mlx, tex, img);
 	ft_textures_player(mlx, tex, img);
+	ft_frames_ghost(mlx, tex, img);
 	tex->collec[0] = mlx_load_png("./text/collec.png");
 	tex->collec[1] = mlx_load_png("./texb/collec_2.png");
 	tex->collec[2] = mlx_load_png("./texb/collec_3.png");

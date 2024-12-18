@@ -1,7 +1,7 @@
 NAME = so_long
 
 SOURCES =	src/game.c src/map.c src/ft_check_map.c src/ft_textures.c src/ft_load_textures.c src/ft_loops.c\
-			src/ft_parsing.c src/ft_walls.c src/ft_ghost_moves.c\
+			src/ft_parsing.c src/ft_walls.c src/ft_ghost_moves.c \
 			includes/GNL/get_next_line.c includes/GNL/get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)

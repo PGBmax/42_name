@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/16 18:22:44 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:14:16 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void frames_player(t_game *game)
 {
 	static int count = 0;
 
-	if (game->victory == 1)
+	if (game->victory != 0)
 		return ;
 	if (count < FRAMEP)
 		ft_frame_pac_man(game, 1);
@@ -210,6 +210,7 @@ void	ft_update_count(t_game *game, int num, int step)
 
 void	ft_move_pac_man(t_game *game, int o, char c, int state)
 {
+	game->in_move = 1;
 	if (c == 'u' || c == 'd')
 		game->player_x = game->player_x + o;
 	else
@@ -239,11 +240,13 @@ void	ft_move_pac_man(t_game *game, int o, char c, int state)
 		game->victory = -1;
 	if (game->victory == 0)
 	{
-		ft_moves_blinky(game);
-		// ft_moves_inky(game);
-		// ft_moves_pinky(game);
-		// ft_moves_clyde(game);
+		ft_moves_blinky(game, 0);
+		ft_moves_inky(game, 0);
+		ft_moves_pinky(game, 0);
+		ft_moves_clyde(game, 0);
+		frame_mobs(game);
 	}
+	game->in_move = 0;
 }
 
 void	ft_hook(mlx_key_data_t key_data,t_game *game)
@@ -316,6 +319,7 @@ int main(int ac, char **av)
 	init_game_values(&game);
 	game.map = ft_read_map(av[1]);
 	ft_know_size_map(&game);
+	srand((unsigned int)getpid());
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
 	if (!game.mlx)
@@ -331,6 +335,7 @@ int main(int ac, char **av)
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_lose, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_frames, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))frames_player, (void *)&game);
+	mlx_loop_hook(game.mlx, (void (*))frame_mobs, (void *)&game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 }
