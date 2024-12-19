@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 17:19:50 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:03:00 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ void	ft_frames_ghost(mlx_t *mlx, t_textures *tex, t_image *img);
 void	ft_frames_mobs(t_game *game, int n);
 void	frame_mobs(t_game *game);
 void	free_all(t_game *game);
+void	free_map(char **map);
+void	free_textures(t_textures *tex);
 
 /*	ft_check_map.c	*/
 void	ft_check_case(t_game *game, char c);
@@ -167,8 +169,7 @@ void	ft_show_walls(mlx_t *mlx, t_game game, int x, int y);
 
 /*	map.c	*/
 int		t_know_map(int fd);
-char	**ft_read_map(char *str);
+void	ft_read_map(t_game *game, char *str);
 void	ft_display_number(mlx_t *mlx, t_game game, int i, t_image img);
-char	**remove_return_line(char **map);
-int		ft_create_map(mlx_t *mlx, t_game game);
+int		ft_create_map(mlx_t *mlx, t_game *game);
 #endif

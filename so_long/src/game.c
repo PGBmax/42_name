@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 17:23:12 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:24:09 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,19 +317,24 @@ int main(int ac, char **av)
 	if (!open(av[1], O_RDONLY) || open(av[1], O_RDONLY) == -1)
 		return (ft_error(3));
 	init_game_values(&game);
-	game.map = ft_read_map(av[1]);
+	ft_read_map(&game, av[1]);
 	ft_know_size_map(&game);
 	srand((unsigned int)getpid());
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
 	if (!game.mlx)
+	{
+		free_map(game.map);
 		return (ft_error(12));
+	}
 	ft_load_textures(game.mlx, &game.textures, &game.image);
-	game.nmb_count = ft_create_map(game.mlx, game);
-	if (!game.nmb_count)
-		return (ft_error(9));
-	if (!ft_parsing(game))
+	game.nmb_count = ft_create_map(game.mlx, &game);
+	if (!game.nmb_count ||!ft_parsing(game))
+	{
+		free_all(&game);
+		mlx_terminate(game.mlx);
 		return (0);
+	}
 	mlx_key_hook(game.mlx, (void (*))ft_hook, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_victory, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))ft_screen_lose, (void *)&game);
@@ -337,6 +342,6 @@ int main(int ac, char **av)
 	mlx_loop_hook(game.mlx, (void (*))frames_player, (void *)&game);
 	mlx_loop_hook(game.mlx, (void (*))frame_mobs, (void *)&game);
 	mlx_loop(game.mlx);
-	mlx_terminate(game.mlx);
 	free_all(&game);
+	mlx_terminate(game.mlx);
 }

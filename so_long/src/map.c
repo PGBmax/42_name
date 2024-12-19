@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:41:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 17:36:27 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:07:28 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ int	ft_know_map(int fd)
 	return (i);
 }
 
-char	**ft_read_map(char *str)
+void	ft_read_map(t_game *game, char *str)
 {
-	char			**true_map;
 	int				fd;
 	int				i;
 	int				j;
@@ -42,14 +41,13 @@ char	**ft_read_map(char *str)
 	i = ft_know_map(fd);
 	close(fd);
 	fd = open(str, O_RDONLY);
-	true_map = malloc((i + 1) * sizeof(char *));
-	if (!true_map)
-		return (NULL);
-	true_map[j] = get_next_line(fd);
+	game->map = ft_calloc(i + 1, sizeof(char *));
+	if (!game->map)
+		return ;
+	game->map[j] = get_next_line(fd);
 	while (++j < i)
-		true_map[j] = get_next_line(fd);
-	true_map[j] = NULL;
-	return (true_map);
+		game->map[j] = get_next_line(fd);
+	game->map[j] = NULL;
 }
 
 void	ft_display_number(mlx_t *mlx, t_game game, int i, t_image img)
@@ -75,45 +73,75 @@ void	ft_display_number(mlx_t *mlx, t_game game, int i, t_image img)
 	img.digit[9]->instances[i].enabled = 0;
 }
 
-char	**remove_return_line(char **map)
+int	remove_return_line(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (game->map[i])
 	{
-		if (map[i][ft_strlen(map[i]) - 1] == '\n')
-			map[i][ft_strlen(map[i]) - 1] = 0;
-		if (i > 0 && ft_strlen(map[i]) != ft_strlen(map[i - 1]))
-			return (0);
+		if (game->map[i][ft_strlen(game->map[i]) - 1] == '\n')
+			game->map[i][ft_strlen(game->map[i]) - 1] = 0;
+		if (i > 0 && ft_strlen(game->map[i]) != ft_strlen(game->map[i - 1]))
+			return (ft_error(9));
 		i++;
 	}
-	return (map);
+	return (1);
 }
 
-int	ft_create_map(mlx_t *mlx, t_game game)
+int check_off_walls(char **map,	int x,	int y)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = -1;
+	while (map[0][++j])
+	{
+		if (map[0][j] != '1')
+			return (ft_error(4));
+	}
+	j = -1;
+	while (map[y][++j])
+	{
+		if (map[y][j] != '1')
+			return (ft_error(4));
+	}
+	j = -1;
+	while (++i < y)
+	{
+		if (map[i][0] != '1' || map[i][x] != '1')
+			return (ft_error(4));
+	}
+	return (1);
+}
+
+
+int	ft_create_map(mlx_t *mlx, t_game *game)
 {
 	int	i;
 
-	game.map = remove_return_line(game.map);
+	if (!remove_return_line(game) ||
+		!check_off_walls(game->map, game->max_x, game->max_y))
+		return (0);
 	i = 0;
-	game.x = 0;
-	while (game.map[game.x])
+	game->x = 0;
+	while (game->map[game->x])
 	{
-		game.y = 0;
-		while (game.map[game.x][game.y])
+		game->y = 0;
+		while (game->map[game->x][game->y])
 		{
-			ft_show_map(mlx, game, game.map[game.x][game.y]);
-			if (game.x == 0 && game.y != 0 && game.y != game.max_x && i < 5)
+			ft_show_map(mlx, *game, game->map[game->x][game->y]);
+			if (game->x == 0 && game->y != 0 && game->y != game->max_x && i < 5)
 			{
-				ft_display_number(mlx, game, i, game.image);
+				ft_display_number(mlx, *game, i, game->image);
 				i++;
 			}
-			game.y++;
+			game->y++;
 		}
-		game.x++;
+		game->x++;
 	}
-	ft_frames_of_ghosts(mlx, game, &game.image);
-	ft_frames_of_player(mlx, game, &game.image);
+	ft_frames_of_ghosts(mlx, *game, &game->image);
+	ft_frames_of_player(mlx, *game, &game->image);
 	return (i);
 }

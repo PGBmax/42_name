@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:28:48 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 14:17:02 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:55:26 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,35 @@ int	ft_parsing(t_game game)
 	int		y;
 	char	**map;
 
-	map = fill_map(game);
-	if (!ft_somes_verifs(game, map))
-		return (0);
-	fill(&game, game.player_y, game.player_x, map);
-	x = -1;
 	if (game.max_collec == 0)
 		return (ft_error(8));
+	if (!ft_somes_verifs(game, game.map))
+		return (0);
+	map = fill_map(game);
+	fill(&game, game.player_y, game.player_x, map);
+	x = -1;
 	while (map[++x])
 	{
 		y = -1;
 		while (map[x][++y])
 		{
 			if (map[x][y] == 'C')
+			{
+				free_map(map);
 				return (ft_error(6));
+			}
 			if (map[x][y] == 'E')
+			{
+				free_map(map);
 				return (ft_error(7));
+			}
 		}
+	}
+	x = 0;
+	while (map[x])
+	{
+		free(map[x]);
+		x++;
 	}
 	free(map);
 	return (1);
