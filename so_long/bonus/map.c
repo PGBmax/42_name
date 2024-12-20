@@ -6,11 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:41:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:42:11 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:45:30 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 void	ft_read_map(t_game *game, char *str)
 {
@@ -78,9 +78,12 @@ static int	check_off_walls(char **map,	int x,	int y)
 
 int	ft_create_map(mlx_t *mlx, t_game *game)
 {
+	int	i;
+
 	if (!remove_return_line(game)
 		|| !check_off_walls(game->map, game->max_x, game->max_y))
 		return (0);
+	i = 0;
 	game->x = 0;
 	while (game->map[game->x])
 	{
@@ -88,10 +91,16 @@ int	ft_create_map(mlx_t *mlx, t_game *game)
 		while (game->map[game->x][game->y])
 		{
 			ft_show_map(mlx, *game, game->map[game->x][game->y]);
+			if (game->x == 0 && game->y != 0 && game->y != game->max_x && i < 5)
+			{
+				ft_display_number(mlx, *game, i, game->image);
+				i++;
+			}
 			game->y++;
 		}
 		game->x++;
 	}
+	ft_frames_of_ghosts(mlx, *game, &game->image);
 	ft_frames_of_player(mlx, *game, &game->image);
-	return (1);
+	return (i);
 }

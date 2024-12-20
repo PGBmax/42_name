@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_textures.c                                      :+:      :+:    :+:   */
+/*   ft_show_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:30:47 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/18 15:59:08 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:45:24 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
-void	ft_frames_for_long(mlx_t *mlx, t_game game, mlx_image_t *img, int check)
+static void	ft_for_long(mlx_t *mlx, t_game game, mlx_image_t *img, int check)
 {
 	int	s;
 
@@ -23,17 +23,17 @@ void	ft_frames_for_long(mlx_t *mlx, t_game game, mlx_image_t *img, int check)
 		mlx_image_to_window(mlx, img, game.player_y * s, game.player_x * s);
 }
 
-void	ft_frames_of_ghosts(mlx_t *mlx, t_game game, t_image *img)
+void	ft_frames_of_ghosts(mlx_t *mlx, t_game g, t_image *img)
 {
 	int	s;
-	int i;
+	int	i;
 
 	s = SIZE;
 	i = -1;
-	mlx_image_to_window(mlx, img->ground, game.clyde_y * s, game.clyde_x * s);
-	mlx_image_to_window(mlx, img->ground, game.pinky_y * s, game.pinky_x * s);
-	mlx_image_to_window(mlx, img->ground, game.blinky_y * s, game.blinky_x * s);
-	mlx_image_to_window(mlx, img->ground, game.inky_y * s, game.inky_x * s);
+	mlx_image_to_window(mlx, img->ground, g.clyde_y * s, g.clyde_x * s);
+	mlx_image_to_window(mlx, img->ground, g.pinky_y * s, g.pinky_x * s);
+	mlx_image_to_window(mlx, img->ground, g.blinky_y * s, g.blinky_x * s);
+	mlx_image_to_window(mlx, img->ground, g.inky_y * s, g.inky_x * s);
 	while (++i < 3)
 	{
 		mlx_image_to_window(mlx, img->clyde[i], -1 * s, -1 * s);
@@ -44,10 +44,10 @@ void	ft_frames_of_ghosts(mlx_t *mlx, t_game game, t_image *img)
 	i--;
 	while (++i < 7)
 	{
-		mlx_image_to_window(mlx, img->clyde[i], game.clyde_y * s, game.clyde_x * s);
-		mlx_image_to_window(mlx, img->pinky[i], game.pinky_y * s, game.pinky_x * s);
-		mlx_image_to_window(mlx, img->inky[i], game.inky_y * s, game.inky_x * s);
-		ft_frames_for_long(mlx, game, img->blinky[i], 0);
+		mlx_image_to_window(mlx, img->clyde[i], g.clyde_y * s, g.clyde_x * s);
+		mlx_image_to_window(mlx, img->pinky[i], g.pinky_y * s, g.pinky_x * s);
+		mlx_image_to_window(mlx, img->inky[i], g.inky_y * s, g.inky_x * s);
+		ft_for_long(mlx, g, img->blinky[i], 0);
 	}
 }
 
@@ -72,7 +72,7 @@ void	ft_frames_of_player(mlx_t *mlx, t_game game, t_image *img)
 	mlx_image_to_window(mlx, img->player[2], -1 * s, -1 * s);
 	mlx_image_to_window(mlx, img->player[3], -1 * s, -1 * s);
 	mlx_image_to_window(mlx, img->player[4], -1 * s, -1 * s);
-	ft_frames_for_long(mlx, game, img->player[0], 1);
+	ft_for_long(mlx, game, img->player[0], 1);
 }
 
 void	ft_show_map(mlx_t *mlx, t_game game, char c)

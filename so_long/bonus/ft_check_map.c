@@ -6,28 +6,63 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:03:18 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/20 19:52:59 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
+
+static void	ft_check_case2(t_game *game, char c)
+{
+	if (c == 'O')
+	{
+		game->nmb_ghost[1]++;
+		game->clyde_x = game->x;
+		game->clyde_y = game->y;
+	}
+	else if (c == 'K')
+	{
+		game->nmb_ghost[2]++;
+		game->pinky_x = game->x;
+		game->pinky_y = game->y;
+	}
+	else if (c == 'B')
+	{
+		game->nmb_ghost[3]++;
+		game->inky_x = game->x;
+		game->inky_y = game->y;
+	}
+	else
+	{
+		if (!game->map[game->x][0] == 0)
+			game->error = 1;
+	}
+}
 
 void	ft_check_case(t_game *game, char c)
 {
 	if (c == 'C')
 		game->max_collec++;
-	if (c == 'E')
+	else if (c == 'E')
 	{
 		game->nmb_exit++;
 		game->exit_x = game->x;
 		game->exit_y = game->y;
 	}
-	if (c == 'P')
+	else if (c == 'P')
 	{
 		game->nmb_player++;
 		game->player_x = game->x;
 		game->player_y = game->y;
 	}
+	else if (c == 'R')
+	{
+		game->nmb_ghost[0]++;
+		game->blinky_x = game->x;
+		game->blinky_y = game->y;
+	}
+	else
+		ft_check_case2(game, c);
 }
 
 void	ft_know_size_map(t_game *game)

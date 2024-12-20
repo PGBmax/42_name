@@ -6,11 +6,11 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 14:37:52 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:08:51 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:45:26 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <so_long.h>
+#include <so_long_bonus.h>
 
 static void	ft_block_walls_3(mlx_t *mlx, t_game game, int x, int y)
 {
