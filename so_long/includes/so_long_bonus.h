@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:53:12 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:41:22 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,10 @@ void			fill(t_game *game, int row, int col, char **map);
 char			**fill_map(t_game game);
 
 /*	free_all.c	*/
-void			free_textures(t_textures *tex);
 void			free_map(char **map);
 int				free_all(t_game *game);
 
 /*	ft_check_map.c	*/
-void			ft_check_case(t_game *game, char c);
 void			ft_know_size_map(t_game *game);
 int				check_map(char *map);
 int				ft_pars_walls(t_game game);

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:52:59 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:41:05 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,19 @@ static void	ft_check_case2(t_game *game, char c)
 	}
 	else
 	{
-		if (!game->map[game->x][0] == 0)
+		if ((c != 0 && c != '\n') || (game->map[game->x][0] == 0)
+			|| ((game->map[game->x][ft_strlen(game->map[game->x]) - 1] != '\n')
+			&& (game->map[game->x][ft_strlen(game->map[game->x]) - 1] != 0)))
 			game->error = 1;
 	}
 }
 
-void	ft_check_case(t_game *game, char c)
+static void	ft_check_case(t_game *game, char c)
 {
 	if (c == 'C')
 		game->max_collec++;
+	else if (c == '1' || c == '0')
+		return ;
 	else if (c == 'E')
 	{
 		game->nmb_exit++;

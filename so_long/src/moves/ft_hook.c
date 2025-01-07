@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:32:05 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:07:24 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:23:25 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static void	ft_close_game(t_game *game)
 	{
 		ft_printf("\n\e[93mPac Man");
 		ft_printf(" just gave up about winning. 💀\n\n\e[97m");
-	}
-	else if (game->victory == -1)
-	{
-		ft_printf("\n\e[93mPac Man");
-		ft_printf(" just killed himself before dying. 💀\n\n\e[97m");
 	}
 	else
 	{

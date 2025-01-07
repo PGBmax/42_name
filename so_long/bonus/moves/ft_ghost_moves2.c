@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 15:16:27 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:44:39 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:34:34 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_moves_inky(t_game *game, int i)
 	int	j;
 
 	j = rand() % 2;
-	if (game->nmb_ghost[0] == 0 || i > 9)
+	if (game->nmb_ghost[3] == 0 || i > 4)
 	{
 		game->image.inky[0]->instances->x = game->inky_y * SIZE;
 		game->image.inky[0]->instances->y = game->inky_x * SIZE;
@@ -103,7 +103,7 @@ void	ft_moves_pinky(t_game *game, int i)
 	int	j;
 
 	j = rand() % 2;
-	if (game->nmb_ghost[0] == 0 || i > 9)
+	if (game->nmb_ghost[2] == 0 || i > 4)
 	{
 		game->image.pinky[0]->instances->x = game->pinky_y * SIZE;
 		game->image.pinky[0]->instances->y = game->pinky_x * SIZE;

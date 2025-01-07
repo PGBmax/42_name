@@ -6,13 +6,13 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:04:03 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:03:07 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:40:14 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	free_textures(t_textures *tex)
+static void	free_textures(t_textures *tex)
 {
 	int	i;
 

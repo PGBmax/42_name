@@ -2,14 +2,24 @@ NAME = so_long
 
 SOURCES =	src/moves/ft_hook.c \
 			src/moves/remove_collec.c \
-			src/textures/ft_load_png.c src/textures/ft_tex_data.c src/textures/ft_tex_player.c src/textures/ft_tex_walls.c \
-			src/flood_fill.c src/free_all.c src/ft_check_map.c src/ft_error.c src/ft_loops.c src/ft_parsing.c \
-			src/ft_show_textures.c src/ft_walls.c src/main.c src/map.c \
+			src/textures/ft_load_png.c \
+			src/textures/ft_tex_data.c \
+			src/textures/ft_tex_player.c \
+			src/textures/ft_tex_walls.c \
+			src/flood_fill.c \
+			src/free_all.c \
+			src/ft_check_map.c \
+			src/ft_error.c \
+			src/ft_loops.c \
+			src/ft_parsing.c \
+			src/ft_show_textures.c \
+			src/ft_walls.c \
+			src/main.c \
+			src/map.c \
 			includes/ft_printf/ft_printf.c \
 			includes/ft_printf/ft_utils.c \
 			includes/GNL/get_next_line.c \
 			includes/GNL/get_next_line_utils.c
-
 SOURCESBONUS =	bonus/flood_fill.c \
 				bonus/free_all.c \
 				bonus/ft_check_map.c \

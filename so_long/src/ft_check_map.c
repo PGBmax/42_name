@@ -6,27 +6,36 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:28:14 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:03:18 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:40:56 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
 
-void	ft_check_case(t_game *game, char c)
+static void	ft_check_case(t_game *game, char c)
 {
 	if (c == 'C')
 		game->max_collec++;
-	if (c == 'E')
+	else if (c == '1' || c == '0')
+		return ;
+	else if (c == 'E')
 	{
 		game->nmb_exit++;
 		game->exit_x = game->x;
 		game->exit_y = game->y;
 	}
-	if (c == 'P')
+	else if (c == 'P')
 	{
 		game->nmb_player++;
 		game->player_x = game->x;
 		game->player_y = game->y;
+	}
+	else
+	{
+		if ((c != 0 && c != '\n') || (game->map[game->x][0] == 0)
+			|| ((game->map[game->x][ft_strlen(game->map[game->x]) - 1] != '\n')
+			&& (game->map[game->x][ft_strlen(game->map[game->x]) - 1] != 0)))
+			game->error = 1;
 	}
 }
 

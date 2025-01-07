@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:56:40 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 19:41:03 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:30:01 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_load_t(mlx_t *mlx, t_textures *tex, t_image *img, t_game *g)
 	ft_textures_data(tex, g);
 	ft_textures_player(tex, g);
 	if (g->nmb_tex != 33)
-		return (0);
+		return (ft_error(13));
 	ft_create_image(mlx, tex, img);
 	return (1);
 }

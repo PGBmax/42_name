@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 17:50:20 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:44:37 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:33:58 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_moves_blinky(t_game *game, int i)
 	int	j;
 
 	j = rand() % 2;
-	if (game->nmb_ghost[0] == 0 || i > 9)
+	if (game->nmb_ghost[0] == 0 || i > 4)
 	{
 		game->image.blinky[0]->instances->x = game->blinky_y * SIZE;
 		game->image.blinky[0]->instances->y = game->blinky_x * SIZE;
@@ -103,7 +103,7 @@ void	ft_moves_clyde(t_game *game, int i)
 	int	j;
 
 	j = rand() % 2;
-	if (game->nmb_ghost[0] == 0 || i > 9)
+	if (game->nmb_ghost[1] == 0 || i > 4)
 	{
 		game->image.clyde[0]->instances->x = game->clyde_y * SIZE;
 		game->image.clyde[0]->instances->y = game->clyde_x * SIZE;

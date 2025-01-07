@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:06:39 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:47:22 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:51:08 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_game
 	t_textures		textures;
 	t_image			image;
 	char			**map;
+	int				error;
 	int				x;
 	int				y;
 	int				max_x;
@@ -92,87 +93,63 @@ typedef struct s_game
 	int				victory;
 }	t_game;
 
-/*	flood_fill.c*/
+/*	src/main.c	*/
+void			reveal_exit(t_game *game, int x, int y);
+
+/*	src/flood_fill.c	*/
 int				ft_know_map(int fd);
 void			fill(t_game *game, int row, int col, char **map);
 char			**fill_map(t_game game);
 
-/*	free_all.c	*/
-void			free_textures(t_textures *tex);
+/*	src/free_all.c	*/
 void			free_map(char **map);
 int				free_all(t_game *game);
 
-/*	ft_check_map.c	*/
-void			ft_check_case(t_game *game, char c);
+/*	src/ft_check_map.c	*/
 void			ft_know_size_map(t_game *game);
 int				check_map(char *map);
 int				ft_pars_walls(t_game game);
 
-/*	ft_error.c	*/
+/*	src/ft_error.c	*/
 int				ft_error(int n);
 int				ft_args_error(int ac, char **av);
 
-/*	ft_loops.c	*/
+/*	src/ft_loops.c	*/
 void			ft_screen_victory(t_game *game);
-void			ft_screen_lose(t_game *game);
 
-/*	ft_parsing.c	*/
+/*	src/ft_check_values.c	*/
 int				ft_check_values(char c);
 int				ft_parsing(t_game game);
 
-/*	ft_show_textures.c	*/
-void			ft_frames_of_ghosts(mlx_t *mlx, t_game g, t_image *img);
+/*	src/ft_show_textures.c	*/
 void			ft_frames_of_player(mlx_t *mlx, t_game game, t_image *img);
 void			ft_show_map(mlx_t *mlx, t_game game, char c);
 
-/*	ft_walls.c	*/
+/*	src/ft_walls.c	*/
 void			ft_show_walls(mlx_t *mlx, t_game game, int x, int y);
 
-/*	map.c	*/
+/*	src/map.c	*/
 void			ft_read_map(t_game *game, char *str);
 int				ft_create_map(mlx_t *mlx, t_game *game);
 
-/*	frames/ft_collec.c	*/
-void			reveal_exit(t_game *game, int x, int y);
-void			ft_frames(t_game *game);
-void			disable_collec(t_game *game);
-
-/*	frames/ft_digit.c	*/
-void			ft_update_count(t_game *game, int num, int step);
-void			ft_display_number(mlx_t *mlx, t_game game, int i, t_image img);
-
-/*	frames/ft_player.c	*/
-void			frames_player(t_game *game);
-
-/*	moves/ft_ghost_moves.c	*/
-void			ft_moves_blinky(t_game *game, int i);
-void			ft_moves_clyde(t_game *game, int i);
-void			ft_moves_inky(t_game *game, int i);
-void			ft_moves_pinky(t_game *game, int i);
-
-/*	moves/ft_hook.c	*/
+/*	src/moves/ft_hook.c	*/
 void			ft_hook(mlx_key_data_t key_data, t_game *game);
 
-/*	moves/ft_utils_ghost.c	*/
-int				check_x(t_game *game, int x, int y);
-int				check_y(t_game *game, int x, int y);
-void			frame_mobs(t_game *game);
+/*	src/moves/remove_collec.c	*/
+void			disable_collec(t_game *game);
 
-/*	textures/ft_load_png.c	*/
+/*	src/textures/ft_load_png.c	*/
 mlx_texture_t	*ft_load_png(const char *path, t_game *game);
 void			ft_delete_texture(mlx_texture_t *tex);
 int				ft_load_t(mlx_t *mlx, t_textures *tex, t_image *img, t_game *g);
 
-/*	textures/ft_tex_data.c	*/
+/*	src/textures/ft_tex_data.c	*/
 void			ft_textures_data(t_textures *tex, t_game *game);
 
-/*	textures/ft_tex_ghost.c	*/
-void			ft_textures_ghost2(t_textures *tex, t_game *game);
-void			ft_textures_ghost(t_textures *tex, t_game *game);
-
-/*	textures/ft_tex_player.c	*/
+/*	src/textures/ft_tex_player.c	*/
 void			ft_textures_player(t_textures *tex, t_game *game);
 
-/*	textures/ft_tex_walls.c	*/
+/*	src/textures/ft_tex_walls.c	*/
 void			ft_textures_walls(t_textures *tex, t_game *game);
+
 #endif

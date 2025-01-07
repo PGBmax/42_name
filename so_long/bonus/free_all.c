@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:04:03 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:45:14 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:40:13 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	free_textures2(t_textures *tex)
 		ft_delete_texture(tex->pac_frame[i]);
 }
 
-void	free_textures(t_textures *tex)
+static void	free_textures(t_textures *tex)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 15:09:21 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:44:43 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:23:35 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int	check_x(t_game *game, int x, int y)
 {
+	if (game->map[x][y] == '1' || game->map[x][y] == 'E')
+		return (0);
 	if (x == game->inky_x || x == game->pinky_x
 		|| x == game->clyde_x || x == game->blinky_x)
-		return (0);
-	if (game->map[x][y] == '1' || game->map[x][y] == 'E')
 		return (0);
 	return (1);
 }
 
 int	check_y(t_game *game, int x, int y)
 {
+	if (game->map[x][y] == '1' || game->map[x][y] == 'E')
+		return (0);
 	if (y == game->inky_y || y == game->pinky_y
 		|| y == game->clyde_y || y == game->blinky_y)
-		return (0);
-	if (game->map[x][y] == '1' || game->map[x][y] == 'E')
 		return (0);
 	return (1);
 }

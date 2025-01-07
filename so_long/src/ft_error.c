@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:03:38 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:54:57 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:30:07 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 static int	ft_error2(int n)
 {
 	if (n == 11)
-		ft_printf("A texture is not recognized!\n\n\e[97m");
+		ft_printf("A character is not recognized !\n\n\e[97m");
 	if (n == 12)
 		ft_printf("MLX could not be created!\n\n\e[97m");
+	if (n == 13)
+		ft_printf("At least 1 texture is missing!\n\n\e[97m");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:32:05 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:44:41 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:36:22 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	ft_move_pac_man(t_game *game, int o, char c, int state)
 	{
 		game->moves++;
 		ft_update_count(game, game->moves, game->nmb_count - 1);
-		ft_printf("\e[96mNumber of steps : %d\n\e[97m", game->moves);
 	}
 	if (game->map[game->player_x][game->player_y] == 'C')
 	{

@@ -6,7 +6,7 @@
 /*   By: pboucher <pboucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 16:57:50 by pboucher          #+#    #+#             */
-/*   Updated: 2024/12/20 18:55:20 by pboucher         ###   ########.fr       */
+/*   Updated: 2024/12/21 15:20:43 by pboucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	reveal_exit(t_game *game, int x, int y)
 	mlx_image_to_window(game->mlx, game->image.exit, x * SIZE, y * SIZE);
 }
 
-static void	init_game_values(t_game *game, char *s)
+static int	init_game_values(t_game *game, char *s)
 {
 	game->moves = 0;
 	game->get_collec = 0;
@@ -29,8 +29,12 @@ static void	init_game_values(t_game *game, char *s)
 	game->state = 0;
 	game->nmb_count = 0;
 	game->nmb_tex = 0;
+	game->error = 0;
 	ft_read_map(game, s);
 	ft_know_size_map(game);
+	if (game->error)
+		return (ft_error(11));
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -39,7 +43,11 @@ int	main(int ac, char **av)
 
 	if (!ft_args_error(ac, av))
 		return (0);
-	init_game_values(&game, av[1]);
+	if (!init_game_values(&game, av[1]))
+	{
+		free_map(game.map);
+		return (0);
+	}
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game.mlx = mlx_init(game.y * SIZE, game.x * SIZE, "Pac Man", true);
 	if (!game.mlx)
